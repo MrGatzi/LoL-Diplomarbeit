@@ -1,6 +1,6 @@
 <?php		
 		
-		$test=$_POST['test1'];
+		$test=$_POST['test'];
 		$fh = fopen("Logfile.txt", "a");
 		$test=utf8_decode($test);
 		if($test=json_decode($test,true)){

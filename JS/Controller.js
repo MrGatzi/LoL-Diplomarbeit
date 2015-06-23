@@ -9,13 +9,14 @@ var first;
 			var data;
 			$.ajax({
 				type: "GET",
-				url:first,
+				url: first,
 				data: data,	
 				dataType: 'json',
 				success: function(data) {
+					alert(data);
 					var SumName_ubergabe="LOL";
 					// summername bekommen um die ID auszugeben
-					SumName_ubergabe=$('#SumName').val().toLowerCase();;
+					SumName_ubergabe=$('#SumName').val().toLowerCase();
 					alert(" Your Summoner ID is : "+data[SumName_ubergabe].id);
 				},
 				// Fehler wenn anfrage gescheitert

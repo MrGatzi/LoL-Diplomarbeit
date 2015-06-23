@@ -17,7 +17,7 @@
 		require_once("../phpfastcache/phpfastcache.php");
 		phpFastCache::setup("storage","auto");
 		$cache = phpFastCache();
-
+		
 		$Input_RequestData=$_POST['Data1'];
 		$fh = fopen("LogFile.txt", "a");
 		//Check if Requested Data is already in Cache

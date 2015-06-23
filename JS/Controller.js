@@ -5,7 +5,7 @@ var first;
 		// anfrage sting erzeugen mit SUmmoner name input und Server Name
 		first='https://'+ServName.value+'.api.pvp.net/api/lol/euw/v1.4/summoner/by-name/'+SumName.value+'?api_key=fbe18d9e-025e-4b0a-a71a-c4844cbd4850'
 		// abfrage Json Sting
-		$.ajaxSetup({ cache: false });
+		/*$.ajaxSetup({ cache: false });
 			var data;
 			$.ajax({
 				type: "GET",
@@ -24,6 +24,7 @@ var first;
 					alert("Your Summoner wasn't found!");
 				}
 			});	
+			*/
 		 });
 	});
 	/* Function :

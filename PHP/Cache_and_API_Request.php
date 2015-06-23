@@ -35,7 +35,7 @@
 			// Decode Json String If Summoner don't exist Eror!
 			if($SumObj = json_decode($result, true)){
 				fwrite($fh,"Sucess Created : ");
-				fwrite($fh,$SumObj[$Input_RequestData[SumName_input]]['name']);
+				fwrite($fh,$SumObj[$Input_RequestData['SumName_input']]['name']);
 			}else{
 				fwrite($fh,"Error Sumoner doesn't Exist |");
 			};
@@ -44,7 +44,8 @@
 			fwrite($fh," Wrote it in Database| ");
 		}else{
 			fwrite($fh,"Does (!) Exist in Data Base : ");
-			//fwrite($fh,"$SumObj[0][0] |"); --> Wie
+			$SumObj=json_encode($SumObj, true);
+			echo $SumObj;
 		}
 		
 		fclose($fh);	

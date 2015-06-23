@@ -1,1 +1,1 @@
-Does (!) Exist in Data Base : Array |Does (!) Exist in Data Base : [0] |
+ Does (!) Exist in Data Base : Does not Exist in Data Base | Sucess Created : Fizki Wrote it in Database| Does not Exist in Data Base | Sucess Created : Fizki Wrote it in Database| Does not Exist in Data Base | Error Sumoner doesn't Exist | Wrote it in Database| Does not Exist in Data Base | Sucess Created : Fizki Wrote it in Database| Does (!) Exist in Data Base : Does not Exist in Data Base | Sucess Created : Fizki Wrote it in Database| Does (!) Exist in Data Base : 

@@ -11,12 +11,12 @@
 		$result=curl_exec($ch);
 		curl_close($ch);
 		// Look of Result : {"mrgatzi":{"id":26558642,"name":"Mr Gatzi","profileIconId":786,"summonerLevel":30,"revisionDate":1434999965000}}
-		// Decode Json String If Summoner don't exist Eror!
+		// Decode Json String If the Summoner name  doesn't exist: Error!
 		if($obj = json_decode($result, true)){
 			fwrite($fh,"Sucess decode Input! Created : ");
 			fwrite($fh,$obj[$test[SumName_input]]['name']);
 		}else{
-			fwrite($fh,"Error Sumoner doesn't Exist");
+			fwrite($fh,"Error Summoner doesn't Exist");
 		};
 		
 		fclose($fh);	

@@ -6,6 +6,7 @@ var first;
 		var check =$.post("PHP/Cache_and_API_Request.php",{Data1});
 		check.done(function() {
 			console.log( "success_new" );
+			window.location.replace("Matchhistory.html");
 		})
 		check.fail(function() {
 			console.log( "Error while sendig to the database to create Data" );

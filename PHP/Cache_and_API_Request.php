@@ -50,6 +50,6 @@
 			
 			fclose($fh);
 		}else{
-			echo "HEY";
+			//echo $_POST["fld1"];
 		}
 ?>

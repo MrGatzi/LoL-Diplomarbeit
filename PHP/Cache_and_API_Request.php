@@ -14,7 +14,7 @@
 		*/
 		
 		// Include PHP FAST CACHE
-		require_once("../phpfastcache/phpfastcache.php");
+		require_once("../Libraries/phpfastcache/phpfastcache.php");
 		phpFastCache::setup("storage","auto");
 		$cache = phpFastCache();
 		

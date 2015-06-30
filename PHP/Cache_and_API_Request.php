@@ -18,6 +18,12 @@
 		phpFastCache::setup("storage","auto");
 		$cache = phpFastCache();
 		if (!empty($_POST)){
+			class ReturnClass
+			{
+				public $SumInfo;
+				public $SumGames;
+			}
+			$Return = new ReturnClass(); 
 			$Input_RequestData=$_POST['Data1'];
 			$fh = fopen("LogFile.txt", "a");
 			//Check if Requested Data is already in Cache
@@ -47,9 +53,23 @@
 				$SumObj=json_encode($SumObj, true);
 				echo $SumObj;
 			}
-			
+			// BUG !! --> Wenn der SUmmoner noch nicht im Cach ist Fehler ....
+			// Get Recent Games Played
+			$SumObj=json_decode($SumObj);
+			$test1=$SumObj->{$Input_RequestData['SumName_input']}->id;
+			$url="https://$Input_RequestData[ServerName_input].api.pvp.net/api/lol/euw/v1.3/game/by-summoner/$test1/recent?api_key=fbe18d9e-025e-4b0a-a71a-c4844cbd4850";
+			// CURL Request on Inputs
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_URL,$url);
+			$result=curl_exec($ch);
+			curl_close($ch);
+			$result=json_decode($result);
+			$Return->SumGames=$result;
+			print_r($Return->SumGames->games[0]->gameMode);
 			fclose($fh);
 		}else{
-			//echo $_POST["fld1"];
+			//echo Leer Leer
 		}
 ?>

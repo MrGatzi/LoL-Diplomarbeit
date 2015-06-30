@@ -1,1 +1,2 @@
 Get Id : <SumName>_<ServerName>_IDRequest --> {"mrgatzi":{"id":26558642,"name":"Mr Gatzi","profileIconId":786,"summonerLevel":30,"revisionDate":1434999965000}}
+Get Resent Games : <SumName>_RecentGames -->

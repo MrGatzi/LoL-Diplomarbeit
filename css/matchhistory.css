@@ -1,14 +1,24 @@
 #inputs{
-	padding-left:10px;
-	padding-top: 10px;
+	padding-left:15px;
+	padding-top: 8px;
+	height:38px;
+	
+	
 }
 #sumName{
+	padding-top:2px;
 	width: 300px;
+	float:left;
 }
 
 #server{
-	width: 60px;
+	padding-left:5px;
+	padding-top:2px;
+	width: 80px;
+	float:left;
 }
-#Hit_it{
-
+#button{
+	padding-left:5px;
+	margin-bottom: 2px;
+	float:left;
 }

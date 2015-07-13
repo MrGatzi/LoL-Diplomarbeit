@@ -1,25 +1,38 @@
 <HTML>
    <HEAD>
+   <meta charset="utf-8">
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="JS/Controller.js"></script>
+	<script src="JS/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/matchhistory.css">
+	
    </HEAD>
 	<BODY>
-	<div id="p">
-		<input id="SumName" type="text" name="firstname" size="50px">
-		<select id="ServName">
+	<div class="row">
+		
+		
+		<input id="SumName inputdefault" class=" form-control input-sm" type="text" name="firstname" size="50px">
+		
+		
+		<select id="ServName" class="col-xs-1">
 			<option value="euw">EUW</option>
 			<option value="na">NA</option>
 			<option value="eue">EUE</option>
 			<option value="eu">RU</option>
 		</select>
+		
+
+		
+			<input id="Hit_it" class="btn btn-primary" type="submit" value="HIT IT !">
+		
+		<div id="show_test">
+		</div>
 	</div>
-	<div id="p1">
-		<input id="Hit_it" type="submit" value="HIT IT !">
-	</div>
-	<div id="show_test">
-	</div>
+
+
+
    </BODY>
 </HTML>

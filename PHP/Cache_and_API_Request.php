@@ -28,7 +28,7 @@
 			//Check if the requested data is already in Cache
 			$SumObj = $cache->get("$Input_RequestData[SumName_input]_$Input_RequestData[ServerName_input]_IDRequest");
 			if($SumObj == null) {
-				$url="https://$Input_RequestData[ServerName_input].api.pvp.net/api/lol/euw/v1.4/summoner/by-name/$Input_RequestData[SumName_input]?api_key=fbe18d9e-025e-4b0a-a71a-c4844cbd4850";
+				$url="https://$Input_RequestData[ServerName_input].api.pvp.net/api/lol/euw/v1.4/summoner/by-name/$Input_RequestData[SumName_input]?api_key=13e2466b-c06a-4fb9-a782-724de53fb4c4";
 				// CURL sends a request to the selected URL (=$url) and if the CURLOPT_RETURNTRANSFER option is set, it will return the result on success
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -54,7 +54,7 @@
 				$SumObj=json_encode($SumObj);// without this command it's not working
 				$SumObj=json_decode($SumObj);
 				$test1=$SumObj->{$Input_RequestData['SumName_input']}->id;
-				$url="https://$Input_RequestData[ServerName_input].api.pvp.net/api/lol/euw/v1.3/game/by-summoner/$test1/recent?api_key=fbe18d9e-025e-4b0a-a71a-c4844cbd4850";
+				$url="https://$Input_RequestData[ServerName_input].api.pvp.net/api/lol/euw/v1.3/game/by-summoner/$test1/recent?api_key=13e2466b-c06a-4fb9-a782-724de53fb4c4";
 				// CURL sends a request to the selected URL (=$url) and if the CURLOPT_RETURNTRANSFER option is set, it will return the result on success
 				$ch = curl_init();
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

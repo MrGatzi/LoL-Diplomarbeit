@@ -14,8 +14,6 @@ var data;
 			$( "#show_test" ).append("Your SummonerID is : "+show.SumInfo[test1].id+"\n");
 			$( "#show_test" ).append("The Last Game ID : "+show.SumGames.games[1].gameId+"\n");
 			$( "#show_test" ).append("The Last Game you Played was an : "+show.SumGames.games[1].gameMode+"\n");
-			
-			
 		})
 		check.fail(function() {
 			console.log( "Error while sendig to the database to create Data" );

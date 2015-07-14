@@ -1,3 +1,7 @@
+<html>
+<head>
+</head>
+<body>
 <?php  
 	require_once("Libraries/phpfastcache/phpfastcache.php");
 	phpFastCache::setup("storage","auto");
@@ -12,8 +16,9 @@
 		echo "<script type='text/javascript'>alert('$message');</script>";
 	}else{
 		$RequestedGameID = $RecentGames->games[$RecentGame]->gameId;
-		GetGameInfomation($SumServer,$RequestedGameID);
+		$Game=GetGameInfomation($SumServer,$RequestedGameID);
 	};
+	echo '<p> The Game you played the last time was an ' .$Game->matchMode.' Game </p>';
 
 /*
 	Function : Request to the cache if not then from the APi for the Match Details
@@ -37,7 +42,7 @@
 				// Saves the Data in Cache for 1 minute
 				$cache->set("{$Matchid}_{$Server}_GameInfo",$GameInfoTimeline , 60);
 			}
-			print_r($GameInfoTimeline);
+		return 	$GameInfoTimeline;
 	};
 
 /*
@@ -53,3 +58,13 @@
 		return $RecentGamesObj;
 	};
 ?>
+</body>
+</html>
+
+
+
+
+
+
+
+

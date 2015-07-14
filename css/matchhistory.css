@@ -1,14 +1,12 @@
 #inputs{
-	
 	margin-left:15px;
 	margin-top: 8px;
 	height:38px;
-	
-	
 }
+
 #sumName{
 	padding-top:2px;
-	width: 300px;
+	width: 200px;
 	float:left;
 }
 
@@ -26,26 +24,26 @@
 
 #sumInfo{
 	position: fixed;
-	margin-left:15px;
-	margin-top: 18px;
-	height: 700px;
-	width: 500px;
+	margin-top: 2%;
+	margin-left:1%;
+	height: 100%;
+	width: 20%;
 	border: 1px solid black;	
 }
 
 #sumIcon{
-	margin-top: 18px;
-	margin-left: 18px;
+	margin-top: 5%;
+	margin-left: 5%;
 	height: 200px;
 	width: 200px;
 	border: 1px solid black;
 }
 
 #matchhistory{
-	margin-top: 18px;
-	margin-left: 536px;
-	width: 1000px;
-	height: 200px;
+	margin-top: 1%;
+	margin-left: 22%;
+	width: 50%;
+	height: 25%;
 	border: 1px solid black;
 	
 }

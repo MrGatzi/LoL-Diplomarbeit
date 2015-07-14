@@ -1,4 +1,5 @@
 #inputs{
+	
 	margin-left:15px;
 	margin-top: 8px;
 	height:38px;
@@ -27,15 +28,24 @@
 	position: fixed;
 	margin-left:15px;
 	margin-top: 18px;
-	height: 500px;
-	width: 300px;
+	height: 700px;
+	width: 500px;
 	border: 1px solid black;	
 }
 
 #sumIcon{
 	margin-top: 18px;
 	margin-left: 18px;
-	height: 150px;
-	width: 150px;
+	height: 200px;
+	width: 200px;
 	border: 1px solid black;
+}
+
+#matchhistory{
+	margin-top: 18px;
+	margin-left: 536px;
+	width: 1000px;
+	height: 200px;
+	border: 1px solid black;
+	
 }

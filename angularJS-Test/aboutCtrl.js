@@ -1,8 +1,5 @@
 angular
   .module('app')
-  .controller('aboutCtrl', ['$scope', 'Friends', function($scope, Friends) {
+  .controller('aboutCtrl', ['$scope', function($scope) {
     $scope.title = "About";
-    Friends.get().then(function(data) {
-      $scope.items = data;
-    });
   }]);

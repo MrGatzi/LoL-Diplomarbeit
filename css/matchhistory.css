@@ -1,5 +1,5 @@
 #inputs{
-	margin-left:15px;
+	margin-left:70%;
 	margin-top: 8px;
 	height:38px;
 }
@@ -24,7 +24,6 @@
 
 #sumInfo{
 	position: fixed;
-	margin-top: 2%;
 	margin-left:1%;
 	height: 100%;
 	width: 20%;
@@ -46,4 +45,14 @@
 	height: 25%;
 	border: 1px solid black;
 	
+}
+
+#template{
+	margin-top: 3%;
+}
+#p{
+	margin-top: 1%;
+	margin-right: 2%;
+	float:left;
+	color: grey;	
 }

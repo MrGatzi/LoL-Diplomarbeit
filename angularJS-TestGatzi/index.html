@@ -19,13 +19,13 @@
 					<li><a href="#contact">Contact</a></li>
 				</ul>
 			</div>
-		<div id="inputs" >
+		<div id="inputs" ng-controller="NavBarCRL" >
 		<p id="p">Enter Summoner name:</p>
 		<div id="sumName" >
-			<input id="ex3" class="SumName form-control input-sm" type="text" name="firstname">
+			<input id="ex3" ng-model="Data_RecentGames.x" placeholder="Enter a name here" class="SumName form-control input-sm" type="text">
 			</div>
 			<div id="server" ">
-			<select id="ServName" class="form-control input-sm" class="col-sm-1">
+			<select id="ServName" ng-model="Input.ServName" class="form-control input-sm" class="col-sm-1">
 				<option value="euw">EUW</option>
 				<option value="na">NA</option>
 				<option value="eue">EUE</option>
@@ -35,7 +35,7 @@
 			</div>
 			<div id="button">
 			<a href="#RecentGames">
-			<input id="Hit_it" class="btn btn-danger " type="submit" value="HIT IT !">
+			<input ng-click="addTodo()" id="Hit_it" class="btn btn-danger " type="submit" value="HIT IT !">
 			</a>
 			</div>
 		</div>			
@@ -51,6 +51,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script src="app.js"></script>
 	<script src="Controller/homeCRL.js"></script>
+	<script src="Controller/NavBarCRL.js"></script>
 	<script src="Controller/AboutCRL.js"></script>
 	<script src="Controller/RecentGamesCRL.js"></script>
   </body>

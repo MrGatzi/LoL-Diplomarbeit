@@ -23,3 +23,6 @@ sampleApp.config(['$routeProvider',
         redirectTo: '/'
       });
 }]); 
+
+sampleApp.service('Data_RecentGames', function() {
+    });

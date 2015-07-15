@@ -1,27 +1,42 @@
 <!DOCTYPE html>
-<html style="height:100%">
+<html lang="en">
   <head>
-    <script data-require="angular.js@1.2.10" data-semver="1.2.10" src="http://code.angularjs.org/1.2.10/angular.js"></script>
-    <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="../JS/Model.js"></script>
-    <script src="../JS/Controller.js"></script>
-	<script src="../JS/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
-	<link rel="stylesheet" href="../css/matchhistory.css">  
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/matchhistory.css">
+    <title>AngularJS Routing example</title>
   </head>
-  <body style="height:100%" >
-    <div ng-app="app"style="height:100%">
-      <header ng-include="'nav.html'"></header>
-      <div ui-view style="height:100%"></div>
-    </div>
-  </body>
-  
-  <script src="app.js"></script>
-  <script src="friends.js"></script>
-  <script src="aboutCtrl.js"></script>
-  <script src="homeCtrl.js"></script>
+  <body ng-app="sampleApp">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li id="sumName"><input id="ex3" ng-model="Data_RecentGames.SumName" placeholder="Enter Summoner Name" class="form-control" type="text"></li>
+            <li id="server"><select id="ServName" ng-model="Data_RecentGames.ServName" class="form-control">
+				<option value="euw">EUW</option>
+				<option value="na">NA</option>
+				<option value="eue">EUE</option>
+				<option value="eu">RU</option>
+			</select></li>
+            <li><a href="#RecentGames">
+			<input ng-click="addTodo()" id="Hit_it" class="btn btn-danger " type="submit" value="HIT IT !">
+			</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+	</body>
 </html>
-
-

@@ -25,4 +25,5 @@ sampleApp.config(['$routeProvider',
 }]); 
 
 sampleApp.service('Data_RecentGames', function() {
+	this.ReturnData=0;
     });

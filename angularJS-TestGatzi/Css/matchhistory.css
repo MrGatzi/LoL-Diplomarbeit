@@ -1,0 +1,60 @@
+#inputs{
+	float: right;
+	margin-top: 0.5%;
+}
+
+#sumName{
+	margin-top:0.3%;
+	width: 30%;
+	float:left;
+}
+
+#server{
+	margin-left:0.8%;
+	margin-top:0.3%;
+	width: 17%;
+	float:left;
+}
+#button{
+	margin-left:0.8%;
+	float:left;
+}
+
+#sumInfo{
+	position: fixed;
+	margin-left:1%;
+	height: 100%;
+	width: 20%;
+	border: 1px solid black;	
+}
+
+#sumIcon{
+	margin-top: 5%;
+	margin-left: 5%;
+	height: 25%;
+	width: 60%;
+	border: 1px solid black;
+}
+
+#matchhistory{
+	margin-top: 1%;
+	margin-left: 22%;
+	width: 50%;
+	height: 25%;
+	border: 1px solid black;
+	
+}
+
+#template{
+	margin-top: 3%;
+}
+#p{
+	margin-top: 1%;
+	margin-right: 2%;
+	float:left;
+	color: grey;	
+}
+.111{
+	width: 100%;
+	height: 100%;
+}

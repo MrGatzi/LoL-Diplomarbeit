@@ -19,12 +19,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#Home">Home</a></li>
+            <li><a href="#About">About</a></li>
+            <li><a href="#Contact">Contact</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li id="sumName"><input id="ex3" ng-model="Data_RecentGames.SumName" placeholder="Enter Summoner Name" class="form-control" type="text"></li>
+          <ul class="nav navbar-nav navbar-right" ng-controller="NavBarCRL">
+            <li id="sumName"><input ng-model="Data_RecentGames.SumName" placeholder="Enter Summoner Name" class="form-control" type="text"></li>
             <li id="server"><select id="ServName" ng-model="Data_RecentGames.ServName" class="form-control">
 				<option value="euw">EUW</option>
 				<option value="na">NA</option>
@@ -38,5 +38,15 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+	<br/>
+	<br/>
+	<div ng-view></div>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="app.js"></script>
+	<script src="Controller/homeCRL.js"></script>
+	<script src="Controller/NavBarCRL.js"></script>
+	<script src="Controller/AboutCRL.js"></script>
+	<script src="Controller/RecentGamesCRL.js"></script>
 	</body>
 </html>

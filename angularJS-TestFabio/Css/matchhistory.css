@@ -1,6 +1,6 @@
 #sumName{
   padding-top: 15px;
-  padding-bottom: 15px
+  padding-bottom: 15px;
 }
 
 #server{
@@ -9,29 +9,6 @@
   padding-left: 10px
 }
 
-#sumInfo{
-	margin-left:1%;
-	height: 100%;
-	width: 20%;
-	border: 1px solid black;	
-}
-
-#sumIcon{
-	margin-top: 5%;
-	margin-left: 5%;
-	height: 25%;
-	width: 60%;
-	border: 1px solid black;
-}
-
-#matchhistory{
-	margin-top: 1%;
-	margin-left: 22%;
-	width: 50%;
-	height: 25%;
-	border: 1px solid black;
-	
-}
 
 #template{
 	margin-top: 3%;

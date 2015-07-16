@@ -24,14 +24,17 @@ sampleApp.config(['$routeProvider',
       });
 }]); 
 
-sampleApp.service('Data_RecentGames', function() {
-	var GameData = 'First';
-        return {
-            getDataRecentGames: function () {
-                return GameData;
-            },
-            setDataRecentGames: function(value) {
-                GameData = value;
-            }
-        };
-    });
+sampleApp.factory('mySharedService', function($rootScope) {
+    var sharedService = {};
+    sharedService.message = '';
+    sharedService.prepForBroadcast = function(msg) {
+        this.message = msg;
+        this.broadcastItem();
+    };
+
+    sharedService.broadcastItem = function() {
+        $rootScope.$broadcast('handleBroadcast');
+    };
+
+    return sharedService;
+});

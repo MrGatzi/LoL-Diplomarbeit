@@ -26,15 +26,15 @@
             <li><a href="#Contact">Contact</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right" ng-controller="NavBarCRL">
-            <li id="sumName"><input ng-model="Data_RecentGames.SumName" placeholder="Enter Summoner Name" class="form-control" type="text"></li>
-            <li id="server"><select id="ServName" ng-model="Data_RecentGames.ServName" class="form-control">
+            <li id="sumName"><input ng-model="SumName" placeholder="Enter Summoner Name" class="form-control" type="text"></li>
+            <li id="server"><select id="ServName" ng-model="ServName" class="form-control">
 				<option value="euw">EUW</option>
 				<option value="na">NA</option>
 				<option value="eue">EUE</option>
 				<option value="eu">RU</option>
 			</select></li>
             <li><a href="#RecentGames">
-			<input ng-click="addTodo()" id="Hit_it" class="btn btn-danger " type="submit" value="HIT IT !">
+			<input ng-click="handleClick()" id="Hit_it" class="btn btn-danger " type="submit" value="HIT IT !">
 			</a></li>
           </ul>
         </div><!--/.nav-collapse -->

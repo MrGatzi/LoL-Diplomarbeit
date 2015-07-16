@@ -24,8 +24,17 @@ sampleApp.config(['$routeProvider',
       });
 }]); 
 
-sampleApp.service('Data_RecentGames', function() {
-	this.getData = function() {
-        return this.ReturnData;
-		};
-    });
+sampleApp.factory('mySharedService', function($rootScope) {
+    var sharedService = {};
+    sharedService.message = '';
+    sharedService.prepForBroadcast = function(msg) {
+        this.message = msg;
+        this.broadcastItem();
+    };
+
+    sharedService.broadcastItem = function() {
+        $rootScope.$broadcast('handleBroadcast');
+    };
+
+    return sharedService;
+});

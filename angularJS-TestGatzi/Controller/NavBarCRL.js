@@ -1,41 +1,22 @@
-/*function NavBarCRL($scope, $http) {
-    $scope.Input = [
-        {SumName:''},
-        {ServName:''}
-    ];
-    $scope.addTodo = function () {
-		 data1 = {
-            'SumName_input' : angular.lowercase($scope.Input.SumName),
-            'ServerName_input' : $scope.Input.ServName
-        };
-        $http.post('PHP/Cache_and_API_Request.php', {data1} ).
-		success(function(data, status, config) {
-			alert(data.SumInfo);
-			}).
-			error(function(data, status, headers, config) {
-			alert("fail");
-		});
-    };
-}*/
-sampleApp.controller('NavBarCRL',['$scope', 'Data_RecentGames', '$http', function($scope,Data_RecentGames,$http) {
-    $scope.Data_RecentGames=Data_RecentGames;
+sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http', function($scope,sharedService,$http) {
 	$scope.Input = [
-        {SumName:$scope.Data_RecentGames.SumName},
-        {ServName:$scope.Data_RecentGames.ServName}
+        {SumName:$scope.SumName},
+        {ServName:$scope.ServName}
     ];
-	
-    $scope.addTodo = function () {
-		 data1 = {
-            'SumName_input' : angular.lowercase($scope.Data_RecentGames.SumName),
-            'ServerName_input' : $scope.Data_RecentGames.ServName
+	$scope.handleClick = function() {
+	 data1 = {
+            'SumName_input' : angular.lowercase($scope.SumName),
+            'ServerName_input' : $scope.ServName
         };
         $http.post('PHP/Cache_and_API_Request.php', {data1} ).
 		success(function(data, status, config) {
-			$scope.Data_RecentGames.ReturnData=data;
+			sharedService.prepForBroadcast(data);
 			}).
 			error(function(data, status, headers, config) {
 			alert("fail");
 		});
+        
     };
+    
 }]);
  

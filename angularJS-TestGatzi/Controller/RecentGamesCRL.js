@@ -1,5 +1,7 @@
-sampleApp.controller('RecentGamesCRL',['$scope', 'Data_RecentGames', function($scope,Data_RecentGames) {
-    $scope.Data_RecentGames = getData();
-	console.log($scope.Data_RecentGames);
+sampleApp.controller('RecentGamesCRL',['$scope', 'mySharedService', function($scope,sharedService) {
+     $scope.$on('handleBroadcast', function() {
+        $scope.message =sharedService.message;
+		console.log($scope.message)
+    });
 }]);
  

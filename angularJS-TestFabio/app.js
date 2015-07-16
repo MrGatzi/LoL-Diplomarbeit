@@ -25,7 +25,13 @@ sampleApp.config(['$routeProvider',
 }]); 
 
 sampleApp.service('Data_RecentGames', function() {
-	this.getData = function() {
-        return this.ReturnData;
-		};
+	var GameData = 'First';
+        return {
+            getDataRecentGames: function () {
+                return GameData;
+            },
+            setDataRecentGames: function(value) {
+                GameData = value;
+            }
+        };
     });

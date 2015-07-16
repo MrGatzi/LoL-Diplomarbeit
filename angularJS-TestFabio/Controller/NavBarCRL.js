@@ -31,7 +31,7 @@ sampleApp.controller('NavBarCRL',['$scope', 'Data_RecentGames', '$http', functio
         };
         $http.post('PHP/Cache_and_API_Request.php', {data1} ).
 		success(function(data, status, config) {
-			$scope.Data_RecentGames.ReturnData=data;
+			Data_RecentGames.setDataRecentGames(data);
 			}).
 			error(function(data, status, headers, config) {
 			alert("fail");

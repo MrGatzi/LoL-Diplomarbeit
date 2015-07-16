@@ -24,7 +24,6 @@
 			}
 			$Return = new ReturnClass(); 
 			$Input_RequestData=$_POST['Data1'];
-			print_r($Input_RequestData);
 			$fh = fopen("LogFile.txt", "a");
 			//Check if the requested data is already in Cache
 			$SumObj = $cache->get("$Input_RequestData[SumName_input]_$Input_RequestData[ServerName_input]_IDRequest");

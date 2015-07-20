@@ -1,4 +1,4 @@
-sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http', function($scope,sharedService,$http) {
+sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window', function($scope,sharedService,$http,$window) {
 	$scope.Input = [
         {SumName:$scope.SumName},
         {ServName:$scope.ServName}
@@ -11,11 +11,12 @@ sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http', function
         $http.post('PHP/Cache_and_API_Request.php', {data1} ).
 		success(function(data, status, config) {
 			sharedService.prepForBroadcast(data);
-			}).
-			error(function(data, status, headers, config) {
+			})
+		.error(function(data, status, headers, config) {
 			alert("fail");
 		});
-        
+    $window.location.href = 'http://127.0.0.1/Diplomarbeit/angularJS-TestFabio/#/RecentGames';
+		
     };
     
 }]);

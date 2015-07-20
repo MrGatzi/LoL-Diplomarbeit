@@ -20,7 +20,7 @@ sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window'
 		.error(function(data, status, headers, config) {
 			alert("fail");
 		});
-		console.log($scope.valid);
+		//console.log($scope.valid);
 		/*$scope.$watch('valid', function() {
 		alert('hey, valid has changed!');
 		});
@@ -29,7 +29,7 @@ sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window'
 		}else{
 			$window.location.href = 'http://127.0.0.1/Diplomarbeit/angularJS-TestFabio/#/RecentGames';
 		}*/
-		$window.location.href = 'http://127.0.0.1/Diplomarbeit/angularJS-TestFabio/#/RecentGames';
+		$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/RecentGames';
 		
     };
     

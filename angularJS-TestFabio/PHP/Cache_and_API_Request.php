@@ -45,9 +45,8 @@
 				};
 				// Saves the Data in Cache for 1 minute
 				$cache->set("{$Input_RequestData->SumName_input}_{$Input_RequestData->ServerName_input}_IDRequest",$SumObj , 60);
-			}else{
-				//print_r ($SumObj);
 			};
+			if($SumObj!=NULL){
 			// Get: Recent Games Played
 			$Return->SumGames = $cache->get("{$Input_RequestData->SumName_input}_{$Input_RequestData->ServerName_input}_RecentGames");
 			//Check if there are any recent games already in the cache
@@ -67,6 +66,7 @@
 				$Return->SumGames=$result;
 				//Saving the recent games in the cache
 				$cache->set("{$Input_RequestData->SumName_input}_{$Input_RequestData->ServerName_input}_RecentGames",$Return->SumGames , 60);
+			}
 			}
 			$Return->SumInfo=$SumObj;			
 			echo json_encode($Return);

@@ -15,12 +15,16 @@ sampleApp.config(['$routeProvider',
         templateUrl: 'templates/home.html',
         controller: 'HomeCRL'
       }).
+	   when('/errortmp', {
+        templateUrl: 'templates/errortmp.html',
+        controller: 'HomeCRL'
+      }).
       when('/About', {
         templateUrl: 'templates/About.html',
         controller: 'AboutCRL'
       }).
       otherwise({
-        redirectTo: '/'
+        redirectTo: '/Home'
       });
 }]); 
 

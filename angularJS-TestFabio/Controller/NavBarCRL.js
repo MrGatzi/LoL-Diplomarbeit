@@ -17,7 +17,6 @@ sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window'
         };
         $http.post('PHP/Cache_and_API_Request.php', {data1} ).
 		success(function(data, status, config) {
-			sharedService.prepForBroadcast($scope.valid);
 			$scope.valid=data;
 			})
 		.error(function(data, status, headers, config) {
@@ -25,16 +24,13 @@ sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window'
 		});
 		// when the Variable $scope.valid Changed, Checked if 0. If 0 then go to _Mistake.
 		$scope.$watch('valid', function(newValue, oldValue) {
-			if (newValue != oldValue && flag<1) {
-				flag++;
 				if($scope.valid.SumInfo != null){
-					
+					sharedService.prepForBroadcast($scope.valid);
 					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/RecentGames';
 					
 				}else{
-					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/Home';
+					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/errortmp';
 				}	
-			}
 		},true);
 		
     };

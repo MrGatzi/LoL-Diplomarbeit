@@ -6,11 +6,11 @@ sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window'
 	$scope.valid ={
 			'SumInfo':0,
 			'SumGames':0,
+			'Name':angular.lowercase($scope.SumName),
 		};
-	flag=0;
 	// When Hit-ItButton is Pressed.
 	$scope.handleClick = function() {
-		flag=0;
+		//$scope.valid=0; --> zurücksetzten
 		data1 = {
             'SumName_input' : angular.lowercase($scope.SumName),
             'ServerName_input' : $scope.ServName
@@ -23,17 +23,20 @@ sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window'
 			alert("fail");
 		});
 		// when the Variable $scope.valid Changed, Checked if 0. If 0 then go to _Mistake.
-		$scope.$watch('valid', function(newValue, oldValue) {
+		
+    };
+	$scope.$watch('valid', function(newValue, oldValue) {
+		if(newValue!=oldValue){
 				if($scope.valid.SumInfo != null){
+					$scope.valid.Name=angular.lowercase($scope.SumName);
 					sharedService.prepForBroadcast($scope.valid);
 					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/RecentGames';
 					
 				}else{
 					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/errortmp';
 				}	
+		}
 		},true);
-		
-    };
     
 }]);
  

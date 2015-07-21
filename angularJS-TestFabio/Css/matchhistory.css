@@ -31,6 +31,23 @@
 }
 
 #game{
-	height:40%;
+	height:25%;
+	border: 1px solid black;
+}
+
+#SumIcon{
+	margin-top: 3%;
+	height: 70%;
+	border: 1px solid black;
+}
+
+#lvl{
+	margin-top: 7%;
+	height:30%;
+	border: 1px solid black;
+}
+#champIcon{
+	margin-top: 3%;
+	height:70%;
 	border: 1px solid black;
 }

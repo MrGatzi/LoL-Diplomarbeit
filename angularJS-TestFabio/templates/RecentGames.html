@@ -8,30 +8,62 @@
 		<p> </p>
 		</div>
 	</div> 
-	<div  id="game{{$index}}" class=" col-md-offset-3 col-md-6 win_{{item.stats.win}} game" ng-repeat="item in message.SumGames.games" ng-click="GameClick()">
+	<div  id="game{{$index}}" class=" col-md-offset-3 col-md-6 win_{{item.stats.win}} game" ng-repeat="item in message.SumGames.games" ng-click="GameClick($index)">
 		<div id="champIcon" class=" col-md-2">
-			<img src="../Libraries/img/champion/{{item.championId}}.png">
+			<img class="img-responsive" alt="Responsive image" src="../Libraries/img/champion/{{item.championId}}.png">
 		</div>
-		<div  id="item0" class="  col-md-1" >
-			<img src="../Libraries/img/item/{{item.stats.item0}}.png">
+		<div id="items" class="col-md-4">
+		<div class="row">
+			<div  id="item0" class="  col-md-4" >
+				<img class="img-responsive" alt="Responsive image" src="../Libraries/img/item/{{item.stats.item0}}.png">
+			</div>
+			<div  id="item1" class="  col-md-4" >
+				<img class="img-responsive" alt="Responsive image" src="../Libraries/img/item/{{item.stats.item1}}.png">
+			</div>
+			<div  id="item2" class=" col-md-4" >
+				<img class="img-responsive" alt="Responsive image" src="../Libraries/img/item/{{item.stats.item2}}.png">
+			</div>
 		</div>
-		<div  id="item1" class="  col-md-1" >
-			<img src="../Libraries/img/item/{{item.stats.item1}}.png">
+		<div class="row">
+			<div  id="item3" class="  col-md-4" >
+				<img class="img-responsive" alt="Responsive image" src="../Libraries/img/item/{{item.stats.item3}}.png">
+			</div>
+			<div  id="item4" class="  col-md-4" >
+				<img class="img-responsive" alt="Responsive image" src="../Libraries/img/item/{{ }}.png">
+			</div>
+			<div  id="item5" class="  col-md-4" >
+				<img class="img-responsive" alt="Responsive image" src="../Libraries/img/item/{{item.stats.item5}}.png">
+			</div>
 		</div>
-		<div  id="item2" class=" col-md-1" >
-			<img src="../Libraries/img/item/{{item.stats.item2}}.png">
 		</div>
-		<div  id="item3" class="  col-md-1" >
-			<img src="../Libraries/img/item/{{item.stats.item3}}.png">
-		</div>
-		<div  id="item4" class="  col-md-1" >
-			<img src="../Libraries/img/item/{{ }}.png">
-		</div>
-		<div  id="item5" class="  col-md-1" >
-			<img src="../Libraries/img/item/{{item.stats.item5}}.png">
-		</div>
-		<div  id="item6" class="  col-md-1" >
-			<img src="../Libraries/img/item/{{item.stats.item6}}.png">
+			<div  id="item6" class="  col-md-3" >
+				<img class="img-responsive" alt="Responsive image" src="../Libraries/img/item/{{item.stats.item6}}.png">
+			</div>
+		<div id="players">
+			<div id="ally" class="row">
+			<div id="ally0" class="col-md-2">
+			</div>
+			<div id="ally1" class="col-md-2">
+			</div>
+			<div id="ally2" class="col-md-2">
+			</div>
+			<div id="ally3" class="col-md-2">
+			</div>
+			<div id="ally4" class="col-md-2">
+			</div>
+			</div>
+			<div id="enemy" class="row">
+			<div id="enemy0" class="col-md-2">
+			</div>
+			<div id="enemy1" class="col-md-2">
+			</div>
+			<div id="enemy2" class="col-md-2">
+			</div>
+			<div id="enemy3" class="col-md-2">
+			</div>
+			<div id="enemy4"class="col-md-2">
+			</div>
+			</div>
 		</div>
 	</div>
 

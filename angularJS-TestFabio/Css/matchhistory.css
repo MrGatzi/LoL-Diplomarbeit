@@ -39,14 +39,14 @@
 }
 
 .game{
-	height:30%;
+	height:auto;
 	border: 1px solid black;
 	
 }
 
 #SumIcon{
 	margin-top: 3%;
-	height: 70%;
+	height: auto;
 }
 
 #lvl{
@@ -67,3 +67,4 @@
 	background: url(../../Libraries/Background/win_false.png);
     background-repeat: no-repeat;
 }
+

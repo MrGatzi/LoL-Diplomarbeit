@@ -38,7 +38,7 @@
 	border: 1px solid black;
 }
 
-#game{
+.game{
 	height:30%;
 	border: 1px solid black;
 	
@@ -57,7 +57,6 @@
 #champIcon{
 	margin-top: 3%;
 	height:auto;
-	border: 1px solid black;
 }
 
 .win_true{

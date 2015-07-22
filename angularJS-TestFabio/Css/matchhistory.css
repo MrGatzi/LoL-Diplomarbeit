@@ -39,7 +39,7 @@
 }
 
 #game{
-	height:25%;
+	height:30%;
 	border: 1px solid black;
 	
 }
@@ -61,12 +61,10 @@
 }
 
 .win_true{
-	background: url(../../Libraries/Background/Victory-Background.png);
-    background-size: 951,5px 230px;
+	background: url(../../Libraries/Background/win_true.png);
     background-repeat: no-repeat;
 }
 .win_false{
-	background: url(../../Libraries/Background/Defeat-Background.png);
-    background-size: 951,5px 230px;
+	background: url(../../Libraries/Background/win_false.png);
     background-repeat: no-repeat;
 }

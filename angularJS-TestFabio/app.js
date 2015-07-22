@@ -11,6 +11,10 @@ sampleApp.config(['$routeProvider',
         templateUrl: 'templates/RecentGames.html',
         controller: 'RecentGamesCRL'
     }).
+	when('/GameDetails', {
+        templateUrl: 'templates/GameDetails.html',
+        controller: 'GameDetailsCRL'
+      }).
       when('/Home', {
         templateUrl: 'templates/home.html',
         controller: 'HomeCRL'
@@ -23,6 +27,7 @@ sampleApp.config(['$routeProvider',
         templateUrl: 'templates/About.html',
         controller: 'AboutCRL'
       }).
+	  
       otherwise({
         redirectTo: '/Home'
       });
@@ -42,3 +47,18 @@ sampleApp.factory('mySharedService', function($rootScope) {
 
     return sharedService;
 });
+sampleApp.factory('GameInfoToMatchDetail', function($rootScope) {
+    var GameInfo = {};
+    GameInfo.Info = '';
+    GameInfo.prepForBroadcast2 = function(msg) {
+        this.Info= msg;
+        this.broadcastItem2();
+    };
+
+    GameInfo.broadcastItem2 = function() {
+        $rootScope.$broadcast('handleBroadcast2');
+    };
+
+    return GameInfo;
+});
+

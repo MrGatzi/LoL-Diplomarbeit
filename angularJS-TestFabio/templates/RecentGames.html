@@ -8,29 +8,29 @@
 		<p> </p>
 		</div>
 	</div> 
-	<div  id="game" class=" col-md-offset-3 col-md-6" ng-repeat="item in message.SumGames.games">
-		<div id="champIcon" class="col-md-offset-1 col-md-2">
+	<div  id="game" class=" col-md-offset-3 col-md-6 win_{{item.stats.win}}" ng-repeat="item in message.SumGames.games">
+		<div id="champIcon" class=" col-md-2">
 			<img src="../Libraries/img/champion/{{item.championId}}.png">
 		</div>
-		<div  id="item0" class=" col-md-offset-1 col-md-1" >
+		<div  id="item0" class="  col-md-1" >
 			<img src="../Libraries/img/item/{{item.stats.item0}}.png">
 		</div>
-		<div  id="item1" class=" col-md-offset-1 col-md-1" >
+		<div  id="item1" class="  col-md-1" >
 			<img src="../Libraries/img/item/{{item.stats.item1}}.png">
 		</div>
-		<div  id="item2" class=" col-md-offset-1 col-md-1" >
+		<div  id="item2" class=" col-md-1" >
 			<img src="../Libraries/img/item/{{item.stats.item2}}.png">
 		</div>
-		<div  id="item3" class=" col-md-offset-1 col-md-1" >
+		<div  id="item3" class="  col-md-1" >
 			<img src="../Libraries/img/item/{{item.stats.item3}}.png">
 		</div>
-		<div  id="item4" class=" col-md-offset-1 col-md-1" >
-			<img src="../Libraries/img/item/{{item.stats.item4}}.png">
+		<div  id="item4" class="  col-md-1" >
+			<img src="../Libraries/img/item/{{ }}.png">
 		</div>
-		<div  id="item5" class=" col-md-offset-1 col-md-1" >
+		<div  id="item5" class="  col-md-1" >
 			<img src="../Libraries/img/item/{{item.stats.item5}}.png">
 		</div>
-		<div  id="item6" class=" col-md-offset-1 col-md-1" >
+		<div  id="item6" class="  col-md-1" >
 			<img src="../Libraries/img/item/{{item.stats.item6}}.png">
 		</div>
 	</div>

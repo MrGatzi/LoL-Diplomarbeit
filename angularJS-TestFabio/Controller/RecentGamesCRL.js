@@ -2,7 +2,7 @@ sampleApp.controller('RecentGamesCRL',['$scope', 'mySharedService', function($sc
      $scope.$on('handleBroadcast', function() {
         $scope.message =sharedService.message;
 		console.log($scope.message);
-		
+
 		//ein wvent für recent games ect. 
 		//animation spinner als span id/ nuormaler viso Hidden wenn button klick -> ned hidden
 		//seite erst wechseln wenn die ergebnisse da sind.

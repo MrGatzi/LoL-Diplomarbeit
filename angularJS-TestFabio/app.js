@@ -7,11 +7,11 @@ var sampleApp = angular.module('sampleApp', []);
 sampleApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/RecentGames', {
+      when('/RecentGames/:sumName/:servName', {
         templateUrl: 'templates/RecentGames.html',
         controller: 'RecentGamesCRL'
     }).
-	when('/GameDetails', {
+	when('/GameDetails/:sumName/:servName/:MatchID', {
         templateUrl: 'templates/GameDetails.html',
         controller: 'GameDetailsCRL'
       }).

@@ -1,4 +1,4 @@
-sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window', function($scope,sharedService,$http,$window) {
+sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window', function($scope,sharedService,$http,$window,$routeParams) {
 	$scope.Input = [
         {SumName:$scope.SumName},
         {ServName:$scope.ServName}
@@ -7,6 +7,7 @@ sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window'
 			'SumInfo':0,
 			'SumGames':0,
 			'Name':angular.lowercase($scope.SumName),
+			'Server': $scope.ServName,
 		};
 	// When Hit-ItButton is Pressed.
 	$scope.handleClick = function() {
@@ -29,8 +30,9 @@ sampleApp.controller('NavBarCRL',['$scope', 'mySharedService', '$http','$window'
 		if(newValue!=oldValue){
 				if($scope.valid.SumInfo != null){
 					$scope.valid.Name=angular.lowercase($scope.SumName);
+					$scope.valid.Server=$scope.ServName;
 					sharedService.prepForBroadcast($scope.valid);
-					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/RecentGames';
+					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/RecentGames/'+$scope.valid.Name+'/'+$scope.valid.Server;
 					
 				}else{
 					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/errortmp';

@@ -6,9 +6,8 @@ sampleApp.controller('RecentGamesCRL',['$scope', 'mySharedService','GameInfoToMa
 			'MatchId': 0
 		};
 	$scope.$on('handleBroadcast', function() {
-        $scope.message =sharedService.message;
+       $scope.message =sharedService.message;
     });
-	
 	// If the Broadcast is not working take it form the URL
 	if($scope.message==undefined){
 		data1 = {
@@ -20,6 +19,9 @@ sampleApp.controller('RecentGamesCRL',['$scope', 'mySharedService','GameInfoToMa
 			$scope.message=data;
 			$scope.message.Name= $routeParams.sumName;
 			$scope.message.Server=$routeParams.servName;
+			if($scope.message.SumInfo == null){
+				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/errortmp';
+			}
 			})
 		.error(function(data, status, headers, config) {
 			alert("fail");

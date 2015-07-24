@@ -33,32 +33,3 @@ sampleApp.config(['$routeProvider',
       });
 }]); 
 
-sampleApp.factory('mySharedService', function($rootScope) {
-    var sharedService = {};
-    sharedService.message = '';
-    sharedService.prepForBroadcast = function(msg) {
-        this.message = msg;
-        this.broadcastItem();
-    };
-
-    sharedService.broadcastItem = function() {
-        $rootScope.$broadcast('handleBroadcast');
-    };
-
-    return sharedService;
-});
-sampleApp.factory('GameInfoToMatchDetail', function($rootScope) {
-    var GameInfo = {};
-    GameInfo.Info = '';
-    GameInfo.prepForBroadcast2 = function(msg) {
-        this.Info= msg;
-        this.broadcastItem2();
-    };
-
-    GameInfo.broadcastItem2 = function() {
-        $rootScope.$broadcast('handleBroadcast2');
-    };
-
-    return GameInfo;
-});
-

@@ -1,14 +1,11 @@
-sampleApp.controller('RecentGamesCRL',['$scope', 'mySharedService','GameInfoToMatchDetail','$window','$routeParams','$http', function($scope,sharedService,GameInfo,$window,$routeParams,$http) {
+sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http', function($scope,$window,$routeParams,$http) {
 	$scope.Overview={
 			'SumName':0 ,
 			'SumInfo':0 ,
 			'GameInfo':0,
 			'MatchId': 0
 		};
-	$scope.$on('handleBroadcast', function() {
-       $scope.message =sharedService.message;
-    });
-	// If the Broadcast is not working take it form the URL
+
 	if($scope.message==undefined){
 		data1 = {
             'SumName_input' : $routeParams.sumName,
@@ -22,6 +19,7 @@ sampleApp.controller('RecentGamesCRL',['$scope', 'mySharedService','GameInfoToMa
 			if($scope.message.SumInfo == null){
 				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/errortmp';
 			}
+			console.log($scope.message);
 			})
 		.error(function(data, status, headers, config) {
 			alert("fail");
@@ -40,12 +38,25 @@ sampleApp.controller('RecentGamesCRL',['$scope', 'mySharedService','GameInfoToMa
 			'MatchId': $scope.message.SumGames.games[GameId].gameId,
 			'SumServer': $scope.message.Server,
 		};
+		data1 = {
+			'SumName': $scope.message.Name,
+			'ServName': $scope.message.Server,
+            'MatchId' : $scope.message.SumGames.games[GameId].gameId,
+            'GameInfoOverview' : $scope.message.SumGames.games[GameId],
+			'Mode': 'set'
+        };
+        $http.post('PHP/Cache_Game_Contents_Overview.php', {data1} ).
+		success(function(data, status, config) {
+			console.log(data);
+			})
+		.error(function(data, status, headers, config) {
+			alert("fail");
+		});
     };
 	
 	//If Overview got chanced broadcast to GameDetails
 	$scope.$watch('Overview', function(newValue, oldValue) {
 		if(newValue!=oldValue){
-			GameInfo.prepForBroadcast2($scope.Overview);
 			$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/GameDetails/'+$scope.Overview.SumName+'/'+$scope.Overview.SumServer+'/'+$scope.Overview.MatchId;
 		}
 		},true);

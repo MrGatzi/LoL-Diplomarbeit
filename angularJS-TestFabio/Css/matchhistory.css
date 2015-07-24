@@ -39,9 +39,13 @@
 }
 
 .game{
-	height:auto;
+	height:250px;
 	border: 1px solid black;
 	
+}
+
+#gamerow1{
+	margin-top: 30px;
 }
 
 #SumIcon{
@@ -54,10 +58,7 @@
 	height:30%;
 	border: 1px solid black;
 }
-#champIcon{
-	margin-top: 3%;
-	height:auto;
-}
+
 
 win_true{
 	background: url(../../Libraries/Background/win_true.png);
@@ -71,4 +72,25 @@ win_false{
 #game-container{
 	background: url(../../Libraries/Background/paper.jpg);
 	
+}
+.itemrow1{
+	float: left;
+}
+.itemrow2{
+	float: left;
+	margin-top: 15px;
+}
+
+.itemIcon{
+	width: 64px;
+	margin-left: 15px;
+}
+
+#trinket{
+	margin-top: 32px;
+}
+
+.spells{
+	float: left;
+	margin-left: 15px;
 }

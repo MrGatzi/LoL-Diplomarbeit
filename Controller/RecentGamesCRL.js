@@ -14,6 +14,7 @@ sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http'
         $http.post('PHP/Cache_and_API_Request.php', {data1} ).
 		success(function(data, status, config) {
 			$scope.message=data;
+			console.log($scope.message);
 			$scope.message.Name= $routeParams.sumName;
 			$scope.message.Server=$routeParams.servName;
 			if($scope.message.SumInfo == null){
@@ -59,4 +60,23 @@ sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http'
 		}
 		},true);
 }]);
- 
+ /*
+function fellowplayers(){
+	alert("hey");
+ 	 var i=0;
+	 var j=0;
+	 var l=0;
+	 for(i=0;i<9;i++){
+		if((item.stats.team)==(item.fellowPlayers.i.teamId){
+		 
+			$( "#ally"+j ).append( "<img class="img-responsive" alt="Responsive image" src="Libraries/img/champion/{{item.fellowPlayers.i.championId}}.png">" );
+			j++;
+		}else {
+			
+			$( "#enemy"+l ).append( "<img class="img-responsive" alt="Responsive image" src="Libraries/img/champion/{{item.fellowPlayers.i.championId}}.png">" );
+			l++;
+		}
+	} 
+	 
+ } 
+ */

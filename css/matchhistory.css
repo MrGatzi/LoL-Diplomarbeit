@@ -70,7 +70,7 @@ win_false{
 }
 
 #game-container{
-	background: url(../../Libraries/Background/paper.jpg);
+	background: url(../Libraries/Background/paper.jpg);
 	
 }
 .itemrow1{
@@ -93,4 +93,14 @@ win_false{
 .spells{
 	float: left;
 	margin-left: 15px;
+}
+
+.team1{
+	float: left;
+	margin-left: 15px;
+}
+.team2{
+	float: left;
+	margin-left: 15px;
+	margin-top: 15px;
 }

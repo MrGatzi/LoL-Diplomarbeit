@@ -19,7 +19,6 @@ sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http'
 			if($scope.message.SumInfo == null){
 				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/angularJS-TestFabio/#/errortmp';
 			}
-			console.log($scope.message);
 			})
 		.error(function(data, status, headers, config) {
 			alert("fail");
@@ -47,7 +46,6 @@ sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http'
         };
         $http.post('PHP/Cache_Game_Contents_Overview.php', {data1} ).
 		success(function(data, status, config) {
-			console.log(data);
 			})
 		.error(function(data, status, headers, config) {
 			alert("fail");

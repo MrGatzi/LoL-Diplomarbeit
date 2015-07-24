@@ -1,0 +1,84 @@
+{{Data_RecentGames.SumName}}
+<div id="template" style="height:100%">
+	<div id="game-container" class="container">
+		<div  id="SumInfo" class="col-md-12">
+			<div id="SumIcon" class="col-md-offset-1 col-md-2">
+				<img class="img-responsive" alt="Responsive image" src="Libraries/img/profileicon/{{message.SumInfo[message.Name].profileIconId}}.png">
+			</div>
+			<div id="lvl" class="col-md-offset-1 col-md-2">
+			<p> </p>
+			</div>
+		</div> 
+	
+		<div  id="game{{$index}}" class=" col-md-12 win_{{item.stats.win}} game" ng-repeat="item in message.SumGames.games" ng-click="GameClick($index)">
+			<div id="gamerow1" class="row">
+				<div id="champIcon" class=" col-md-2">
+					<img class="img-responsive" alt="Responsive image" src="Libraries/img/champion/{{item.championId}}.png">
+				</div>
+				<div id="items" class="col-md-3">
+					
+					<div  id="item0" class="itemrow1 itemIcon">
+						<img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item0}}.png">
+					</div>
+					<div  id="item1" class="itemrow1 itemIcon">
+						<img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item1}}.png">
+					</div>
+					<div  id="item2" class="itemrow1 itemIcon">
+						<img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item2}}.png">
+					</div>
+				
+				
+					<div  id="item3" class="itemrow2 itemIcon">
+						<img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item3}}.png">
+					</div>
+					<div  id="item4" class="itemrow2 itemIcon">
+						<img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{ }}.png">
+					</div>
+					<div  id="item5" class="itemrow2 itemIcon">
+						<img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item5}}.png">
+					</div>	
+				</div>
+				<div  id="trinket" class="col-md-1">
+						<img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item6}}.png">
+				</div>
+			</div>
+			<div id="gamerow2" class="row">
+				<div id="sumSpells">
+					<div id="spell1" class="spells">
+						<img class="img-responsive" alt="Responsive image" src="Libraries/img/spell/{{item.spell1}}.png">
+					</div>
+					<div id="spell2" class="spells">
+						<img class="img-responsive" alt="Responsive image" src="Libraries/img/spell/{{item.spell2}}.png">
+					</div>
+				</div>
+			</div>
+
+			<div id="players">
+				<div id="ally" class="row">
+				<div id="ally0" class="col-md-2">
+				</div>
+				<div id="ally1" class="col-md-2">
+				</div>
+				<div id="ally2" class="col-md-2">
+				</div>
+				<div id="ally3" class="col-md-2">
+				</div>
+				<div id="ally4" class="col-md-2">
+				</div>
+				</div>
+				<div id="enemy" class="row">
+				<div id="enemy0" class="col-md-2">
+				</div>
+				<div id="enemy1" class="col-md-2">
+				</div>
+				<div id="enemy2" class="col-md-2">
+				</div>
+				<div id="enemy3" class="col-md-2">
+				</div>
+				<div id="enemy4"class="col-md-2">
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

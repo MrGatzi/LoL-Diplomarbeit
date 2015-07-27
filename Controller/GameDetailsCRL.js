@@ -15,6 +15,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 			$http.post('PHP/Cache_GameTimeline_ByMatchID.php', {data1} ).
 			success(function(data, status, config) {
 				GameInfoTimeLine=data;
+				console.log(GameInfoTimeLine);
 			})
 			.error(function(data, status, headers, config) {
 				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';

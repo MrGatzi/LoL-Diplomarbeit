@@ -17,6 +17,16 @@ sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http'
 			console.log($scope.message);
 			$scope.message.Name= $routeParams.sumName;
 			$scope.message.Server=$routeParams.servName;
+			angular.forEach($scope.message.SumGames.games, function(value, key) {
+				console.log(value);
+				value.fellowPlayers[9]={
+					'championId':value.championId,
+					'summonerId': 'you',
+					'teamId': value.teamId
+				};
+				console.log(value.fellowPlayers[9]);
+				
+			});
 			if($scope.message.SumInfo == null){
 				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
 			}
@@ -47,10 +57,12 @@ sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http'
 				'MatchId': $scope.message.SumGames.games[GameId].gameId,
 				'SumServer': $scope.message.Server,
 			};
+			//$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/GameDetails/'+$scope.Overview.SumName+'/'+$scope.Overview.SumServer+'/'+$scope.Overview.MatchId;
 			})
 		.error(function(data, status, headers, config) {
 			alert("fail");
 		});
+		
     };
 	
 	//If Overview got chanced broadcast to GameDetails
@@ -60,23 +72,3 @@ sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http'
 		}
 		},true);
 }]);
- /*
-function fellowplayers(){
-	alert("hey");
- 	 var i=0;
-	 var j=0;
-	 var l=0;
-	 for(i=0;i<9;i++){
-		if((item.stats.team)==(item.fellowPlayers.i.teamId){
-		 
-			$( "#ally"+j ).append( "<img class="img-responsive" alt="Responsive image" src="Libraries/img/champion/{{item.fellowPlayers.i.championId}}.png">" );
-			j++;
-		}else {
-			
-			$( "#enemy"+l ).append( "<img class="img-responsive" alt="Responsive image" src="Libraries/img/champion/{{item.fellowPlayers.i.championId}}.png">" );
-			l++;
-		}
-	} 
-	 
- } 
- */

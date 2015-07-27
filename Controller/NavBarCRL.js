@@ -10,7 +10,7 @@ sampleApp.controller('NavBarCRL',['$scope', '$http','$window', function($scope,$
 			'Server': $scope.ServName,
 		};
 	// When Hit-ItButton is Pressed.
-	$scope.handleClick = function() {
+	$scope.handleClick = function() {	
 		data1 = {
             'SumName_input' : angular.lowercase($scope.SumName),
             'ServerName_input' : $scope.ServName
@@ -22,7 +22,6 @@ sampleApp.controller('NavBarCRL',['$scope', '$http','$window', function($scope,$
 		.error(function(data, status, headers, config) {
 			alert("fail");
 		});
-		
     };
 	
 	

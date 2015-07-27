@@ -31,13 +31,6 @@ sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http'
 	*/
 	
 	$scope.GameClick = function(GameId) {
-		$scope.Overview={
-			'SumName':$scope.message.Name ,
-			'SumInfo':$scope.message.SumInfo[$scope.message.Name] ,
-			'GameInfo':$scope.message.SumGames.games[GameId],
-			'MatchId': $scope.message.SumGames.games[GameId].gameId,
-			'SumServer': $scope.message.Server,
-		};
 		data1 = {
 			'SumName': $scope.message.Name,
 			'ServName': $scope.message.Server,
@@ -47,6 +40,13 @@ sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http'
         };
         $http.post('PHP/Cache_Game_Contents_Overview.php', {data1} ).
 		success(function(data, status, config) {
+			$scope.Overview={
+				'SumName':$scope.message.Name ,
+				'SumInfo':$scope.message.SumInfo[$scope.message.Name] ,
+				'GameInfo':$scope.message.SumGames.games[GameId],
+				'MatchId': $scope.message.SumGames.games[GameId].gameId,
+				'SumServer': $scope.message.Server,
+			};
 			})
 		.error(function(data, status, headers, config) {
 			alert("fail");

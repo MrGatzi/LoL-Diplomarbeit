@@ -14,6 +14,27 @@
 			<div id="gamerow1" class="row">
 				<div id="champIcon" class=" col-md-2">
 					<img class="img-responsive" alt="Responsive image" src="Libraries/img/champion/{{item.championId}}.png">
+					
+					<div id="sumSpells">
+						<div id="spell1" class="spells">
+							<img alt="Responsive image" src="Libraries/img/spell/{{item.spell1}}.png">
+						</div>
+						<div id="spell2" class="spells">
+							<img alt="Responsive image" src="Libraries/img/spell/{{item.spell2}}.png">
+						</div>
+					</div>
+				</div>
+				
+				<div id="stats" class="col-md-1">
+					<div class="row">
+						<p>K: {{item.stats.championsKilled}}</p>
+					</div>
+					<div class="row">
+						<p>D: {{item.stats.numDeaths}}</p>
+					</div>
+					<div class="row">
+						<p>A: {{item.stats.assists}}</p>
+					</div>
 				</div>
 				<div id="items" class="col-md-3">
 					
@@ -26,8 +47,6 @@
 					<div  id="item2" class="itemrow1 itemIcon">
 						<img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item2}}.png">
 					</div>
-				
-				
 					<div  id="item3" class="itemrow2 itemIcon">
 						<img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item3}}.png">
 					</div>
@@ -41,31 +60,13 @@
 				<div  id="trinket" class="col-md-1">
 						<img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item6}}.png">
 				</div>
-				<div id="fellowPlayers" class="col-md-5 col-md-offset-1">
+				<div id="fellowPlayers" class="col-md-5">
 				<div  class="team1"  ng-repeat= "team1 in item.fellowPlayers |  filter: { teamId: '100' }" >
 					<img class="img-responsive" alt="Responsive image" style="width:64px;height:64px;" src="Libraries/img/champion/{{team1.championId}}.png">
 				</div>
 				<div  class="team2"  ng-repeat= "team2 in item.fellowPlayers |  filter: { teamId: '200' }">
 					<img class="img-responsive" alt="Responsive image" style="width:64px;height:64px;" src="Libraries/img/champion/{{team2.championId}}.png">
 				</div>
-				</div>
-			</div>
-			<div id="gamerow2" class="row">
-				<div id="sumSpells">
-					<div id="spell1" class="spells">
-						<img class="img-responsive" alt="Responsive image" src="Libraries/img/spell/{{item.spell1}}.png">
-					</div>
-					<div id="spell2" class="spells">
-						<img class="img-responsive" alt="Responsive image" src="Libraries/img/spell/{{item.spell2}}.png">
-					</div>
-				</div>
-			</div>
-			<div id="players">
-				<div id="ally" class="row">
-
-				</div>
-				<div id="enemy" class="row">
-
 				</div>
 			</div>
 		</div>

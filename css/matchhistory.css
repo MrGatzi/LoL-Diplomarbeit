@@ -90,7 +90,15 @@ win_false{
 	margin-top: 32px;
 }
 
-.spells{
+#sumSpells{
+	margin-top: 20px;
+}
+
+#spell1{
+	float: left;
+}
+
+#spell2{
 	float: left;
 	margin-left: 15px;
 }
@@ -102,5 +110,5 @@ win_false{
 .team2{
 	float: left;
 	margin-left: 15px;
-	margin-top: 15px;
+	margin-top: 40px;
 }

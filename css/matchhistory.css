@@ -34,7 +34,7 @@
 }
 
 #SumInfo{
-	height:20%;
+	height:200px;
 	border: 1px solid black;
 }
 
@@ -49,14 +49,12 @@
 }
 
 #SumIcon{
-	margin-top: 3%;
+	margin-top: 40px;
 	height: auto;
 }
 
 #lvl{
-	margin-top: 7%;
-	height:30%;
-	border: 1px solid black;
+	margin-top: 80px;
 }
 
 

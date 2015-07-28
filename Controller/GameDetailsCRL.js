@@ -39,4 +39,5 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.ShowLeft=$scope.GameInfoOverview.stats;
 		$scope.ShowRight="right second";
     };
+
 }]);

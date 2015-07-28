@@ -11,48 +11,69 @@ sampleApp.directive('differentscharts', function($rootScope){
 				scope.$watch('leftPlayer', function(newValue, oldValue) {
 						if(newValue !== oldValue) {
 							scope.leftPlayer=angular.fromJson(scope.leftPlayer);
-							var dataset = [scope.leftPlayer.magicDamageDealtPlayer];
-							dataset[1]=scope.leftPlayer.magicDamageDealtToChampions;
-							dataset[2]=scope.leftPlayer.magicDamageTaken;
-							dataset[3]=scope.leftPlayer.physicalDamageDealtPlayer;
-							dataset[4]=scope.leftPlayer.physicalDamageDealtToChampions;
-							dataset[5]=scope.leftPlayer.physicalDamageTaken;
-							dataset[6]=scope.leftPlayer.totalHeal;
+							var data = [scope.leftPlayer.magicDamageDealtPlayer];
+							data[1]=scope.leftPlayer.magicDamageDealtToChampions;
+							data[2]=scope.leftPlayer.magicDamageTaken;
+							data[3]=scope.leftPlayer.physicalDamageDealtPlayer;
+							data[4]=scope.leftPlayer.physicalDamageDealtToChampions;
+							data[5]=scope.leftPlayer.physicalDamageTaken;
+							data[6]=scope.leftPlayer.trueDamageDealtPlayer;
+							data[7]=scope.leftPlayer.trueDamageDealtToChampions;
+							data[8]=scope.leftPlayer.trueDamageTaken;
 							
-							var w = 500;
-							var h = 100;
-							var svg = d3.select("differentscharts")
-									.append("svg")
-									.attr("width", w)
-									.attr("height", h);
+							var margin = {top: 30, right: 0, bottom: 0, left: 30},
+								width = 320,
+								barHeight = 30,
+								height = barHeight * data.length;
 
-							svg.selectAll("rect")
-								.data(dataset)
-								.enter()
+							var x = d3.scale.linear()
+								.domain([0, d3.max(data)])
+								.range([0, width-100]);
+
+							var xAxis = d3.svg.axis()
+								.scale(x)
+								.orient("top")
+								.ticks(3);
+
+							var chart = d3.select(".chart")
+								.attr("width", width + margin.left + margin.right)
+								.attr("height", height + margin.top + margin.bottom)
+							  .append("g")
+								.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+								
+
+							chart.append("g")
+								.attr("class", "bars")
+							  .selectAll("rect")
+								.data(data)
+							  .enter().append("g")
+								.attr("class", "GameInfoData")
 								.append("rect")
-								.attr("x", function(d, i) {
-									return i * 21;  //Bar width of 20 plus 1 for padding
-								})
-								.attr("y", 0)
-								.attr("width", 20)
-								.attr("height", 20);
-			
-							/*d3.select("differentscharts").selectAll("div")
-								.data(dataset)
-								.enter()
-								.append("div")
-								.attr("class", "bar")
-								.style("width", function(d) {
-									var barHeight = d * 0.003;
-									return barHeight + "px";
-								});*/
-						}
-				}, true);
+									.attr("y", function(d, i) { return i * barHeight; })
+									.attr("height", barHeight - 1)
+									.attr("width", x)
+								.text(function(d) { return d; });
+								
+							chart.append("g")
+								.attr("class", "axis")
+								.call(xAxis)
+							  .select(".tick line")
+								.style("stroke", "#000");
+								
+							chart.selectAll(".GameInfoData")
+								.append("text")
+								.attr("x", function(d) { return x(d); })
+								.attr("y", function(d, i) { return i * barHeight +12; })
+								.attr("dy", ".35em")
+								.text(function(d) { return d; });
+
+							
+					};
+				}, true);	
 				scope.$watch('rightPlayer', function(newValue, oldValue) {
 						if(newValue !== oldValue) {
-							console.log(scope.rightPlayer);
 						}
 				}, true);
-        } 
-    };
+    }
+	};
 });

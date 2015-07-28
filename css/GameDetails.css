@@ -6,15 +6,29 @@
 	margin-top:70px;
 
 }
-
-		
-.bar {
-	
-	width: 20px;
-	height: 10px;	/* Gets overriden by D3-assigned height below */
-	margin-right: 2px;
-	background-color: teal;
-	margin-top : 2px;
+.chart rect {
+  fill: blue;
 }
-		
+.chart rect:hover {
+  fill: brown;
+}
+
+.chart text {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+}
+
+.axis path {
+  display: none;
+}
+
+.axis line {
+  stroke: #fff;
+  stroke-opacity: .5;
+  shape-rendering: crispEdges;
+}
 		

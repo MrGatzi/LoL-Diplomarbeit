@@ -11,7 +11,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 	success(function(data, status, config) {
 		$scope.GameInfoOverview=data;
 		console.log($scope.GameInfoOverview);
-		changeValue();
+		
 		if($scope.GameInfoOverview=='Error'){
 			$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
 		}else{
@@ -22,6 +22,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 				/*if($scope.GameInfoTimeLine=="null"){
 					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp'
 				};*/
+				changeValue();
 			})
 			.error(function(data, status, headers, config) {
 				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
@@ -35,8 +36,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 	//$scope.ShowLeft=$scope.GameInfoOverview.stats;
 	var changeValue = function()
     {
-		$scope.ShowLeft="left second";
+		$scope.ShowLeft=$scope.GameInfoOverview.stats;
 		$scope.ShowRight="right second";
-		alert("changed");
     };
 }]);

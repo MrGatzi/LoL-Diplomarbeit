@@ -5,21 +5,20 @@ sampleApp.directive('differentscharts', function($rootScope){
 				// for '@', '=', '&' syntax see http://onehungrymind.com/angularjs-sticky-notes-pt-2-isolated-scope/
         scope:{
 	        'leftPlayer': '@',
-					'rightPlayer': '@'
+			'rightPlayer': '@'
 	      },
         link: function(scope, element, attrs) {
-					console.log("hy :D");
-					scope.$watch('leftPlayer', function(newValue, oldValue) {
+				scope.$watch('leftPlayer', function(newValue, oldValue) {
 						if(newValue !== oldValue) {
-          		console.log("I see a LEFT data change!", "new:", newValue, "old:", oldValue);
+							scope.leftPlayer=angular.fromJson(scope.leftPlayer);
+							console.log(scope.leftPlayer);
 						}
-		      }, true);
-					scope.$watch('rightPlayer', function(newValue, oldValue) {
+				}, true);
+				scope.$watch('rightPlayer', function(newValue, oldValue) {
 						if(newValue !== oldValue) {
-          		console.log("I see a RIGHT data change!", "new:", newValue, "old:", oldValue);
+							console.log(scope.rightPlayer);
 						}
-		      }, true);
-        }
-
+				}, true);
+        } 
     };
 });

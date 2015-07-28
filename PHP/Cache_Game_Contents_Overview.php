@@ -13,7 +13,7 @@
 		If($Input_RequestData->Mode=="set"){
 			$SaveObj = $cache->get("{$Input_RequestData->SumName}_{$Input_RequestData->ServName}_{$Input_RequestData->MatchId}_Overview");
 			if($SaveObj==Null){
-				$cache->set("{$Input_RequestData->SumName}_{$Input_RequestData->ServName}_{$Input_RequestData->MatchId}_Overview",$Input_RequestData->GameInfoOverview, 600);
+				$cache->set("{$Input_RequestData->SumName}_{$Input_RequestData->ServName}_{$Input_RequestData->MatchId}_Overview",$Input_RequestData->GameInfoOverview, 60000);
 			}		
 			echo 'done';
 		}else{

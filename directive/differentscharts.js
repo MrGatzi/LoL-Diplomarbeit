@@ -11,17 +11,41 @@ sampleApp.directive('differentscharts', function($rootScope){
 				scope.$watch('leftPlayer', function(newValue, oldValue) {
 						if(newValue !== oldValue) {
 							scope.leftPlayer=angular.fromJson(scope.leftPlayer);
-							console.log(scope.leftPlayer);
-							var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13,11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
-							d3.select("differentscharts").selectAll("div")
+							var dataset = [scope.leftPlayer.magicDamageDealtPlayer];
+							dataset[1]=scope.leftPlayer.magicDamageDealtToChampions;
+							dataset[2]=scope.leftPlayer.magicDamageTaken;
+							dataset[3]=scope.leftPlayer.physicalDamageDealtPlayer;
+							dataset[4]=scope.leftPlayer.physicalDamageDealtToChampions;
+							dataset[5]=scope.leftPlayer.physicalDamageTaken;
+							dataset[6]=scope.leftPlayer.totalHeal;
+							
+							var w = 500;
+							var h = 100;
+							var svg = d3.select("differentscharts")
+									.append("svg")
+									.attr("width", w)
+									.attr("height", h);
+
+							svg.selectAll("rect")
+								.data(dataset)
+								.enter()
+								.append("rect")
+								.attr("x", function(d, i) {
+									return i * 21;  //Bar width of 20 plus 1 for padding
+								})
+								.attr("y", 0)
+								.attr("width", 20)
+								.attr("height", 20);
+			
+							/*d3.select("differentscharts").selectAll("div")
 								.data(dataset)
 								.enter()
 								.append("div")
 								.attr("class", "bar")
-								.style("height", function(d) {
-									var barHeight = d * 5;
+								.style("width", function(d) {
+									var barHeight = d * 0.003;
 									return barHeight + "px";
-								});
+								});*/
 						}
 				}, true);
 				scope.$watch('rightPlayer', function(newValue, oldValue) {

@@ -5,17 +5,21 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
             'MatchId' : $routeParams.MatchID,
 			'Mode': 'get'
         };
-	GameInfoOverview=0;
+	$scope.GameInfoOverview="";
     $http.post('PHP/Cache_Game_Contents_Overview.php', {data1} ).
 	success(function(data, status, config) {
-		GameInfoOverview=data;
-		if(GameInfoOverview=='Error'){
+		$scope.GameInfoOverview=data;
+		console.log($scope.GameInfoOverview);
+		if($scope.GameInfoOverview=='Error'){
 			$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
 		}else{
 			$http.post('PHP/Cache_GameTimeline_ByMatchID.php', {data1} ).
 			success(function(data, status, config) {
-				GameInfoTimeLine=data;
-				console.log(GameInfoTimeLine);
+				$scope.GameInfoTimeLine=data;
+				console.log($scope.GameInfoTimeLine);
+				/*if($scope.GameInfoTimeLine=="null"){
+					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp'
+				};*/
 			})
 			.error(function(data, status, headers, config) {
 				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
@@ -25,6 +29,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 	.error(function(data, status, headers, config) {
 		$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
 	});
+	$scope.ShowLeft="1";
 	
 }]);
  

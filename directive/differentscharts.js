@@ -1,17 +1,15 @@
-sampleApp.directive('differentscharts', function(){
+sampleApp.directive('differentscharts', function($rootScope){
 	 return {
-		restrict: 'EA',
-		scope:false,
-        link: function ($scope, element, attrs) {
-			console.log($scope);
-			console.log($scope["GameInfoOverview"]);
-			$scope.$watch($scope.GameInfoOverview, function(newValue, oldValue) {
-				if (newValue!=oldValue) {
-					alert("hy");
-				}
-			});	
-		
+		restrict: 'AE',
+        scope:true,
+        link: function(scope, element, attrs) {
+			console.log("hy :D");
+			  $rootScope.$watch('ShowLeft', function(newValue, oldValue) {
+                    console.log("I see a data change!" + scope.ShowLeft);
+            }, true);
+          
         }
+	
     };
 });
  

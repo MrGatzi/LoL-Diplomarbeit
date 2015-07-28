@@ -5,11 +5,12 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
             'MatchId' : $routeParams.MatchID,
 			'Mode': 'get'
         };
-	$scope.GameInfoOverview="";
+	$scope.ShowLeft="first"
     $http.post('PHP/Cache_Game_Contents_Overview.php', {data1} ).
 	success(function(data, status, config) {
 		$scope.GameInfoOverview=data;
 		console.log($scope.GameInfoOverview);
+		changeValue();
 		if($scope.GameInfoOverview=='Error'){
 			$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
 		}else{
@@ -29,7 +30,12 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 	.error(function(data, status, headers, config) {
 		$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
 	});
-	$scope.ShowLeft="1";
-	
+	//console.log($scope.GameInfoOverview+"??");
+	//$scope.ShowLeft=$scope.GameInfoOverview.stats;
+	var changeValue = function()
+    {
+		$scope.ShowLeft="second";
+		alert("changed");
+    };
 }]);
  

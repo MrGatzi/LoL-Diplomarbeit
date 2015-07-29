@@ -1,4 +1,4 @@
-sampleApp.directive('championIcon', function($rootScope){
+sampleApp.directive('championIcon', function(){
 	 return {
 		restrict: 'AE',
 				// scope object defines the attributes that can be used in the HTML tag
@@ -6,9 +6,9 @@ sampleApp.directive('championIcon', function($rootScope){
         scope:{
 	      },
         link: function(scope, element, attrs) {
-				element.bind("mouseenter", function() {
-					alert("hallo");
-				});
+			element.bind("mouseenter", function() {
+				alert("hallo");
+			});
         } 
     };
 });

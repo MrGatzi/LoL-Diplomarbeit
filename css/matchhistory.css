@@ -71,7 +71,12 @@ win_false{
 	background: url(../Libraries/Background/paper.jpg);
 	
 }
+#item-container{
+	height: 203px;
+	
+}
 #items{
+	margin-top: 30px;
 	float:left;
 	width:252px;
 }

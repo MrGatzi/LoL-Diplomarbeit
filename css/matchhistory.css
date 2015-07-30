@@ -71,6 +71,10 @@ win_false{
 	background: url(../Libraries/Background/paper.jpg);
 	
 }
+#items{
+	float:left;
+	width:252px;
+}
 .itemrow1{
 	float: left;
 }

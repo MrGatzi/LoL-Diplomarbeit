@@ -5,8 +5,6 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
             'MatchId' : $routeParams.MatchID,
 			'Mode': 'get'
         };
-	$scope.ShowLeft="left first";
-	$scope.ShowRight="right first";
     $http.post('PHP/Cache_Game_Contents_Overview.php', {data1} ).
 	success(function(data, status, config) {
 		$scope.GameInfoOverview=data;
@@ -36,8 +34,12 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 	//$scope.ShowLeft=$scope.GameInfoOverview.stats;
 	var changeValue = function()
     {
-		$scope.ShowLeft=$scope.GameInfoOverview.stats;
+		$scope.ShowLeft=$scope.GameInfoTimeLine.participants[1].stats;;
 		$scope.ShowRight="right second";
     };
+	$scope.changeChart= function(){
+		alert("hy");
+		$scope.ShowLeft=$scope.GameInfoTimeLine.participants[5].stats;
+	};
 
 }]);

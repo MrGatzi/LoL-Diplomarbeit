@@ -7,7 +7,7 @@ sampleApp.directive('championIcon', function(){
 	      },
         link: function(scope, element, attrs) {
 			element.bind("mouseenter", function() {
-				alert("hallo");
+				console.log("hallo");
 			});
         } 
     };

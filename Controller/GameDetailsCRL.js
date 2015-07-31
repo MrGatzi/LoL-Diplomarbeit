@@ -34,6 +34,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 	//$scope.ShowLeft=$scope.GameInfoOverview.stats;
 	var changeValue = function()
     {
+		console.log("hy");
 		$scope.ShowLeft=$scope.GameInfoTimeLine.participants[1].stats;;
 		$scope.ShowRight="right second";
     };

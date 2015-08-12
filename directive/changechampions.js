@@ -1,11 +1,35 @@
-sampleApp.directive("change", function() {
-    return function(scope, element, attrs) {
-            $("#champIcon").popover({
+
+sampleApp.directive('change', function() {
+    return {
+        restrict: 'A',
+        template: '<span>{{label}}</span>',
+        link: function (scope, el, attrs) {
+            scope.label = attrs.popoverLabel;
+            $(el).popover({
                 trigger: 'click',
                 html: true,
-                content: "Hallo",
-                placement: right
+                content: 'hallo',/* function(){return '<img src="'+$(this).data('img') + '" />';} */
+                placement: 'right',
             });
-        
+        }
     };
 });
+
+/* customDirectives = angular.module('customDirectives', []);
+customDirectives.directive('customPopover', function () {
+    return {
+        restrict: 'A',
+        template: '<span>{{label}}</span>',
+        link: function (scope, el, attrs) {
+            scope.label = attrs.popoverLabel;
+            $(el).popover({
+                trigger: 'click',
+                html: true,
+                content: attrs.popoverHtml,
+                placement: attrs.popoverPlacement
+            });
+        }
+    };
+});
+
+angular.module('CustomComponents', ['customDirectives']); */

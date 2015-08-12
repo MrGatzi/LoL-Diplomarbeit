@@ -102,7 +102,7 @@ var yAxis = d3.svg.axis()
 
 // Specify the chart area and dimensions
 var chart = d3.select(".chart")
-    .attr("width", spaceForLabels + chartWidth + spaceForLegend)
+    .attr("width", chartWidth)
     .attr("height", chartHeight);
 
 // Create bars
@@ -115,7 +115,7 @@ var bar = chart.selectAll("g")
 
 // Create rectangles of the correct width
 bar.append("rect")
-	 .attr("x", function(d) { return chartWidth-x(d); })
+	 .attr("x", function(d) { console.log(chartWidth);return chartWidth-x(d); })
     .attr("fill", function(d,i) { return color(i % data.series.length); })
     .attr("class", "bar")
     .attr("width", x)
@@ -130,7 +130,7 @@ bar.append("text")
     .text(function(d) { return d; });
 
 // Draw labels
-
+/*
 
 bar.append("text")
     .attr("class", "label")
@@ -142,7 +142,7 @@ bar.append("text")
         return data.labels[Math.floor(i/data.series.length)];
       else
         return ""});
-
+*/
 chart.append("g")
       .attr("class", "y axis")
       .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")

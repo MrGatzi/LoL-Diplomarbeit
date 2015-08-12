@@ -17,95 +17,272 @@ sampleApp.directive('differentscharts', function($rootScope) {
                 width = 320,
                 barHeight = 30,
                 height = 0;
+            var chartWidth = 380,
+                barHeight = 20,
+                groupHeight = barHeight,
+                gapBetweenGroups = 30,
+                spaceForLabels = 0,
+                spaceForLegend = 90,
+                chartHeight = 300;
 
-            var chart = d3.select(".chart")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom)
-                .append("g")
-                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            /*
             var bars = chart.append("g")
                 .attr("class", "bars");
             var AxisXX = chart.append("g")
-                .attr("class", "axis");
-			var ChangedBars;
-            scope.$watch('leftPlayer', function(newValue, oldValue) {
-                if (newValue !== oldValue) {
-                    scope.leftPlayer = angular.fromJson(scope.leftPlayer);
-                    var data = [scope.leftPlayer.magicDamageDealt];
-                    data[1] = scope.leftPlayer.magicDamageDealtToChampions;
-                    data[2] = scope.leftPlayer.magicDamageTaken;
-                    data[3] = scope.leftPlayer.physicalDamageDealt;
-                    data[4] = scope.leftPlayer.physicalDamageDealtToChampions;
-                    data[5] = scope.leftPlayer.physicalDamageTaken;
-                    data[6] = scope.leftPlayer.trueDamageDealt;
-                    data[7] = scope.leftPlayer.trueDamageDealtToChampions;
-                    data[8] = scope.leftPlayer.trueDamageTaken;
-					console.log(data);
+                .attr("class", "axis");*/
+            var ChangedBars;
+            var chart = d3.select(".chartLeft")
+                .attr("width", chartWidth)
+                .attr("height", chartHeight);
 
-                    height = barHeight * data.length;
-                    d3.select(".chart")
-                        .attr("height", height + margin.top + margin.bottom);
+
+            var bar = chart.selectAll("g");
+            scope.$watch('leftPlayer', function(newValue, oldValue) {
+                // FIRES $ TIMES NO IDEA WY!
+
+                if (newValue != oldValue) {
+                    scope.leftPlayer = angular.fromJson(scope.leftPlayer);
+                    var data = {
+                        labels: [
+                            'Damage Dealt to Champ', 'Damage delt', 'Damage taken'
+                        ],
+                        series: [{
+                            label: 'Physikl',
+                            values: [scope.leftPlayer.physicalDamageDealt, scope.leftPlayer.physicalDamageDealtToChampions, scope.leftPlayer.physicalDamageTaken]
+                        }, {
+                            label: 'Magical',
+                            values: [scope.leftPlayer.magicDamageDealt, scope.leftPlayer.magicDamageDealtToChampions, scope.leftPlayer.magicDamageTaken]
+                        }, {
+                            label: 'True',
+                            values: [scope.leftPlayer.trueDamageDealt, scope.leftPlayer.trueDamageDealtToChampions, scope.leftPlayer.trueDamageTaken]
+                        }, ],
+                        abs: [
+                            560, 500, 500, 485, 485, 485, 495
+                        ]
+                    };
+                    console.log("you changed te data !");
+                    groupHeight = barHeight * data.series.length;
+                    // Zip the series data together (first values, second values, etc.)
+                    var zippedData = [];
+                    for (var i = 0; i < data.labels.length; i++) {
+                        for (var j = 0; j < data.series.length; j++) {
+                            zippedData.push(data.series[j].values[i]);
+                        }
+                    };
+                    console.log(zippedData);
+                    // Color scale
+                    var color = d3.scale.category20();
+                    var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
 
                     var x = d3.scale.linear()
-                        .domain([0, d3.max(data)])
-                        .range([0, width - 100]);
+                        .domain([0, d3.max(zippedData)])
+                        .range([0, chartWidth]);
 
-                    var xAxis = d3.svg.axis()
-                        .scale(x)
-                        .orient("top")
-                        .ticks(4);
-						
-					ChangedBars=bars
-                        .selectAll("rect")
-                        .data(data);
+                    var y = d3.scale.linear()
+                        .range([chartHeight + gapBetweenGroups, 0]);
 
-					ChangedBars	
+                    var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .tickFormat('')
+                        .tickSize(0)
+                        .orient("right");
+
+                    // Specify the chart area and dimensions
+
+
+                    // Create bars
+                    ChangedBars = bar
+                        .data(zippedData)
                         .enter().append("g")
-                        .attr("class", "GameInfoData")
-                        .append("rect")
-                        .attr("title", function(d) {
-                            return d;
+                        .attr("transform", function(d, i) {
+                            return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
+                        });
+
+                    // Create rectangles of the correct width
+                    ChangedBars.append("rect")
+                        .attr("x", function(d) {
+                            console.log(chartWidth);
+                            return chartWidth - x(d);
                         })
-                        .on("mouseover", function() {
-                            console.log(this);
+                        .attr("fill", function(d, i) {
+                            return color(i % data.series.length);
                         })
-                        // Div Tooltip mit den X-Y werten anzeigen position absolut. 
-                        .attr("y", function(d, i) {
-                            return i * barHeight;
-                        })
-                        .attr("height", barHeight - 1)
+                        .attr("class", "bar")
                         .attr("width", function(d) {
                             return x(d);
                         })
-						.text(function(d) {
-							return d;
-						});
-					ChangedBars
-						.attr("width", function(d) {
-                            return x(d);
-                        });
-					ChangedBars
-						.exit()
-						.remove();
-						
-                    AxisXX
-                        .call(xAxis)
-                        .select(".tick line")
-                        .style("stroke", "#000");
+                        .attr("height", barHeight - 1);
 
-                    /*chart.selectAll(".GameInfoData")
-                    	.append("text")
-                    	.attr("x", function(d) { return x(d); })
-                    	.attr("y", function(d, i) { return i * barHeight +12; })
-                    	.attr("dy", ".35em")
-                    	.text(function(d) { return d; });*/
+                    // Add text label in bar
+                    /* bar.append("text")
+                         .attr("x", function(d) {
+                             var count = 9.5;
+                             var flag = d;
+                             while (flag >= 10) {
+                                 count = count + count;
+                                 flag = flag / 100;
+                             };
+                             return chartWidth - x(d) + count;
+                         })
+                         .attr("y", barHeight / 2)
+                         .attr("fill", "red")
+                         .attr("dy", ".35em")
+                         .text(function(d) {
+                             return d;
+                         });*/
+
+                    // Draw labels
 
 
+                    /* bar.append("text")
+                         .attr("class", "label")
+                         .attr("x", function(d, i) {
+                             console.log(i);
+                             return data.abs[i];
+                         })
+                         .attr("y", groupHeight / 2)
+                         .attr("dy", ".35em")
+                         .text(function(d, i) {
+                             if (i % data.series.length === 0)
+                                 return data.labels[Math.floor(i / data.series.length)];
+                             else
+                                 return ""
+                         });*/
+
+                    var NewXAxis = chart.append("g")
+                        .attr("class", "y axis")
+                        .attr("transform", "translate(" + 0 + ", " + -gapBetweenGroups / 2 + ")")
+                        .call(yAxis);
                 };
             }, true);
             scope.$watch('rightPlayer', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
-				}
+                    scope.rightPlayer = angular.fromJson(scope.rightPlayer);
+                    var data = {
+                        labels: [
+                            'Damage Dealt to Champ', 'Damage delt', 'Damage taken'
+                        ],
+                        series: [{
+                            label: 'Physikl',
+                            values: [scope.rightPlayer.physicalDamageDealt, scope.rightPlayer.physicalDamageDealtToChampions, scope.rightPlayer.physicalDamageTaken]
+                        }, {
+                            label: 'Magical',
+                            values: [scope.rightPlayer.magicDamageDealt, scope.rightPlayer.magicDamageDealtToChampions, scope.rightPlayer.magicDamageTaken]
+                        }, {
+                            label: 'True',
+                            values: [scope.rightPlayer.trueDamageDealt, scope.rightPlayer.trueDamageDealtToChampions, scope.rightPlayer.trueDamageTaken]
+                        }, ],
+                        abs: [
+                            560, 500, 500, 485, 485, 485, 495
+                        ]
+                    };
+
+                    // Zip the series data together (first values, second values, etc.)
+                    var zippedData = [];
+                    for (var i = 0; i < data.labels.length; i++) {
+                        for (var j = 0; j < data.series.length; j++) {
+                            zippedData.push(data.series[j].values[i]);
+                        }
+                    }
+
+                    // Color scale
+                    var color = d3.scale.category20();
+                    var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
+
+                    var x = d3.scale.linear()
+                        .domain([0, d3.max(zippedData)])
+                        .range([0, chartWidth]);
+
+                    var y = d3.scale.linear()
+                        .range([chartHeight + gapBetweenGroups, 0]);
+
+                    var yAxis = d3.svg.axis()
+                        .scale(y)
+                        .tickFormat('')
+                        .tickSize(0)
+                        .orient("right");
+
+                    // Specify the chart area and dimensions
+                    var chart = d3.select(".chartRight")
+                        .attr("width", spaceForLabels + chartWidth + spaceForLegend)
+                        .attr("height", chartHeight);
+
+                    // Create bars
+                    var bar = chart.selectAll("g")
+                        .data(zippedData)
+                        .enter().append("g")
+                        .attr("transform", function(d, i) {
+                            return "translate(" + 1 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
+                        });
+
+                    // Create rectangles of the correct width
+                    bar.append("rect")
+                        .attr("fill", function(d, i) {
+                            return color(i % data.series.length);
+                        })
+                        .attr("class", "bar")
+                        .attr("width", x)
+                        .attr("height", barHeight - 1);
+
+                    /*// Add text label in bar
+                    bar.append("text")
+                        .attr("x", function(d) { return x(d) - 3; })
+                        .attr("y", barHeight / 2)
+                        .attr("fill", "red")
+                        .attr("dy", ".35em")
+                        .text(function(d) { return d; });
+                    */
+                    /*
+                    bar.append("text")
+                        .attr("class", "label")
+                        .attr("x", function(d) { return - 10; })
+                        .attr("y", groupHeight / 2)
+                        .attr("dy", ".35em")
+                        .text(function(d,i) {
+                          if (i % data.series.length === 0)
+                            return data.labels[Math.floor(i/data.series.length)];
+                          else
+                            return ""});
+
+                    chart.append("g")
+                          .attr("class", "y axis")
+                          .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")
+                          .call(yAxis);
+                    */
+                    // Draw legend
+                    var legendRectSize = 18,
+                        legendSpacing = 4;
+
+                    var legend = chart.selectAll('.legend')
+                        .data(data.series)
+                        .enter()
+                        .append('g')
+                        .attr('transform', function(d, i) {
+                            var height = legendRectSize + legendSpacing;
+                            var offset = -gapBetweenGroups / 2;
+                            var horz = spaceForLabels + chartWidth + 40 - legendRectSize;
+                            var vert = i * height - offset;
+                            return 'translate(' + horz + ',' + vert + ')';
+                        });
+
+                    legend.append('rect')
+                        .attr('width', legendRectSize)
+                        .attr('height', legendRectSize)
+                        .style('fill', function(d, i) {
+                            return color(i);
+                        })
+                        .style('stroke', function(d, i) {
+                            return color(i);
+                        });
+
+                    legend.append('text')
+                        .attr('class', 'legend')
+                        .attr('x', legendRectSize + legendSpacing)
+                        .attr('y', legendRectSize - legendSpacing)
+                        .text(function(d) {
+                            return d.label;
+                        });
+                }
             }, true);
         }
     };

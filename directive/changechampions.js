@@ -13,7 +13,7 @@ sampleApp.directive('change', function() {
             });
         }
     }; */
-});
+}}});
 
 /* customDirectives = angular.module('customDirectives', []);
 customDirectives.directive('customPopover', function () {

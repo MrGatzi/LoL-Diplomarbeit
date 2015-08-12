@@ -6,29 +6,31 @@
 	margin-top:70px;
 
 }
-.chart rect {
-  fill: blue;
-}
-.chart rect:hover {
-  fill: brown;
+.chart .legend {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: start;
+  font-size: 12px;
 }
 
 .chart text {
+  fill: white;
   font: 10px sans-serif;
-  background-color: steelblue;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: white;
+  text-anchor: end;
 }
 
-.axis path {
-  display: none;
+.bar:hover {
+  fill: brown;
 }
 
+.axis path,
 .axis line {
-  stroke: #fff;
-  stroke-opacity: .5;
+  fill: none;
+  stroke: #000;
   shape-rendering: crispEdges;
 }
+.lable {
+	float:left;
+}
+
 		

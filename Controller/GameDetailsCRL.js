@@ -5,6 +5,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
             'MatchId' : $routeParams.MatchID,
 			'Mode': 'get'
         };
+	// show loading coinainter mit spin
     $http.post('PHP/Cache_Game_Contents_Overview.php', {data1} ).
 	success(function(data, status, config) {
 		$scope.GameInfoOverview=data;
@@ -21,6 +22,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp'
 				};*/
 				changeValue();
+				// loading cointainer wieder hide.
 			})
 			.error(function(data, status, headers, config) {
 				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';

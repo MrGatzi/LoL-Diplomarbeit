@@ -27,8 +27,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                 .attr("class", "bars");
             var AxisXX = chart.append("g")
                 .attr("class", "axis");
-
-
+			var ChangedBars;
             scope.$watch('leftPlayer', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
                     scope.leftPlayer = angular.fromJson(scope.leftPlayer);
@@ -55,10 +54,12 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .scale(x)
                         .orient("top")
                         .ticks(4);
-
-                    bars
+						
+					ChangedBars=bars
                         .selectAll("rect")
-                        .data(data)
+                        .data(data);
+
+					ChangedBars	
                         .enter().append("g")
                         .attr("class", "GameInfoData")
                         .append("rect")
@@ -73,12 +74,20 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             return i * barHeight;
                         })
                         .attr("height", barHeight - 1)
-                        .attr("width", x)
-
-                    .text(function(d) {
-                        return d;
-                    });
-
+                        .attr("width", function(d) {
+                            return x(d);
+                        })
+						.text(function(d) {
+							return d;
+						});
+					ChangedBars
+						.attr("width", function(d) {
+                            return x(d);
+                        });
+					ChangedBars
+						.exit()
+						.remove();
+						
                     AxisXX
                         .call(xAxis)
                         .select(".tick line")

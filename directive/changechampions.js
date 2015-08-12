@@ -2,7 +2,7 @@
 sampleApp.directive('change', function() {
     return {
         restrict: 'A',
-        template: '<span>{{label}}</span>',
+        
         link: function (scope, el, attrs) {
             scope.label = attrs.popoverLabel;
             $(el).popover({

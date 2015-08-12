@@ -4,15 +4,15 @@ sampleApp.directive('change', function() {
         restrict: 'A',
         
         link: function (scope, el, attrs) {
-            scope.label = attrs.popoverLabel;
+     /*        scope.label = attrs.popoverLabel;
             $(el).popover({
                 trigger: 'click',
                 html: true,
-                content: 'hallo',/* function(){return '<img src="'+$(this).data('img') + '" />';} */
+                content: 'hallo', function(){return '<img src="'+$(this).data('img') + '" />';} 
                 placement: 'right',
             });
         }
-    };
+    }; */
 });
 
 /* customDirectives = angular.module('customDirectives', []);

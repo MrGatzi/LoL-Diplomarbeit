@@ -33,4 +33,30 @@
 	float:left;
 }
 
-		
+.champ1{
+	float:left;
+}
+	
+#champswitch{
+	margin-top: 39px;
+	margin-left: 3px;
+	float:left;
+}
+
+.champselcetion{
+	position:absolute;
+	z-index:2;
+	width:512px;
+	margin-left: 131px;
+}
+
+
+
+
+
+
+
+
+
+
+

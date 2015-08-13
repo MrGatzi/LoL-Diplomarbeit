@@ -2,14 +2,19 @@
 <div id="GameOverview-container" class="container" style="background-image:url(Libraries/Background/Try2.png);background-repeat: no-repeat;height:1140px;background-position: center; ">
 	<div id="LaneOpponent" class="row">
 		
-		<div class="col-md-2 col-md-offset-1">
-		<div change>
-		<img style="heigth:128px; width:128px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png"> 
-		<img style="heigth:128px; width:128px;" src="">
+		<div class="col-md-3 col-md-offset-1">
+		
+		<img class="champ1" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png"> 
+		<img change id="champswitch" style="heigth:128px; width:50px;" src="Libraries/Background/arrow2.png">
+		<div class="champselcetion" ng-hide=0>
+		<img class="champ1" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
+		<img class="champ1" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
+		<img class="champ1" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
+		<img class="champ1" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
 		</div>
 		</div>
 		
-		<div class="col-md-2 col-md-offset-6">
+		<div class="col-md-2 col-md-offset-5">
 		<img style="heigth:128px; width:128px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
 		</div>		
 	</div>

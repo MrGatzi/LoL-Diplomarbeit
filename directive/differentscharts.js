@@ -62,14 +62,12 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             zippedData.push(data.series[j].values[i]);
                         }
                     };
-                    console.log(zippedData);
                     // Color scale
-					scope.highstNumberLeft=d3.max(zippedData);
+					//////////////////////////////////////////////////////////////////////////////////////////////////////////////// !!!!!!! i need the highest number from both Charts!!!
                     var color = d3.scale.category20();
                     var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
-
                     var x = d3.scale.linear()
-                        .domain([0, d3.max(zippedData)])
+                        .domain([0, scope.leftPlayer.highestChart])
                         .range([0, chartWidth]);
 
                     var y = d3.scale.linear()
@@ -133,7 +131,6 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             values: [scope.rightPlayer.trueDamageDealt, scope.rightPlayer.trueDamageDealtToChampions, scope.rightPlayer.trueDamageTaken]
                         }, ]
                     };
-					console.log(scope.highstNumberLeft);
                     // Zip the series data together (first values, second values, etc.)
                     console.log("you changed te data ! _ right");
                     groupHeight = barHeight * data.series.length;
@@ -144,14 +141,12 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             zippedData.push(data.series[j].values[i]);
                         }
                     };
-                    console.log(zippedData);
                     // Color scale
 					
                     var color = d3.scale.category20();
                     var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
-
                     var x = d3.scale.linear()
-                        .domain([0, d3.max(zippedData)])
+                        .domain([0, scope.rightPlayer.highestChart])
                         .range([0, chartWidth]);
 
                     var y = d3.scale.linear()

@@ -30,13 +30,11 @@ sampleApp.directive('differentscharts', function($rootScope) {
                 .attr("class", "bars");
             var AxisXX = chart.append("g")
                 .attr("class", "axis");*/
-            var ChangedBars;
+                
             var chart = d3.select(".chartLeft")
                 .attr("width", chartWidth)
                 .attr("height", chartHeight);
 
-
-            var bar = chart.selectAll("g");
             scope.$watch('leftPlayer', function(newValue, oldValue) {
                 // FIRES $ TIMES NO IDEA WY!
 
@@ -90,28 +88,38 @@ sampleApp.directive('differentscharts', function($rootScope) {
                     // Specify the chart area and dimensions
 
 
+                    
                     // Create bars
-                    ChangedBars = bar
-                        .data(zippedData)
-                        .enter().append("g")
-                        .attr("transform", function(d, i) {
-                            return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
-                        });
-
-                    // Create rectangles of the correct width
-                    ChangedBars.append("rect")
-                        .attr("x", function(d) {
-                            console.log(chartWidth);
-                            return chartWidth - x(d);
-                        })
-                        .attr("fill", function(d, i) {
-                            return color(i % data.series.length);
-                        })
-                        .attr("class", "bar")
-                        .attr("width", function(d) {
-                            return x(d);
-                        })
-                        .attr("height", barHeight - 1);
+                    var bar = chart
+                        .selectAll("g.bar") // select the group DOM elements
+                        .data(zippedData); // join with the dataset
+                    
+                    bar.enter() // create a new DOM element for new data items (D3 does the for-loop here for you)
+                      // add all attribute and items that won't change (on update)
+                      .append("g") // create group element first
+                      .attr("class", "bar")
+                      // transform attribute is updated so no need to add this here
+                      .append("rect") // Create rect element inside the group element of the correct width
+                      .attr("x", function(d) {
+                        console.log(chartWidth);
+                        return chartWidth - x(d);
+                      })
+                      .attr("fill", function(d, i) {
+                        return color(i % data.series.length);
+                      })
+                      .attr("class", "bar")
+                      // width attribute is updated so no need to add this here
+                      .attr("height", barHeight - 1);
+                    
+                    bar // update the the DOM element according to the data (D3 does the for-loop here for you)
+                      .attr("transform", function(d, i) { // shift the group element to the correct position
+                          return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
+                      })
+                      .select("rect") // select the rect inside the group element
+                      .attr("width", function(d) { return x(d); });
+                    
+                    bar.exit() // removes DOM elements if the data items are not available any more (D3 does the for-loop here for you)
+                      .remove(); 
 
                     // Add text label in bar
                     /* bar.append("text")
@@ -208,21 +216,33 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .attr("height", chartHeight);
 
                     // Create bars
-                    var bar = chart.selectAll("g")
-                        .data(zippedData)
-                        .enter().append("g")
-                        .attr("transform", function(d, i) {
-                            return "translate(" + 1 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
-                        });
-
-                    // Create rectangles of the correct width
-                    bar.append("rect")
-                        .attr("fill", function(d, i) {
-                            return color(i % data.series.length);
-                        })
-                        .attr("class", "bar")
-                        .attr("width", x)
-                        .attr("height", barHeight - 1);
+                    var bar = chart
+                        .selectAll("g.bar") // select the group DOM elements
+                        .data(zippedData); // join with the dataset
+                    
+                    bar.enter() // create a new DOM element for new data items (D3 does the for-loop here for you)
+                      // add all attribute and items that won't change (on update)
+                      .append("g") // create group element first
+                      .attr("class", "bar")
+                      // transform attribute is updated so no need to add this here
+                      .append("rect") // Create rect element inside the group element of the correct width
+                      .attr("fill", function(d, i) {
+                          return color(i % data.series.length);
+                      })
+                      .attr("class", "bar")
+                      // width attribute is updated so no need to add this here
+                      .attr("height", barHeight - 1);
+                    
+                    bar // update the data in the group element (D3 does the for-loop here for you) -- no update() function needed
+                      .attr("transform", function(d, i) {
+                          return "translate(" + 1 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
+                      })
+                      .select("rect") // select the rect inside the group element
+                      .attr("width", function(d) { return x(d); });
+                    
+                    bar.exit() // removes DOM elements if the data items are not available any more (D3 does the for-loop here for you)
+                      .remove(); 
+                    
 
                     /*// Add text label in bar
                     bar.append("text")

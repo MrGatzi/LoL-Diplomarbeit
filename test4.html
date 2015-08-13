@@ -69,7 +69,7 @@
                         "cs": 0.1,
                         "time": "30"
                     }, {
-                        "cs": 0.1,
+                        "cs": 0.2,
                         "time": "40"
                     }, {
                         "cs": 0,
@@ -111,7 +111,7 @@
 							.attr("x", WIDTH)
 							.attr("y", -20)
 							.style("text-anchor", "end")
-							.text("Price ($)");
+							.text("Minutes");
 							
                     vis.append("svg:g")
                         .attr("class", "y axis")
@@ -129,8 +129,8 @@
                         })
                         .y(function(d) {
                             return yScale(d.cs);
-                        })
-                        .interpolate("monotone");
+                        });
+                        
                     vis.append('svg:path')
                         .attr('d', lineGen(Friend))
                         .attr('stroke', 'green')

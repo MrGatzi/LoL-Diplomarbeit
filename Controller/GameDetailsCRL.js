@@ -21,6 +21,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 				/*if($scope.GameInfoTimeLine=="null"){
 					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp'
 				};*/
+				console.log("succ");
 				changeValue();
 				// loading cointainer wieder hide.
 			})
@@ -37,12 +38,13 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 	var changeValue = function()
     {
 		console.log("hy1");
-		$scope.ShowLeft=$scope.GameInfoTimeLine.participants[1].stats;
-		$scope.ShowRight=$scope.GameInfoTimeLine.participants[1].stats;
+		$scope.ShowLeft=angular.fromJson($scope.GameInfoTimeLine.participants[1].stats);
+		$scope.ShowRight=$scope.GameInfoTimeLine.participants[2].stats;
     };
 	$scope.changeChart= function(){
 		alert("hy2");
-		$scope.ShowLeft=$scope.GameInfoTimeLine.participants[5].stats;
+		$scope.ShowLeft=$scope.GameInfoTimeLine.participants[2].stats;
+		$scope.ShowRight=$scope.GameInfoTimeLine.participants[3].stats;
 	};
 
 }]);

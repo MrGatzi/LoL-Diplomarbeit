@@ -4,7 +4,13 @@ sampleApp.directive('change', function() {
         restrict: 'A',
         
         link: function(scope, element, attrs) {
+			$scope.toggleValue=true;
 			element.bind("mousedown", function() {
+				if($scope.toggleValue==true){
+					$scope.toggleValue=false;
+				}else{
+					$scope.toggleValue=true;
+				}
 				
 				console.log("hallo");
 			});

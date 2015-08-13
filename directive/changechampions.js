@@ -6,6 +6,7 @@ sampleApp.directive('change', function() {
         link: function(scope, element, attrs) {
 			element.bind("mousedown", function() {
 				
+				console.log("hallo");
 			});
 		}
     };

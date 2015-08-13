@@ -11,11 +11,10 @@
   fill: brown;
 }
 
-.axis path,
-.axis line {
+.axis  {
   fill: none;
   stroke: #000;
-  stroke-width; 1; 
+  stroke-width: 3; 
   shape-rendering: crispEdges;
 }
 

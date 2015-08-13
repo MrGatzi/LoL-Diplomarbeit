@@ -33,7 +33,9 @@ sampleApp.directive('differentscharts', function($rootScope) {
 			var chartRight = d3.select(".chartRight")
                 .attr("width", chartWidth+spaceForLegend)
                 .attr("height", chartHeight);
-				
+		
+			var highstNumberLeft;
+			var highstNumberRight;
             scope.$watch('leftPlayer', function(newValue, oldValue) {
                 if (newValue != oldValue) {                  
                     var data = {
@@ -49,10 +51,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         }, {
                             label: 'True',
                             values: [scope.leftPlayer.trueDamageDealt, scope.leftPlayer.trueDamageDealtToChampions, scope.leftPlayer.trueDamageTaken]
-                        }, ],
-                        abs: [
-                            560, 500, 500, 485, 485, 485, 495
-                        ]
+                        }, ]
                     };
                     console.log("you changed te data ! _ left");
                     groupHeight = barHeight * data.series.length;
@@ -65,7 +64,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                     };
                     console.log(zippedData);
                     // Color scale
-					
+					scope.highstNumberLeft=d3.max(zippedData);
                     var color = d3.scale.category20();
                     var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
 
@@ -106,7 +105,6 @@ sampleApp.directive('differentscharts', function($rootScope) {
                     
                     bar // update the the DOM element according to the data (D3 does the for-loop here for you)
                       .attr("transform", function(d, i) { // shift the group element to the correct position
-						console.log("translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")");
                           return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
                       })
                       .select("rect") // select the rect inside the group element
@@ -133,12 +131,9 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         }, {
                             label: 'True',
                             values: [scope.rightPlayer.trueDamageDealt, scope.rightPlayer.trueDamageDealtToChampions, scope.rightPlayer.trueDamageTaken]
-                        }, ],
-                        abs: [
-                            560, 500, 500, 485, 485, 485, 495
-                        ]
+                        }, ]
                     };
-
+					console.log(scope.highstNumberLeft);
                     // Zip the series data together (first values, second values, etc.)
                     console.log("you changed te data ! _ right");
                     groupHeight = barHeight * data.series.length;
@@ -192,7 +187,6 @@ sampleApp.directive('differentscharts', function($rootScope) {
                     
                     bar // update the the DOM element according to the data (D3 does the for-loop here for you)
                       .attr("transform", function(d, i) { // shift the group element to the correct position
-						console.log("translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")");
                           return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
                       })
                       .select("rect") // select the rect inside the group element

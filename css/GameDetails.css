@@ -18,8 +18,25 @@
   shape-rendering: crispEdges;
 }
 
+#leftplayer{
+	margin-left:80px;
+
+}
+
+#rightplayer{
+	margin-right:110px;
+}
 
 .champ1{
+	float:left;
+	margin-left:4px;
+}
+
+.champ2{
+	float:right;
+}
+
+#champleft{
 	float:left;
 }
 	
@@ -29,11 +46,22 @@
 	float:left;
 }
 
+#champswitch2{
+	margin-top: 39px;
+	margin-right: 3px;
+	float:right;
+}
+
 .champselcetion{
 	position:absolute;
 	z-index:2;
 	width:512px;
-	margin-left: 131px;
+	margin-left: 137px;
+}
+.champselcetion2{
+	position:absolute;
+	z-index:2;
+	margin-left: 617px;
 }
 .tooltip {
   position: absolute;

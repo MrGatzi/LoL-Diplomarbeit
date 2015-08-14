@@ -25,19 +25,23 @@ sampleApp.directive('differentscharts', function($rootScope) {
                 spaceForLegend = 90,
                 chartHeight = 300;
 
-                
+
             var chartLeft = d3.select(".chartLeft")
                 .attr("width", chartWidth)
                 .attr("height", chartHeight);
-				
-			var chartRight = d3.select(".chartRight")
-                .attr("width", chartWidth+spaceForLegend)
+
+            var chartRight = d3.select(".chartRight")
+                .attr("width", chartWidth + spaceForLegend)
                 .attr("height", chartHeight);
-		
-			var highstNumberLeft;
-			var highstNumberRight;
+				
+			var div = d3.select("body").append("div")
+                        .attr("class", "tooltip")
+                        .style("opacity", 1e-6);
+
+            var highstNumberLeft;
+            var highstNumberRight;
             scope.$watch('leftPlayer', function(newValue, oldValue) {
-                if (newValue != oldValue) {                  
+                if (newValue != oldValue) {
                     var data = {
                         labels: [
                             'Damage Dealt to Champ', 'Damage delt', 'Damage taken'
@@ -63,7 +67,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         }
                     };
                     // Color scale
-					//////////////////////////////////////////////////////////////////////////////////////////////////////////////// !!!!!!! i need the highest number from both Charts!!!
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////////// !!!!!!! i need the highest number from both Charts!!!
                     var color = d3.scale.category20();
                     var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
                     var x = d3.scale.linear()
@@ -82,35 +86,64 @@ sampleApp.directive('differentscharts', function($rootScope) {
                     // Specify the chart area and dimensions
 
 
-                    
+
                     // Create bars
                     var bar = chartLeft
                         .selectAll("g.bar") // select the group DOM elements
                         .data(zippedData); // join with the dataset
-                    
+
                     bar.enter() // create a new DOM element for new data items (D3 does the for-loop here for you)
-                      // add all attribute and items that won't change (on update)
-                      .append("g") // create group element first
-                      .attr("class", "bar")
-                      // transform attribute is updated so no need to add this here
-                      .append("rect") // Create rect element inside the group element of the correct width
-                      .attr("fill", function(d, i) {
-                        return color(i % data.series.length);
-                      })
-                      .attr("class", "bar")
-                      // width attribute is updated so no need to add this here
-                      .attr("height", barHeight - 1);
-                    
+                        // add all attribute and items that won't change (on update)
+                        .append("g") // create group element first
+                        .attr("class", "bar")
+                        // transform attribute is updated so no need to add this here
+                        .append("rect") // Create rect element inside the group element of the correct width
+                        .attr("fill", function(d, i) {
+                            return color(i % data.series.length);
+                        })
+                        .attr("class", "bar")
+                        // width attribute is updated so no need to add this here
+                        .attr("height", barHeight - 1);
+
                     bar // update the the DOM element according to the data (D3 does the for-loop here for you)
-                      .attr("transform", function(d, i) { // shift the group element to the correct position
-                          return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
-                      })
-                      .select("rect") // select the rect inside the group element
-                      .attr("width", function(d) { return x(d); })
-					  .attr("x", function(d) { return chartWidth-x(d) });
-                    
+                        .attr("transform", function(d, i) { // shift the group element to the correct position
+                            return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
+                        })
+                        .select("rect") // select the rect inside the group element
+                        .attr("width", function(d) {
+                            return x(d);
+                        })
+                        .attr("x", function(d) {
+                            return chartWidth - x(d)
+                        })
+						.on("mouseover", function(d,i) {
+                            mouseover(d,i,x(d));
+                        })
+                        .on("mouseout", mouseout);
+
                     bar.exit() // removes DOM elements if the data items are not available any more (D3 does the for-loop here for you)
-                      .remove(); 
+                        .remove();
+						
+						function mouseover(data, index,width) {
+                        console.log(width);
+                        div.transition()
+                            .duration(500)
+                            .style("opacity", 1);
+                        div
+                            .text(data)
+                            .style("left", (d3.event.pageX - 100) + "px")
+                            .style("top", (d3.event.pageY - 12) + "px")
+							.style("background", function(width, i) {
+								console.log(color(i  %3));
+								return color(i %3);
+                        });
+                    };
+
+                    function mouseout() {
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", 1e-6);
+                    };
                 };
             }, true);
             scope.$watch('rightPlayer', function(newValue, oldValue) {
@@ -142,7 +175,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         }
                     };
                     // Color scale
-					
+
                     var color = d3.scale.category20();
                     var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
                     var x = d3.scale.linear()
@@ -159,44 +192,51 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .orient("right");
 
                     // Specify the chart area and dimensions
-                    
+
                     // Create bars
                     var bar = chartRight
                         .selectAll("g.bar") // select the group DOM elements
                         .data(zippedData); // join with the dataset
-                    
+
                     bar.enter() // create a new DOM element for new data items (D3 does the for-loop here for you)
-                      // add all attribute and items that won't change (on update)
-                      .append("g") // create group element first
-                      .attr("class", "bar")
-                      // transform attribute is updated so no need to add this here
-                      .append("rect") // Create rect element inside the group element of the correct width
-                      .attr("fill", function(d, i) {
-                        return color(i % data.series.length);
-                      })
-                      .attr("class", "bar")
-                      // width attribute is updated so no need to add this here
-                      .attr("height", barHeight - 1);
-                    
+                        // add all attribute and items that won't change (on update)
+                        .append("g") // create group element first
+                        .attr("class", "bar")
+                        // transform attribute is updated so no need to add this here
+                        .append("rect") // Create rect element inside the group element of the correct width
+                        .attr("fill", function(d, i) {
+							//console.log(data.series.length); i don't understand the Colors !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            return color(i % data.series.length);
+                        })
+                        .attr("class", "bar")
+                        // width attribute is updated so no need to add this here
+                        .attr("height", barHeight - 1);
+
                     bar // update the the DOM element according to the data (D3 does the for-loop here for you)
-                      .attr("transform", function(d, i) { // shift the group element to the correct position
-                          return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
-                      })
-                      .select("rect") // select the rect inside the group element
-                      .attr("width", function(d) { return x(d); })
-					  .attr("x", function(d) { return 0})
-					  .on("mouseover", mouseover)
-					.on("mouseout", mouseout);
-                    
+                        .attr("transform", function(d, i) { // shift the group element to the correct position
+                            return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
+                        })
+                        .select("rect") // select the rect inside the group element
+                        .attr("width", function(d) {
+                            return x(d);
+                        })
+                        .attr("x", function(d) {
+                            return 0
+                        })
+                        .on("mouseover", function(d,i) {
+                            mouseover(d,i,x(d));
+                        })
+                        .on("mouseout", mouseout);
+
                     bar.exit() // removes DOM elements if the data items are not available any more (D3 does the for-loop here for you)
-                      .remove(); 
+                        .remove();
 
 
                     var NewYAxis = chartRight.append("g")
                         .attr("class", "y axis")
                         .attr("transform", "translate(" + 0 + ", " + -gapBetweenGroups / 2 + ")")
                         .call(yAxis);
-                    
+
 
                     // Draw legend
                     var legendRectSize = 18,
@@ -218,10 +258,10 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .attr('width', legendRectSize)
                         .attr('height', legendRectSize)
                         .style('fill', function(d, i) {
-                            return color(i);
+                            return color(i%data.series.length);
                         })
                         .style('stroke', function(d, i) {
-                            return color(i);
+                            return color(i%data.series.length);
                         });
 
                     legend.append('text')
@@ -231,27 +271,29 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .text(function(d) {
                             return d.label;
                         });
-						
-						var div = d3.select("body").append("div")
-						.attr("class", "tooltip")
-						.style("opacity", 1e-6);
-						
-						function mouseover() {
-							console.log("over"+d3.event.pageX + ", " + d3.event.pageY);
-							div.transition()
-							.duration(500)
-							.style("opacity", 1);
-							 div
-							.text(d3.event.pageX + ", " + d3.event.pageY)
-							.style("left", (d3.event.pageX - 34) + "px")
-							.style("top", (d3.event.pageY - 12) + "px");
-						};
 
-						function mouseout() {
-							 div.transition()
-								.duration(200)
-								.style("opacity", 1e-6);
-						};
+                    
+
+                    function mouseover(data, index,width) {
+                        console.log(width);
+                        div.transition()
+                            .duration(500)
+                            .style("opacity", 1);
+                        div
+                            .text(data)
+                            .style("left", (d3.event.pageX + 34) + "px")
+                            .style("top", (d3.event.pageY - 12) + "px")
+							.style("background", function(width, i) {
+								console.log(color(i  %3));
+								return color(i %3);
+                        });
+                    };
+
+                    function mouseout() {
+                        div.transition()
+                            .duration(200)
+                            .style("opacity", 1e-6);
+                    };
                 }
             }, true);
         }

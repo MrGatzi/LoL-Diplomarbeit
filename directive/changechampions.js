@@ -2,17 +2,19 @@
 sampleApp.directive('change', function() {
     return {
         restrict: 'A',
-        
-        link: function(scope, element, attrs) {
-			$scope.toggleValue=true;
+		
+        link: function($scope, element, attrs) {
+			$scope.toggleValue=false;
 			element.bind("mousedown", function() {
 				if($scope.toggleValue==true){
 					$scope.toggleValue=false;
+					console.log($scope.toggleValue);
 				}else{
 					$scope.toggleValue=true;
+					console.log($scope.toggleValue);
 				}
 				
-				console.log("hallo");
+				
 			});
 		}
     };

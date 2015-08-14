@@ -36,11 +36,37 @@
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: black;
+    color: white;
+    border-radius: 2px;
+  }
+  /* Creates a small triangle extender for the tooltip */
+  .d3-tip: after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+  }
+  /* Style northward tooltips differently */
+  .d3-tip.n: after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+  }
 
 </style>
 <svg class="chart"></svg>
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 <script>
 
 var data = {
@@ -94,10 +120,18 @@ var yAxis = d3.svg.axis()
     .tickSize(0)
     .orient("right");
 
+ var tip = d3.tip()
+      .attr('class', 'd3-tip')
+      .offset([-20, 120])
+      .html(function(d) {
+        return "<strong>Damage:</strong> <span style='color:red'>" + d + "</span>";
+      });
 // Specify the chart area and dimensions
 var chart = d3.select(".chart")
     .attr("width", spaceForLabels + chartWidth + spaceForLegend)
     .attr("height", chartHeight);
+	
+chart.call(tip);
 
 // Create bars
 var bar = chart.selectAll("g")
@@ -112,59 +146,11 @@ bar.append("rect")
     .attr("fill", function(d,i) { return color(i % data.series.length); })
     .attr("class", "bar")
     .attr("width", x)
-    .attr("height", barHeight - 1);
+    .attr("height", barHeight - 1)
+	.on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
 
-// Add text label in bar
-bar.append("text")
-    .attr("x", function(d) { return x(d) - 3; })
-    .attr("y", barHeight / 2)
-    .attr("fill", "red")
-    .attr("dy", ".35em")
-    .text(function(d) { return d; });
 
-// Draw labels
-/*bar.append("text")
-    .attr("class", "label")
-    .attr("x", function(d) { return - 10; })
-    .attr("y", groupHeight / 2)
-    .attr("dy", ".35em")
-    .text(function(d,i) {
-      if (i % data.series.length === 0)
-        return data.labels[Math.floor(i/data.series.length)];
-      else
-        return ""});
 
-chart.append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")
-      .call(yAxis);*/
-
-// Draw legend
-var legendRectSize = 18,
-    legendSpacing  = 4;
-
-var legend = chart.selectAll('.legend')
-    .data(data.series)
-    .enter()
-    .append('g')
-    .attr('transform', function (d, i) {
-        var height = legendRectSize + legendSpacing;
-        var offset = -gapBetweenGroups/2;
-        var horz = spaceForLabels + chartWidth + 40 - legendRectSize;
-        var vert = i * height - offset;
-        return 'translate(' + horz + ',' + vert + ')';
-    });
-
-legend.append('rect')
-    .attr('width', legendRectSize)
-    .attr('height', legendRectSize)
-    .style('fill', function (d, i) { return color(i); })
-    .style('stroke', function (d, i) { return color(i); });
-
-legend.append('text')
-    .attr('class', 'legend')
-    .attr('x', legendRectSize + legendSpacing)
-    .attr('y', legendRectSize - legendSpacing)
-    .text(function (d) { return d.label; });
 
 </script>

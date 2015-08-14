@@ -159,8 +159,6 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .orient("right");
 
                     // Specify the chart area and dimensions
-
-
                     
                     // Create bars
                     var bar = chartRight
@@ -186,7 +184,9 @@ sampleApp.directive('differentscharts', function($rootScope) {
                       })
                       .select("rect") // select the rect inside the group element
                       .attr("width", function(d) { return x(d); })
-					  .attr("x", function(d) { return 0});
+					  .attr("x", function(d) { return 0})
+					  .on("mouseover", mouseover)
+					.on("mouseout", mouseout);
                     
                     bar.exit() // removes DOM elements if the data items are not available any more (D3 does the for-loop here for you)
                       .remove(); 
@@ -231,6 +231,27 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .text(function(d) {
                             return d.label;
                         });
+						
+						var div = d3.select("body").append("div")
+						.attr("class", "tooltip")
+						.style("opacity", 1e-6);
+						
+						function mouseover() {
+							console.log("over"+d3.event.pageX + ", " + d3.event.pageY);
+							div.transition()
+							.duration(500)
+							.style("opacity", 1);
+							 div
+							.text(d3.event.pageX + ", " + d3.event.pageY)
+							.style("left", (d3.event.pageX - 34) + "px")
+							.style("top", (d3.event.pageY - 12) + "px");
+						};
+
+						function mouseout() {
+							 div.transition()
+								.duration(200)
+								.style("opacity", 1e-6);
+						};
                 }
             }, true);
         }

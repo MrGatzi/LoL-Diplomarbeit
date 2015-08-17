@@ -2,11 +2,11 @@
 <div id="GameOverview-container" class="container" style="background-image:url(Libraries/Background/Try2.png);background-repeat: no-repeat;height:1140px;background-position: center; ">
 	<div id="LaneOpponent" class="container" >
 		
-		<div id="leftplayer">
+		<div change id="leftplayer">
 		
 		<img id="champleft" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png"> 
-		<img change id="champswitch" ng-hide="toggleValue" style="heigth:128px; width:50px;" src="Libraries/Background/arrow1.png">
-		<div class="champselcetion" ng-show="true">
+		<img id="champswitch" ng-hide="toggleValue" style="heigth:128px; width:50px;" src="Libraries/Background/arrow1.png">
+		<div class="champselcetion" ng-show="toggleValue">
 			<img class="champ1" style="heigth:64px; width:64px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
 			<img class="champ1" style="heigth:64px; width:64px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
 			<img class="champ1" style="heigth:64px; width:64px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
@@ -17,7 +17,7 @@
 		<div id="rightplayer">
 		<img class="champ2" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
 		<img change id="champswitch2" ng-hide="toggleValue" style="heigth:128px; width:50px;" src="Libraries/Background/arrow3.png">
-		<div class="champselcetion2" ng-show="true">
+		<div class="champselcetion2" ng-show="toggleValue">
 			<img class="champ1" style="heigth:64px; width:64px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
 			<img class="champ1" style="heigth:64px; width:64px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">
 			<img class="champ1" style="heigth:64px; width:64px;" src="Libraries/img/champion/{{GameInfoOverview.championId}}.png">

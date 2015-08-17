@@ -5,7 +5,8 @@ sampleApp.directive('change', function() {
 		
         link: function($scope, element, attrs) {
 			$scope.toggleValue=false;
-			element.bind("mousedown", function() {
+			$scope.elem=angular.element('#champswitch');
+			$scope.elem.bind("mouseover", function() {
 				if($scope.toggleValue==true){
 					$scope.toggleValue=false;
 					console.log($scope.toggleValue);

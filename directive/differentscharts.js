@@ -117,26 +117,23 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             return chartWidth - x(d)
                         })
 						.on("mouseover", function(d,i) {
-                            mouseover(d,i,x(d));
+                            mouseover(d,d3.select(this).attr("fill"),x(d));
                         })
                         .on("mouseout", mouseout);
 
                     bar.exit() // removes DOM elements if the data items are not available any more (D3 does the for-loop here for you)
                         .remove();
 						
-						function mouseover(data, index,width) {
-                        console.log(width);
+						function mouseover(data, color ,width) {
+						var formatShow = d3.format("s");
                         div.transition()
                             .duration(500)
                             .style("opacity", 1);
                         div
-                            .text(data)
+                            .text(formatShow(data))
                             .style("left", (d3.event.pageX - 100) + "px")
                             .style("top", (d3.event.pageY - 12) + "px")
-							.style("background", function(width, i) {
-								console.log(color(i  %3));
-								return color(i %3);
-                        });
+							.style("background",color);
                     };
 
                     function mouseout() {
@@ -224,7 +221,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             return 0
                         })
                         .on("mouseover", function(d,i) {
-                            mouseover(d,i,x(d));
+                            mouseover(d,d3.select(this).attr("fill"),x(d));
                         })
                         .on("mouseout", mouseout);
 
@@ -274,19 +271,16 @@ sampleApp.directive('differentscharts', function($rootScope) {
 
                     
 
-                    function mouseover(data, index,width) {
-                        console.log(width);
+                    function mouseover(data, color ,width) {
+						var formatShow = d3.format("s");
                         div.transition()
                             .duration(500)
                             .style("opacity", 1);
                         div
-                            .text(data)
+                            .text(formatShow(data))
                             .style("left", (d3.event.pageX + 34) + "px")
                             .style("top", (d3.event.pageY - 12) + "px")
-							.style("background", function(width, i) {
-								console.log(color(i  %3));
-								return color(i %3);
-                        });
+							.style("background",color);
                     };
 
                     function mouseout() {

@@ -1,5 +1,5 @@
 
-sampleApp.directive('change-champion', function() {
+sampleApp.directive('champSelection', function() {
     return {
         restrict: 'A',
         scope: true,

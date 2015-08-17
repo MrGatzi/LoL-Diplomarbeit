@@ -18,51 +18,56 @@
   shape-rendering: crispEdges;
 }
 
-#leftplayer{
-	margin-left:80px;
-
+.champ-selection {
+	position: relative;
 }
 
-#rightplayer{
+.champ-selection .open {
+	margin-top: 39px;
+}
+
+.champ-selection.left {
+	float: left;
+	margin-left:80px;
+}
+
+.champ-selection.left .open {
+	float: right;
+	margin-left: 3px;
+}
+
+.champ-selection.right {
+	float: right;
 	margin-right:110px;
 }
 
-.champ1{
-	float:left;
-	margin-left:4px;
-}
-
-.champ2{
-	float:right;
-}
-
-#champleft{
-	float:left;
-}
-	
-#champswitch{
-	margin-top: 39px;
-	margin-left: 3px;
-	float:left;
-}
-
-#champswitch2{
-	margin-top: 39px;
+.champ-selection.right .open {
+	float: left;
 	margin-right: 3px;
-	float:right;
 }
 
-.champselcetion{
+.champ-selection .selector {
 	position:absolute;
 	z-index:2;
-	width:512px;
-	margin-left: 137px;
+	top: 0;
+	margin: 0;
+	padding: 0;
+	width: 270px;
+	list-style: none;
 }
-.champselcetion2{
-	position:absolute;
-	z-index:2;
-	margin-left: 617px;
+
+.champ-selection.left .selector {
+	left: 137px;
 }
+
+.champ-selection.right .selector {
+	right: 137px;
+}
+
+.champ-selection .selector li {
+	display: inline-block;
+}
+
 .tooltip {
   position: absolute;
   text-align: center;

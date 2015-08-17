@@ -1,22 +1,29 @@
 
-sampleApp.directive('change', function() {
+sampleApp.directive('change-champion', function() {
     return {
         restrict: 'A',
-		
+        scope: true,
         link: function($scope, element, attrs) {
-			$scope.toggleValue=false;
-			$scope.elem=angular.element('#champswitch');
-			$scope.elem.bind("mouseover", function() {
-				if($scope.toggleValue==true){
-					$scope.toggleValue=false;
-					console.log($scope.toggleValue);
-				}else{
-					$scope.toggleValue=true;
-					console.log($scope.toggleValue);
-				}
-				
-				
-			});
+			$scope.isVisible=false;
+      
+      $('.champion,.open', element[0]).bind('click', function(event) {
+        event.stopPropagation();
+        $scope.isVisible = !$scope.isVisible;
+        $scope.$apply();
+      });
+      
+      $('.selector li', element[0]).bind('click', function(event) {
+        event.stopPropagation();
+        
+        console.log('selected this champ', event.target);
+      });
+      
+      // close the selector on outside click
+      $(document).bind('click', function(){
+        event.stopPropagation();
+        $scope.isVisible = false;
+        $scope.$apply();
+      });
 		}
     };
 });

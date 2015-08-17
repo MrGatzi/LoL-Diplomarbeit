@@ -23,7 +23,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                 gapBetweenGroups = 30,
                 spaceForLabels = 0,
                 spaceForLegend = 90,
-                chartHeight = 300;
+                chartHeight = 350;
 
 
             var chartLeft = d3.select(".chartLeft")
@@ -33,10 +33,10 @@ sampleApp.directive('differentscharts', function($rootScope) {
             var chartRight = d3.select(".chartRight")
                 .attr("width", chartWidth + spaceForLegend)
                 .attr("height", chartHeight);
-				
-			var div = d3.select("body").append("div")
-                        .attr("class", "tooltip")
-                        .style("opacity", 1e-6);
+
+            var div = d3.select("body").append("div")
+                .attr("class", "tooltip")
+                .style("opacity", 1e-6);
 
             var highstNumberLeft;
             var highstNumberRight;
@@ -83,10 +83,16 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .tickSize(0)
                         .orient("right");
 
+                    var xAxis = d3.svg.axis()
+                        .scale(x)
+                        .ticks('7')
+                        .tickSize(10)
+                        .orient("bottom");
+
+                    var NewXAxis = chartLeft.append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(" + 0 + ", " + 260 + ")");
                     // Specify the chart area and dimensions
-
-
-
                     // Create bars
                     var bar = chartLeft
                         .selectAll("g.bar") // select the group DOM elements
@@ -116,16 +122,18 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .attr("x", function(d) {
                             return chartWidth - x(d)
                         })
-						.on("mouseover", function(d,i) {
-                            mouseover(d,d3.select(this).attr("fill"),x(d));
+                        .on("mouseover", function(d, i) {
+                            mouseover(d, d3.select(this).attr("fill"), x(d));
                         })
                         .on("mouseout", mouseout);
 
                     bar.exit() // removes DOM elements if the data items are not available any more (D3 does the for-loop here for you)
                         .remove();
-						
-						function mouseover(data, color ,width) {
-						var formatShow = d3.format("s");
+                    NewXAxis
+                        .call(xAxis);
+
+                    function mouseover(data, color, width) {
+                        var formatShow = d3.format("s");
                         div.transition()
                             .duration(500)
                             .style("opacity", 1);
@@ -133,7 +141,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             .text(formatShow(data))
                             .style("left", (d3.event.pageX - 100) + "px")
                             .style("top", (d3.event.pageY - 12) + "px")
-							.style("background",color);
+                            .style("background", color);
                     };
 
                     function mouseout() {
@@ -188,6 +196,18 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .tickSize(0)
                         .orient("right");
 
+                    var xAxis = d3.svg.axis()
+                        .scale(x)
+                        .ticks('7')
+                        .tickSize(10)
+                        .orient("bottom");
+                    var NewYAxis = chartRight.append("g")
+                        .attr("class", "y axis")
+                        .attr("transform", "translate(" + 0 + ", " + -gapBetweenGroups * 1.4 + ")");
+
+                    var NewXAxis = chartRight.append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(" + 0 + ", " + 260 + ")");
                     // Specify the chart area and dimensions
 
                     // Create bars
@@ -202,7 +222,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         // transform attribute is updated so no need to add this here
                         .append("rect") // Create rect element inside the group element of the correct width
                         .attr("fill", function(d, i) {
-							//console.log(data.series.length); i don't understand the Colors !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            //console.log(data.series.length); i don't understand the Colors !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             return color(i % data.series.length);
                         })
                         .attr("class", "bar")
@@ -220,19 +240,29 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .attr("x", function(d) {
                             return 0
                         })
-                        .on("mouseover", function(d,i) {
-                            mouseover(d,d3.select(this).attr("fill"),x(d));
+                        .on("mouseover", function(d, i) {
+                            mouseover(d, d3.select(this).attr("fill"), x(d));
                         })
                         .on("mouseout", mouseout);
+
 
                     bar.exit() // removes DOM elements if the data items are not available any more (D3 does the for-loop here for you)
                         .remove();
 
+                    NewXAxis
+                        .call(xAxis)
+                        .selectAll("text")
+                        .style("text-anchor", "end")
+                        .attr("dx", "-.8em")
+                        .attr("dy", ".15em")
+                        .attr("transform", function(d) {
+                            return "rotate(-65)"
+                        });
 
-                    var NewYAxis = chartRight.append("g")
-                        .attr("class", "y axis")
-                        .attr("transform", "translate(" + 0 + ", " + -gapBetweenGroups / 2 + ")")
+                    NewYAxis
                         .call(yAxis);
+
+
 
 
                     // Draw legend
@@ -255,10 +285,10 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .attr('width', legendRectSize)
                         .attr('height', legendRectSize)
                         .style('fill', function(d, i) {
-                            return color(i%data.series.length);
+                            return color(i % data.series.length);
                         })
                         .style('stroke', function(d, i) {
-                            return color(i%data.series.length);
+                            return color(i % data.series.length);
                         });
 
                     legend.append('text')
@@ -269,10 +299,10 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             return d.label;
                         });
 
-                    
 
-                    function mouseover(data, color ,width) {
-						var formatShow = d3.format("s");
+
+                    function mouseover(data, color, width) {
+                        var formatShow = d3.format("s");
                         div.transition()
                             .duration(500)
                             .style("opacity", 1);
@@ -280,7 +310,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             .text(formatShow(data))
                             .style("left", (d3.event.pageX + 34) + "px")
                             .style("top", (d3.event.pageY - 12) + "px")
-							.style("background",color);
+                            .style("background", color);
                     };
 
                     function mouseout() {

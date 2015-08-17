@@ -38,22 +38,22 @@
                         "time": "0"
                     },{
                         "cs": 0.8,
-                        "time": "10"
+                        "time": "1"
                     }, {
                         "cs": 0.2,
-                        "time": "20"
+                        "time": "2"
                     }, {
                         "cs": 0.9,
-                        "time": "30"
+                        "time": "3"
                     }, {
                         "cs": 0.2,
-                        "time": "40"
+                        "time": "4"
                     }, {
                         "cs": 0,
-                        "time": "50"
+                        "time": "5"
                     }, {
                         "cs": 0,
-                        "time": "60"
+                        "time": "6"
                     }];
                     var Enemy = [
 					{
@@ -61,22 +61,22 @@
                         "time": "0"
                     },{
                         "cs": 0.2,
-                        "time": "10"
+                        "time": "1"
                     }, {
                         "cs": 0.7,
-                        "time": "20"
+                        "time": "2"
                     }, {
                         "cs": 0.1,
-                        "time": "30"
+                        "time": "3"
                     }, {
                         "cs": 0.2,
-                        "time": "40"
+                        "time": "4"
                     }, {
                         "cs": 0,
-                        "time": "43"
+                        "time": "5"
                     }, {
                         "cs": 0,
-                        "time": "60"
+                        "time": "6"
                     }];
 					var maxCs=[];
 					for (var i = 0; i < Friend.length; i++) {
@@ -94,7 +94,7 @@
                             bottom: 20,
                             left: 50
                         },
-                        xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 50]),
+                        xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 20]),
                         yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,d3.max(maxCs) + 0.2]),
                         xAxis = d3.svg.axis()
                         .scale(xScale)
@@ -123,6 +123,7 @@
 							.attr("dy", ".71em")
 							.style("text-anchor", "end")
 							.text("CS/Minute \u0394");
+					
                     var lineGen = d3.svg.line()
                         .x(function(d) {
                             return xScale(d.time);

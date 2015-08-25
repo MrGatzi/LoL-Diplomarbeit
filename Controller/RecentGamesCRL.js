@@ -27,6 +27,8 @@ sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http'
 			if($scope.message.SumInfo == null){
 				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
 			}
+			if($scope.message.SumInfo){
+			}
 			})
 		.error(function(data, status, headers, config) {
 			alert("fail");

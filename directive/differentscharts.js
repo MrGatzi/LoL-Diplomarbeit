@@ -140,7 +140,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         })
                         .attr("x", function(d) {
 							
-                            return  chartWidth-x(d);
+                            return  chartWidth-x(d)-1;
                         })
                         .on("mouseover", function(d, i) {
                             mouseover(d, d3.select(this).attr("fill"), x(d));

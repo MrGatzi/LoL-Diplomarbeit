@@ -45,7 +45,7 @@
 }
 
 #gamerow1{
-	margin-top: 30px;
+	margin-top: 10px;
 }
 
 #SumIcon{
@@ -58,13 +58,11 @@
 }
 
 
-win_true{
-	background: url(../../Libraries/Background/win_true.png);
-    background-repeat: no-repeat;
+.win_true{
+	background: url(../Libraries/Background/win_true.png);
 }
-win_false{
-	background: url(../../Libraries/Background/win_false.png);
-    background-repeat: no-repeat;
+.win_false{
+	background: url(../Libraries/Background/win_false.png);
 }
 
 #game-container{
@@ -111,11 +109,16 @@ win_false{
 }
 
 .team1{
+	margin-top: 17px;
 	float: left;
 	margin-left: 15px;
 }
 .team2{
 	float: left;
 	margin-left: 15px;
-	margin-top: 40px;
+	margin-top: 59px;
+}
+#fellowPlayers{
+	height: 225px;
+	background-repeat: no-repeat;
 }

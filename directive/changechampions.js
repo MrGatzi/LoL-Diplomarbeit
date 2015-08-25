@@ -4,8 +4,8 @@ sampleApp.directive('champSelection', function() {
         restrict: 'A',
         scope: true,
         link: function($scope, element, attrs) {
-			$scope.isVisible=false;
-		
+			$scope.isVisible=false;			
+			
       $('.champion,.open', element[0]).bind('click', function(event) {
         event.stopPropagation();
         $scope.isVisible = !$scope.isVisible;

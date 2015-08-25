@@ -73,4 +73,6 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.ShowRight=ToRight;
 	};
 
+	
+
 }]);

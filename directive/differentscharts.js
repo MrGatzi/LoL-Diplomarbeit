@@ -37,7 +37,14 @@ sampleApp.directive('differentscharts', function($rootScope) {
             var div = d3.select("body").append("div")
                 .attr("class", "tooltip")
                 .style("opacity", 1e-6);
-
+				
+			var NewXAxisL = chartLeft.append("g")
+			.attr("class", "x axis")
+                        .attr("transform", "translate(" + 0 + ", " + 260 + ")");
+						
+			var NewXAxisR = chartRight.append("g")
+                        .attr("class", "x axis")
+                        .attr("transform", "translate(" + 0 + ", " + 260 + ")");			
             var highstNumberLeft;
             var highstNumberRight;
             scope.$watch('leftPlayer', function(newValue, oldValue) {
@@ -70,6 +77,11 @@ sampleApp.directive('differentscharts', function($rootScope) {
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////////// !!!!!!! i need the highest number from both Charts!!!
                     var color = d3.scale.category20();
                     var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
+					
+					var showX=d3.scale.linear()
+                        .domain([0, scope.leftPlayer.highestChart])
+                        .range([chartWidth, 0]);
+						
                     var x = d3.scale.linear()
                         .domain([0, scope.leftPlayer.highestChart])
                         .range([0, chartWidth]);
@@ -88,10 +100,14 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .ticks('7')
                         .tickSize(10)
                         .orient("bottom");
-
-                    var NewXAxis = chartLeft.append("g")
-                        .attr("class", "x axis")
-                        .attr("transform", "translate(" + 0 + ", " + 260 + ")");
+						
+					var xAxisShow = d3.svg.axis()
+                        .scale(showX)
+                        .ticks('7')
+                        .tickSize(10)
+                        .orient("bottom");
+                    
+                        
                     // Specify the chart area and dimensions
                     // Create bars
                     var bar = chartLeft
@@ -117,10 +133,14 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         })
                         .select("rect") // select the rect inside the group element
                         .attr("width", function(d) {
+							console.log("----");
+							console.log(x(d));
+							console.log(d);
                             return x(d);
                         })
                         .attr("x", function(d) {
-                            return chartWidth - x(d)
+							
+                            return  chartWidth-x(d);
                         })
                         .on("mouseover", function(d, i) {
                             mouseover(d, d3.select(this).attr("fill"), x(d));
@@ -129,8 +149,15 @@ sampleApp.directive('differentscharts', function($rootScope) {
 
                     bar.exit() // removes DOM elements if the data items are not available any more (D3 does the for-loop here for you)
                         .remove();
-                    NewXAxis
-                        .call(xAxis);
+                    NewXAxisL
+                        .call(xAxisShow)
+						.selectAll("text")
+                        .style("text-anchor", "end")
+                        .attr("dx", "-.8em")
+                        .attr("dy", ".15em")
+                        .attr("transform", function(d) {
+                            return "rotate(-65)"
+                        });
 
                     function mouseover(data, color, width) {
                         var formatShow = d3.format("s");
@@ -205,9 +232,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .attr("class", "y axis")
                         .attr("transform", "translate(" + 0 + ", " + -gapBetweenGroups * 1.4 + ")");
 
-                    var NewXAxis = chartRight.append("g")
-                        .attr("class", "x axis")
-                        .attr("transform", "translate(" + 0 + ", " + 260 + ")");
+                  
                     // Specify the chart area and dimensions
 
                     // Create bars
@@ -238,7 +263,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             return x(d);
                         })
                         .attr("x", function(d) {
-                            return 0
+                            return 2
                         })
                         .on("mouseover", function(d, i) {
                             mouseover(d, d3.select(this).attr("fill"), x(d));
@@ -249,7 +274,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                     bar.exit() // removes DOM elements if the data items are not available any more (D3 does the for-loop here for you)
                         .remove();
 
-                    NewXAxis
+                    NewXAxisR
                         .call(xAxis)
                         .selectAll("text")
                         .style("text-anchor", "end")

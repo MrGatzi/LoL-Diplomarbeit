@@ -68,6 +68,14 @@
 	display: inline-block;
 }
 
+.champimage1{
+	float: left;
+}
+.champimage2{
+	float: right;
+}
+
+
 .tooltip {
   position: absolute;
   text-align: center;

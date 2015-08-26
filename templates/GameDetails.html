@@ -4,24 +4,22 @@
 		<div id="LaneOpponent" class="container clearfix"  >
 			
 			<div champ-selection players="GameInfoTimeLine" left-player="ShowLeft" class="champ-selection left">
-			<img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{players.participants[1].championId}}.png"> 
+			<div class="champimage1">
+			</div>
+			
 			<a class="open" ng-hide="isVisible"><img style="heigth:64px; width:32px;" src="Libraries/Background/arrow1.png"></a>
-			<ul class="selector" ng-show="isVisible">
-				<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/{{players.participants[0].championId}}.png"></li>
-				<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/{{players.participants[2].championId}}.png"></li>
-				<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/{{players.participants[3].championId}}.png"></li>
-				<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/{{players.participants[4].championId}}.png"></li>
+			<ul class="selector leftlist" ng-show="isVisible">
+				
 			</ul>
 			</div>
 			
 			<div champ-selection players="GameInfoTimeLine" class="champ-selection right">
-			<img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{players.participants[6].championId}}.png">
+			<div class="champimage2">
+			</div>
+			
 			<a class="open" ng-hide="isVisible"><img style="heigth:64px; width:32px;" src="Libraries/Background/arrow2.png"></a>
-			<ul class="selector" ng-show="isVisible">
-				<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/{{players.participants[5].championId}}.png"></li>
-				<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/{{players.participants[7].championId}}.png"></li>
-				<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/{{players.participants[8].championId}}.png"></li>
-				<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/{{players.participants[9].championId}}.png"></li>
+			<ul class="selector rightlist" ng-show="isVisible">
+				
 			</ul>
 			</div>		
 		</div>

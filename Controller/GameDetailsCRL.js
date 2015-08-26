@@ -77,6 +77,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.ShowLeft=ToLeft;
 		$scope.ShowRight=ToRight;
 		$scope.InputOverTime="changed";
+		var i=0;
 		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
 			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[4].minionsKilled];
 			i++;
@@ -92,6 +93,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.ShowLeft=ToLeft;
 		$scope.ShowRight=ToRight;
 		$scope.InputOverTime="changed";
+		var i=0;
 		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
 			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[6].minionsKilled];
 			i++;

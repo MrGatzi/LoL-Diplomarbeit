@@ -11,20 +11,8 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 					var div = d3.select("body").append("div")
 						.attr("class", "tooltip")
 						.style("opacity", 1e-6);
-						
-					var data = [
-						[0, 0],
-						[1, 0],
-						[2, 2],
-						[3, 5],
-						[4, 9],
-						[5, 15],
-						[6, 30],
-						[7, 38],
-						[8, 52],
-							,
-						[10, 80]
-					];
+					data=newValue;
+					
 					var data2 = [
 						[0, 0],
 						[1, 1],

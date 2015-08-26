@@ -77,6 +77,11 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.ShowLeft=ToLeft;
 		$scope.ShowRight=ToRight;
 		$scope.InputOverTime="changed";
+		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
+			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[4].minionsKilled];
+			i++;
+		};
+		$scope.InputOverTime=ChartOverTimeData;
 	};
 	$scope.changeChartRight= function(){
 		ToRight=$scope.GameInfoTimeLine.participants[5].stats;
@@ -87,6 +92,11 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.ShowLeft=ToLeft;
 		$scope.ShowRight=ToRight;
 		$scope.InputOverTime="changed";
+		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
+			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[6].minionsKilled];
+			i++;
+		};
+		$scope.InputOverTime=ChartOverTimeData;
 	};
 	
 	var sortChamps = function(){

@@ -7,7 +7,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
         link: function(scope, element, attrs) {
 		scope.$watch('showData', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
-					console.log("yeay :D");
+					console.log(newValue);
 					var div = d3.select("body").append("div")
 						.attr("class", "tooltip")
 						.style("opacity", 1e-6);

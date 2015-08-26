@@ -1,5 +1,8 @@
 sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window', function($scope,$routeParams,$http,$window) {
 	$scope.ShowGameDetails=true;
+	ChartOverTimeData=[
+		[0, 0]
+		];
 	data1 = {
 			'SumName':$routeParams.sumName,
 			'ServName':$routeParams.servName,
@@ -57,6 +60,12 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.ShowLeft=ToLeft;
 		$scope.ShowRight=ToRight;
 		$scope.InputOverTime="changed";
+		var i=0;
+		while(i!=$scope.GameInfoTimeLine.timeline.frames.length){
+			ChartOverTimeData[i]=$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[2].minionsKilled;
+			i++;
+		};
+		$scope.InputOverTime=ChartOverTimeData;
     };
 	$scope.changeChartLeft= function(){
 		ToLeft=$scope.GameInfoTimeLine.participants[3].stats;

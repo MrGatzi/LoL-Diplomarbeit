@@ -31,7 +31,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 				console.log("succ");
 				InitCharts();
 				$scope.ShowGameDetails=false;
-				
+				$scope.selectedchamp=2;
 				// loading cointainer wieder hide.
 			})
 			.error(function(data, status, headers, config) {

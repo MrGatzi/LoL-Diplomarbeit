@@ -78,5 +78,14 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.ShowRight=ToRight;
 		$scope.InputOverTime="changed";
 	};
-
+	
+	var sortChamps = function(){
+		
+		if($scope.GameInfoOverview.teamId==100){
+			
+			
+		}else{
+			
+		}
+	}
 }]);

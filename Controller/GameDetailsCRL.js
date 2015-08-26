@@ -1,4 +1,5 @@
 sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window', function($scope,$routeParams,$http,$window) {
+	$scope.ShowGameDetails=true;
 	data1 = {
 			'SumName':$routeParams.sumName,
 			'ServName':$routeParams.servName,
@@ -29,6 +30,8 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 				};*/
 				console.log("succ");
 				InitCharts();
+				$scope.ShowGameDetails=false;
+				
 				// loading cointainer wieder hide.
 			})
 			.error(function(data, status, headers, config) {
@@ -75,7 +78,5 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.ShowRight=ToRight;
 		$scope.InputOverTime="changed";
 	};
-
-	
 
 }]);

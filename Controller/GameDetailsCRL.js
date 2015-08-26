@@ -53,6 +53,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		ToRight.highestChart=ToLeft.highestChart;
 		$scope.ShowLeft=ToLeft;
 		$scope.ShowRight=ToRight;
+		$scope.InputOverTime="changed";
     };
 	$scope.changeChartLeft= function(){
 		ToLeft=$scope.GameInfoTimeLine.participants[3].stats;
@@ -62,6 +63,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		ToRight.highestChart=ToLeft.highestChart;
 		$scope.ShowLeft=ToLeft;
 		$scope.ShowRight=ToRight;
+		$scope.InputOverTime="changed";
 	};
 	$scope.changeChartRight= function(){
 		ToRight=$scope.GameInfoTimeLine.participants[5].stats;
@@ -71,6 +73,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		ToRight.highestChart=ToLeft.highestChart;
 		$scope.ShowLeft=ToLeft;
 		$scope.ShowRight=ToRight;
+		$scope.InputOverTime="changed";
 	};
 
 	

@@ -64,7 +64,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             values: [scope.leftPlayer.trueDamageDealt, scope.leftPlayer.trueDamageDealtToChampions, scope.leftPlayer.trueDamageTaken]
                         }, ]
                     };
-                    console.log("you changed te data ! _ left");
+                   
                     groupHeight = barHeight * data.series.length;
                     // Zip the series data together (first values, second values, etc.)
                     var zippedData = [];
@@ -133,9 +133,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         })
                         .select("rect") // select the rect inside the group element
                         .attr("width", function(d) {
-							console.log("----");
-							console.log(x(d));
-							console.log(d);
+
                             return x(d);
                         })
                         .attr("x", function(d) {
@@ -197,7 +195,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         }, ]
                     };
                     // Zip the series data together (first values, second values, etc.)
-                    console.log("you changed te data ! _ right");
+
                     groupHeight = barHeight * data.series.length;
                     // Zip the series data together (first values, second values, etc.)
                     var zippedData = [];
@@ -247,7 +245,6 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         // transform attribute is updated so no need to add this here
                         .append("rect") // Create rect element inside the group element of the correct width
                         .attr("fill", function(d, i) {
-                            //console.log(data.series.length); i don't understand the Colors !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             return color(i % data.series.length);
                         })
                         .attr("class", "bar")

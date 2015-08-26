@@ -42,10 +42,10 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 							top: 20,
 							right: 30,
 							bottom: 30,
-							left: 40
+							left: 180
 						},
-						width = 500 - margin.left - margin.right,
-						height = 300 - margin.top - margin.bottom;
+						width = 800 - margin.left - margin.right,
+						height = 400 - margin.top - margin.bottom;
 
 					var x = d3.scale.linear()
 						.domain([0, data2[data2.length - 1][0]])

@@ -83,7 +83,7 @@
 #LoadingSpinner{
 	width: 220px;
 	height:20px;
-	margin-left: 450px;
+	margin-left: 460px;
 	margin-top:80px;
 	background-image: url(../Libraries/Background/ajax-loader.gif);
 }

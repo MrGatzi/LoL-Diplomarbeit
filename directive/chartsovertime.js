@@ -8,7 +8,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 		scope.$watch('showData', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
 					console.log("yeay :D");
-					/*var div = d3.select("body").append("div")
+					var div = d3.select("body").append("div")
 						.attr("class", "tooltip")
 						.style("opacity", 1e-6);
 						
@@ -44,8 +44,8 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 							bottom: 30,
 							left: 40
 						},
-						width = 960 - margin.left - margin.right,
-						height = 500 - margin.top - margin.bottom;
+						width = 500 - margin.left - margin.right,
+						height = 300 - margin.top - margin.bottom;
 
 					var x = d3.scale.linear()
 						.domain([0, data2[data2.length - 1][0]])
@@ -71,7 +71,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 							return y(d[1]);
 						});
 
-					var svg = d3.select(".Overtime").append("svg")
+					var svg = d3.select(".OverTime").append("svg")
 						.datum(data)
 						.attr("width", width + margin.left + margin.right)
 						.attr("height", height + margin.top + margin.bottom)
@@ -151,7 +151,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						div.transition()
 							.duration(200)
 							.style("opacity", 1e-6);
-					};*/
+					};
 				}
 			});
         }

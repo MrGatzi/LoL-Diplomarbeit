@@ -22,7 +22,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						[6, 30],
 						[7, 38],
 						[8, 52],
-						[9, 75],
+							,
 						[10, 80]
 					];
 					var data2 = [
@@ -38,6 +38,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						[9, 90],
 						[10, 90]
 					];
+					console.log(data[9][0]);
 					var margin = {
 							top: 20,
 							right: 30,
@@ -105,11 +106,11 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						.attr('stroke-width', 2)
 						.attr('fill', 'none');
 
-					svg.append("path")
+					/*svg.append("path")
 						.attr('d', lineGen(data2))
 						.attr('stroke', 'red')
 						.attr('stroke-width', 2)
-						.attr('fill', 'none');
+						.attr('fill', 'none');*/
 
 
 					var dots = svg.selectAll(".dot");
@@ -125,7 +126,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						})
 						.on("mouseout", mouseout);
 
-					dots.data(data2)
+					/*dots.data(data2)
 						.enter().append("circle")
 						.attr("class", "dot")
 						.attr("cx", lineGen.x())
@@ -134,7 +135,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						.on("mouseover", function(d) {
 							mouseover(d, "red");
 						})
-						.on("mouseout", mouseout);
+						.on("mouseout", mouseout);*/
 
 					function mouseover(d, color) {
 						div.transition()

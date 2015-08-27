@@ -172,7 +172,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 				}
 			}else{
 				
-				for(i=0;i<4;i++){
+				for(i=0;i<5;i++){
 					if(i!=flag){
 						$( ".rightlist" ).append('<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png"></li>');
 					}

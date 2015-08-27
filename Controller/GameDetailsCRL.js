@@ -67,7 +67,9 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[2].minionsKilled];
 			i++;
 		};
+
 		$scope.InputOverTime=ChartOverTimeData;
+		$scope.InputOverTime.text="CreepCrore";
     };
 	$scope.changeChartLeft= function(){
 		ToLeft=$scope.GameInfoTimeLine.participants[3].stats;
@@ -99,6 +101,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[6].minionsKilled];
 			i++;
 		};
+		
 		$scope.InputOverTime=ChartOverTimeData;
 	};
 	
@@ -182,4 +185,41 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 
 		}
 	}
-}]);
+	$scope.XpGainedUpdate= function(){
+	var i=0;
+		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
+			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[2].xp];
+			i++;
+		};
+
+		$scope.InputOverTime=ChartOverTimeData;
+		$scope.InputOverTime.text="Xp";
+		console.log("xp");
+	};
+	$scope.CreepsFarmedUpdate= function(){
+	var i=0;
+		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
+			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[2].minionsKilled];
+			i++;
+		};
+
+		$scope.InputOverTime=ChartOverTimeData;
+		$scope.InputOverTime.text="CreepCrore";
+		console.log("xp");
+		console.log("Creeps");
+	};
+	$scope.GoldGainedUpdate= function(){
+	var i=0;
+		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
+			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[2].totalGold];
+			i++;
+		};
+
+		$scope.InputOverTime=ChartOverTimeData;
+		$scope.InputOverTime.text="Gold";
+		console.log("xp");
+		console.log("Gold");
+	};
+
+	
+	}]);

@@ -77,7 +77,9 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						.attr("x", height)
 						.attr("dy", ".71em")
 						.style("text-anchor", "end")
-						.text("Creepscore");
+						.text(function(d) {
+							return data.text;
+						});
 
 					svg.append("g")
 						.attr("class", "y axis")

@@ -42,6 +42,9 @@
 			</div>
 		</div>
 		<div id="OverTimeCharts">
+			<input ng-click="CreepsFarmedUpdate()" id="ChartChanger" class="btn btn-danger" type="submit" value="Creeps farmed" style="margin-left : 230px">
+			<input ng-click="GoldGainedUpdate()" id="ChartChanger" class="btn btn-danger " type="submit" value="Gold gained">
+			<input ng-click="XpGainedUpdate()" id="ChartChanger" class="btn btn-danger " type="submit" value="Xp gained">
 			<chartsovertime show-data="InputOverTime">
 				<svg class="OverTime"></svg>
 			</chartsovertime>

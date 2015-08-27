@@ -5,52 +5,54 @@ sampleApp.directive('chartsovertime', function($rootScope) {
             'showData': '='
         },
         link: function(scope, element, attrs) {
-		scope.$watch('showData', function(newValue, oldValue) {
-                if (newValue !== oldValue) {
-					console.log(newValue);
-					var div = d3.select("body").append("div")
+		var div = d3.select("body").append("div")
 						.attr("class", "tooltip")
 						.style("opacity", 1e-6);
-					data=newValue;
-					
-					var data2 = [
-						[0, 0],
-						[1, 1],
-						[2, 5],
-						[3, 5],
-						[4, 7],
-						[5, 10],
-						[6, 50],
-						[7, 55],
-						[8, 90],
-						[9, 90],
-						[10, 90]
-					];
-					console.log(data[9][0]);
-					var margin = {
+		var margin = {
 							top: 20,
 							right: 30,
 							bottom: 30,
-							left: 180
+							left: 100
 						},
-						width = 800 - margin.left - margin.right,
-						height = 400 - margin.top - margin.bottom;
-
+						width = 900 - margin.left - margin.right,
+						height = 500 - margin.top - margin.bottom;
+		var lineArea=d3.select(".OverTime")
+						.attr("width", width + margin.left + margin.right)
+						.attr("height", height + margin.top + margin.bottom);
+		var NewXAxis = lineArea.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")");
+			
+		var NewYAxis = lineArea.append("g")
+			.attr("class", "y axis");
+		scope.$watch('showData', function(newValue, oldValue) {
+                if (newValue !== oldValue) {				
+					data=newValue;
+					console.log(data);
+					
+					
 					var x = d3.scale.linear()
-						.domain([0, data2[data2.length - 1][0]])
+						.domain([0, data.length])
 						.range([0, width]);
 
 					var y = d3.scale.linear()
-						.domain([0, data2[data2.length - 1][1]])
+						.domain([0, data[data.length-1][1]])
 						.range([height, 0]);
+						
 
 					var xAxis = d3.svg.axis()
 						.scale(x)
-						.orient("bottom");
+						.orient("bottom")
+						.ticks('7')
+                        .tickSize(10)
+                        .orient("bottom");
 
 					var yAxis = d3.svg.axis()
 						.scale(y)
-						.orient("left");
+						.orient("left")
+						.ticks('5')
+                        .tickSize(10)
+                        .orient("left");
 
 					var lineGen = d3.svg.line()
 						.x(function(d) {
@@ -60,10 +62,8 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 							return y(d[1]);
 						});
 
-					var svg = d3.select(".OverTime").append("svg")
-						.datum(data)
-						.attr("width", width + margin.left + margin.right)
-						.attr("height", height + margin.top + margin.bottom)
+					var svg = lineArea
+						.data(data)
 						.append("g")
 						.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -84,7 +84,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						.call(yAxis)
 						.append("text")
 						.attr("x", width)
-						.attr("y", height + 25)
+						.attr("y", height - 10)
 						.style("text-anchor", "end")
 						.text("Minutes");
 
@@ -93,12 +93,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						.attr('stroke', 'green')
 						.attr('stroke-width', 2)
 						.attr('fill', 'none');
-
-					/*svg.append("path")
-						.attr('d', lineGen(data2))
-						.attr('stroke', 'red')
-						.attr('stroke-width', 2)
-						.attr('fill', 'none');*/
+					
 
 
 					var dots = svg.selectAll(".dot");
@@ -113,18 +108,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 							mouseover(d, "green");
 						})
 						.on("mouseout", mouseout);
-
-					/*dots.data(data2)
-						.enter().append("circle")
-						.attr("class", "dot")
-						.attr("cx", lineGen.x())
-						.attr("cy", lineGen.y())
-						.attr("r", 3)
-						.on("mouseover", function(d) {
-							mouseover(d, "red");
-						})
-						.on("mouseout", mouseout);*/
-
+						
 					function mouseover(d, color) {
 						div.transition()
 							.duration(500)
@@ -142,7 +126,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 							.style("opacity", 1e-6);
 					};
 				}
-			});
+			},true);
         }
     };
 });

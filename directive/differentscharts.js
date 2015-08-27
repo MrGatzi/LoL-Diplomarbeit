@@ -54,7 +54,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                             'Damage Dealt to Champ', 'Damage delt', 'Damage taken'
                         ],
                         series: [{
-                            label: 'Physikl',
+                            label: 'Physical',
                             values: [scope.leftPlayer.physicalDamageDealt, scope.leftPlayer.physicalDamageDealtToChampions, scope.leftPlayer.physicalDamageTaken]
                         }, {
                             label: 'Magical',
@@ -129,7 +129,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
 
                     bar // update the the DOM element according to the data (D3 does the for-loop here for you)
                         .attr("transform", function(d, i) { // shift the group element to the correct position
-                            return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
+                            return "translate(" + 0 + "," + (i * barHeight+20 + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
                         })
                         .select("rect") // select the rect inside the group element
                         .attr("width", function(d) {
@@ -149,6 +149,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .remove();
                     NewXAxisL
                         .call(xAxisShow)
+						.attr("transform", "translate(" + 0 + ", "+280+ ")")
 						.selectAll("text")
                         .style("text-anchor", "end")
                         .attr("dx", "-.8em")
@@ -179,9 +180,11 @@ sampleApp.directive('differentscharts', function($rootScope) {
             scope.$watch('rightPlayer', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
                     scope.rightPlayer = angular.fromJson(scope.rightPlayer);
+					var PositionLabelX=[120,120,120];
+					var PositionLabelY=[10,100,190];
                     var data = {
                         labels: [
-                            'Damage Dealt to Champ', 'Damage delt', 'Damage taken'
+                             'Damage-Delt','Damage Dealt to Champions', 'Damage-Taken'
                         ],
                         series: [{
                             label: 'Physikl',
@@ -228,7 +231,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .orient("bottom");
                     var NewYAxis = chartRight.append("g")
                         .attr("class", "y axis")
-                        .attr("transform", "translate(" + 0 + ", " + -gapBetweenGroups * 1.4 + ")");
+                        .attr("transform", "translate(" + 0 + ", " + -20 + ")");
 
                   
                     // Specify the chart area and dimensions
@@ -253,7 +256,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
 
                     bar // update the the DOM element according to the data (D3 does the for-loop here for you)
                         .attr("transform", function(d, i) { // shift the group element to the correct position
-                            return "translate(" + 0 + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
+                            return "translate(" + 0 + "," + (i * barHeight +20+ gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
                         })
                         .select("rect") // select the rect inside the group element
                         .attr("width", function(d) {
@@ -273,6 +276,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
 
                     NewXAxisR
                         .call(xAxis)
+						.attr("transform", "translate(" + 0 + ", "+280+ ")")
                         .selectAll("text")
                         .style("text-anchor", "end")
                         .attr("dx", "-.8em")
@@ -280,6 +284,7 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .attr("transform", function(d) {
                             return "rotate(-65)"
                         });
+						
 
                     NewYAxis
                         .call(yAxis);
@@ -320,7 +325,25 @@ sampleApp.directive('differentscharts', function($rootScope) {
                         .text(function(d) {
                             return d.label;
                         });
+						
+					var LabelRectSize = 18,
+                        LabelSpacing = 4;
 
+                    var Label = chartRight.selectAll('.label')
+                        .data(data.labels)
+                        .enter()
+                        .append('g')
+                        .attr('transform', function(d, i) {
+                            return 'translate(' + PositionLabelX[i] + ',' + PositionLabelY[i] + ')';
+                        });
+
+                    Label.append('text')
+                        .attr('class', 'label')
+                        .attr('x', -100)
+                        .attr('y', LabelRectSize - LabelSpacing)
+                        .text(function(d,i) {
+                            return data.labels[i];
+                        });
 
 
                     function mouseover(data, color, width) {

@@ -10,7 +10,7 @@ sampleApp.directive('champSelection', function() {
              if (newValue != oldValue) {			
 			console.log($scope.players);
 			  }
-	})
+	}, true)
       $('.champion,.open', element[0]).bind('click', function(event) {
         event.stopPropagation();
         $scope.isVisible = !$scope.isVisible;

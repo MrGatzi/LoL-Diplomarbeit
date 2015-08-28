@@ -35,6 +35,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 				console.log("succ");
 				InitCharts();
 				sortChamps();
+				passChampions();
 				$scope.ShowGameDetails=false;
 				$scope.selectedchamp=2;
 				// loading cointainer wieder hide.
@@ -104,6 +105,24 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		
 		$scope.InputOverTime=ChartOverTimeData;
 	};
+	
+	passChampions = function(){
+		var right;
+		var left;
+		var players;
+		right=$scope.GameInfoTimeLine.participants;
+		if($scope.GameInfoOverview.teamId==100){
+			left=right.splice(0,5);
+			
+		}else{
+			left=right;
+			right=left.splice(0,5);
+			
+		}
+		$scope.leftchamps=left;
+		$scope.rightchamps=right;
+	
+	}
 	
 	var sortChamps = function(){
 		var i=0;

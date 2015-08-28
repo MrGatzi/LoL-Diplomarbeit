@@ -2,15 +2,15 @@
 sampleApp.directive('champSelection', function() {
     return {
         restrict: 'A',
-        scope:  {'players': '='
+        scope:  
+		{
+			'playersRight': '=',
+			'playersLeft': '='		
 		}, 
         link: function($scope, element, attrs) {		
-			$scope.isVisible=false;	
-	$scope.$watch('players', function(newValue, oldValue) {
-             if (newValue != oldValue) {			
-			console.log($scope.players);
-			  }
-	}, true)
+			$scope.isVisible=false;				
+			console.log($scope);
+			
       $('.champion,.open', element[0]).bind('click', function(event) {
         event.stopPropagation();
         $scope.isVisible = !$scope.isVisible;

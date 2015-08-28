@@ -6,7 +6,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
         },
         link: function(scope, element, attrs) {
 		var div = d3.select("body").append("div")
-						.attr("class", "tooltip")
+						.attr("class", "tooltip_ChartsOverTime")
 						.style("opacity", 1e-6);
 		var margin = {
 							top: 20,
@@ -105,11 +105,20 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						.attr("class", "dot")
 						.attr("cx", lineGen.x())
 						.attr("cy", lineGen.y())
-						.attr("r", 3)
+						.attr("r", 20)
+						.attr("fill", "rgba(25, 25, 25, .01)")
 						.on("mouseover", function(d) {
 							mouseover(d, "green");
 						})
 						.on("mouseout", mouseout);
+						
+					dots.data(data)
+						.enter().append("circle")
+						.attr("class", "dot_Black")
+						.attr("cx", lineGen.x())
+						.attr("cy", lineGen.y())
+						.attr("r", 4);
+						
 						
 					function mouseover(d, color) {
 						div.transition()

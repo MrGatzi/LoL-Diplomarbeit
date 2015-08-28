@@ -88,6 +88,19 @@
   border-radius: 6px;
   pointer-events: none;
 }
+.tooltip_ChartsOverTime {
+  position: absolute;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  padding: 8px;
+  font: 15px sans-serif;
+  background: #ddd;
+  border: solid 1px #aaa;
+  border-radius: 6px;
+  pointer-events: none;
+}
+
 #LoadingSpinner{
 	width: 220px;
 	height:20px;
@@ -116,6 +129,9 @@
   border: solid 1px #aaa;
   border-radius: 6px;
   pointer-events: none;
+}
+.dot{
+	background-color:red;
 }
 
 

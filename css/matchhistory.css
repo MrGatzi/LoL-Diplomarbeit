@@ -41,6 +41,7 @@
     height: auto;
 }
 #lvl {
+	width: 100px;
     margin-top: 80px;
 }
 .win_true {

@@ -4,6 +4,7 @@ sampleApp.directive('champSelection', function() {
         restrict: 'A',
         scope:  
 		{
+			'allPlayers': '=',
 			'selectedRight': '=',
 			'selectedLeft': '=',
 			'playersRight': '=',
@@ -22,12 +23,18 @@ sampleApp.directive('champSelection', function() {
       
       $('.leftlist', element[0]).bind('click', function(event) {
 		  var i=0;
+		  var j=0;
 		 event.stopPropagation();
 		passValue=$scope.selectedLeft;
 		for(i=0;i<4;i++){
 			if($( event.target ).hasClass( $scope.playersLeft[i] )){
 				$scope.selectedLeft=$scope.playersLeft[i];
 				$scope.playersLeft[i]=passValue;
+				for(j=0;j<10;j++){
+					if($scope.playersLeft[i]==$scope.allPlayers[j].championId){
+						alert("hallo");
+					}
+				}
 				$scope.isVisible = false;
 				$scope.$apply();
 			}
@@ -40,6 +47,11 @@ sampleApp.directive('champSelection', function() {
 			if($( event.target ).hasClass( $scope.playersRight[i] )){
 				$scope.selectedRight=$scope.playersRight[i];
 				$scope.playersRight[i]=passValue;
+				for(j=0;j<10;j++){
+					if($scope.playersLeft[i]==$scope.allPlayers[j].championId){
+						alert("hallo");
+					}
+				}
 				$scope.isVisible = false;
 				$scope.$apply();
 			}

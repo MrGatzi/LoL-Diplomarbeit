@@ -144,14 +144,14 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         if ($scope.GameInfoOverview.teamId == 100) {
             for (i = 0; i < 5; i++) {
                 if ($scope.GameInfoOverview.championId == $scope.GameInfoTimeLine.participants[i].championId) {
-                    $scope.leftplayerselected = $scope.GameInfoTimeLine.participants[i].championId;
+                    $scope.leftplayerselected = $scope.GameInfoTimeLine.participants[i];
                     flag = i;
                 }
             }
             for (i = 0; i < 5; i++) {
                 if (i != flag) {
 
-                    $scope.othersleft[j] = $scope.GameInfoTimeLine.participants[i].championId;
+                    $scope.othersleft[j] = $scope.GameInfoTimeLine.participants[i];
                     j++;
                 }
 
@@ -159,7 +159,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
             for (i = 5; i < 10; i++) {
                 if ($scope.GameInfoTimeLine.participants[flag].timeline.lane == $scope.GameInfoTimeLine.participants[i].timeline.lane) {
                     if ($scope.GameInfoTimeLine.participants[flag].timeline.role == $scope.GameInfoTimeLine.participants[i].timeline.role) {
-                        $scope.rightplayerselected = $scope.GameInfoTimeLine.participants[i].championId;
+                        $scope.rightplayerselected = $scope.GameInfoTimeLine.participants[i];
                         cnt = 1;
                         flag = i;
                     }
@@ -168,16 +168,16 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
             j = 0;
             if (cnt == 0) {
 
-                $scope.rightplayerselected = $scope.GameInfoTimeLine.participants[5].championId;
+                $scope.rightplayerselected = $scope.GameInfoTimeLine.participants[5];
                 for (i = 6; i < 10; i++) {
 
-                    $scope.othersright[j] = $scope.GameInfoTimeLine.participants[i].championId;
+                    $scope.othersright[j] = $scope.GameInfoTimeLine.participants[i];
                     j++;
                 }
             } else {
                 for (i = 5; i < 10; i++) {
                     if (i != flag) {
-                        $scope.othersright[j] = $scope.GameInfoTimeLine.participants[i].championId;
+                        $scope.othersright[j] = $scope.GameInfoTimeLine.participants[i];
                         j++;
                     }
 
@@ -188,13 +188,13 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         } else {
             for (i = 5; i < 10; i++) {
                 if ($scope.GameInfoOverview.championId == $scope.GameInfoTimeLine.participants[i].championId) {
-                    $scope.leftplayerselected = $scope.GameInfoTimeLine.participants[i].championId;
+                    $scope.leftplayerselected = $scope.GameInfoTimeLine.participants[i];
                     flag = i;
                 }
             }
             for (i = 5; i < 10; i++) {
                 if (i != flag) {
-                    $scope.othersleft[j] = $scope.GameInfoTimeLine.participants[i].championId;
+                    $scope.othersleft[j] = $scope.GameInfoTimeLine.participants[i];
                     j++;
                 }
 
@@ -202,7 +202,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
             for (i = 0; i < 5; i++) {
                 if ($scope.GameInfoTimeLine.participants[flag].timeline.lane == $scope.GameInfoTimeLine.participants[i].timeline.lane) {
                     if ($scope.GameInfoTimeLine.participants[flag].timeline.role == $scope.GameInfoTimeLine.participants[i].timeline.role) {
-                        $scope.rightplayerselected = $scope.GameInfoTimeLine.participants[i].championId;
+                        $scope.rightplayerselected = $scope.GameInfoTimeLine.participants[i];
                         cnt = 1;
                         flag = i;
                     }
@@ -210,16 +210,16 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
             }
             j = 0;
             if (cnt == 0) {
-                $scope.rightplayerselected = $scope.GameInfoTimeLine.participants[0].championId;
+                $scope.rightplayerselected = $scope.GameInfoTimeLine.participants[0];
                 for (i = 1; i < 5; i++) {
-                    $scope.othersright[j] = $scope.GameInfoTimeLine.participants[i].championId;
+                    $scope.othersright[j] = $scope.GameInfoTimeLine.participants[i];
                     j++;
                 }
             } else {
 
                 for (i = 0; i < 5; i++) {
                     if (i != flag) {
-                        $scope.othersright[j] = $scope.GameInfoTimeLine.participants[i].championId;
+                        $scope.othersright[j] = $scope.GameInfoTimeLine.participants[i];
                         j++;
                     }
 

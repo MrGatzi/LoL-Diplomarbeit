@@ -1,9 +1,11 @@
 sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window', function($scope,$routeParams,$http,$window) {
 	$scope.ShowGameDetails=true;
-	ChartOverTimeData=[
-		[0, 0],
-		[0, 0]
-		];
+	ChartOverTimeData={
+		'Lines':[
+		]
+		};
+		ChartOverTimeData.Lines[0]=['0','0'];
+		ChartOverTimeData.Lines[1]=['0','0'];
 	data1 = {
 			'SumName':$routeParams.sumName,
 			'ServName':$routeParams.servName,
@@ -65,12 +67,18 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.InputOverTime="changed";
 		var i=0;
 		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
-			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[2].minionsKilled];
+			ChartOverTimeData.Lines[0][i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[2].minionsKilled];
+			i++;
+		};
+		var i=0;
+		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
+			ChartOverTimeData.Lines[1][i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[3].minionsKilled];
 			i++;
 		};
 
 		$scope.InputOverTime=ChartOverTimeData;
 		$scope.InputOverTime.text="CreepCrore";
+		console.log($scope.InputOverTime);
     };
 	$scope.changeChartLeft= function(){
 		ToLeft=$scope.GameInfoTimeLine.participants[3].stats;
@@ -83,7 +91,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.InputOverTime="changed";
 		var i=0;
 		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
-			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[4].minionsKilled];
+			ChartOverTimeData.Lines[1][i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[4].minionsKilled];
 			i++;
 		};
 		$scope.InputOverTime=ChartOverTimeData;
@@ -99,7 +107,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.InputOverTime="changed";
 		var i=0;
 		while(i<$scope.GameInfoTimeLine.timeline.frames.length){
-			ChartOverTimeData[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[6].minionsKilled];
+			ChartOverTimeData.Line[i]=[i,$scope.GameInfoTimeLine.timeline.frames[i].participantFrames[6].minionsKilled];
 			i++;
 		};
 		

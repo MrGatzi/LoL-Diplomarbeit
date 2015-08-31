@@ -25,7 +25,8 @@ sampleApp.directive('chartsovertime', function($rootScope) {
             var NewXAxis = svg.append("g")
                 .attr("class", "x axis")
                 .attr("transform", "translate(0," + height + ")");
-
+			var TextX=svg.append("text");
+			var TextY=svg.append("text");
             var NewYAxis = svg.append("g")
                 .attr("class", "y axis");
             scope.$watch('showData', function(newValue, oldValue) {
@@ -67,26 +68,28 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 
 
                     NewXAxis
-                        .call(xAxis)
-                        .append("text")
-                        .attr("transform", "rotate(-90)")
-                        .attr("y", 6)
-                        .attr("x", height)
+						.call(xAxis);
+						
+					TextX
+                        .attr("y", height - 20)
+                        .attr("x", width-10)
                         .attr("dy", ".71em")
                         .style("text-anchor", "end")
-                        .text(function(d) {
-                            return data.text;
-                        });
+                        .text("Minutes");
+						                        
 
                     NewYAxis
-                        .call(yAxis)
-                        .append("text")
-                        .attr("x", width)
-                        .attr("y", height - 10)
+                        .call(yAxis);
+
+					TextY
+						.attr("transform", "rotate(-90)")
+                        .attr("x", -5)
+                        .attr("y",	20)
                         .style("text-anchor", "end")
-                        .text("Minutes");
-
-
+                         .text(function(d) {
+                            return data.text;
+                        });
+					
                     var lines = svg.selectAll('path.line').data(data.Lines);
 
                     lines.enter()
@@ -102,10 +105,12 @@ sampleApp.directive('chartsovertime', function($rootScope) {
                     lines.exit().remove();
 
 
-                    //var dots = svg.selectAll(".dot");
+                    /*var dots = svg.selectAll(".dot").data(data.Lines);
 
-                    /*dots.data(data)
-                    	.enter().append("circle")
+
+					dots
+                    	.enter()
+						.append("circle")
                     	.attr("class", "dot")
                     	.attr("cx", lineGen.x())
                     	.attr("cy", lineGen.y())
@@ -116,12 +121,15 @@ sampleApp.directive('chartsovertime', function($rootScope) {
                     	})
                     	.on("mouseout", mouseout);
                     	
-                    dots.data(data)
-                    	.enter().append("circle")
+                    dots
+                    	.enter()
+						.append("circle")
                     	.attr("class", "dot_Black")
-                    	.attr("cx", lineGen.x())
+                    	.attr("cx",  lineGen.x())
                     	.attr("cy", lineGen.y())
                     	.attr("r", 4);
+					
+					dots.exit().remove();
                     	
                     	
                     function mouseover(d, color) {
@@ -140,6 +148,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
                     		.duration(200)
                     		.style("opacity", 1e-6);
                     };*/
+					
                 }
             }, true);
         }

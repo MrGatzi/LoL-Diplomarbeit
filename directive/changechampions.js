@@ -10,7 +10,8 @@ sampleApp.directive('champSelection', function() {
 			'playersLeft': '='		
 		}, 
         link: function($scope, element, attrs) {		
-			$scope.isVisible=false;				
+			$scope.isVisible=false;	
+			var passValue=0;
 			console.log($scope);
 			
       $('.champion,.open', element[0]).bind('click', function(event) {
@@ -19,38 +20,40 @@ sampleApp.directive('champSelection', function() {
         $scope.$apply();
       });
       
-      $('.selector li', element[0]).bind('click', function(event) {
+      $('.leftlist', element[0]).bind('click', function(event) {
+		  var i=0;
+		 event.stopPropagation();
+		passValue=$scope.selectedLeft;
+		for(i=0;i<4;i++){
+			if($( event.target ).hasClass( $scope.playersLeft[i] )){
+				$scope.selectedLeft=$scope.playersLeft[i];
+				$scope.playersLeft[i]=passValue;
+				$scope.isVisible = false;
+				$scope.$apply();
+			}
+		}
+      });
+	  $('.rightlist', element[0]).bind('click', function(event) {
         event.stopPropagation();
-        
-        console.log('selected this champ', event.target);
+        passValue=$scope.selectedRight;
+		for(i=0;i<4;i++){
+			if($( event.target ).hasClass( $scope.playersRight[i] )){
+				$scope.selectedRight=$scope.playersRight[i];
+				$scope.playersRight[i]=passValue;
+				$scope.isVisible = false;
+				$scope.$apply();
+			}
+		}
       });
       
       // close the selector on outside click
-      $(document).bind('click', function(){
+     $(document).bind('click', function(){
         event.stopPropagation();
         $scope.isVisible = false;
         $scope.$apply();
-      });
+      }); 
 		}
     };
 });
     
 
-/* customDirectives = angular.module('customDirectives', []);
-customDirectives.directive('customPopover', function () {
-    return {
-        restrict: 'A',
-        template: '<span>{{label}}</span>',
-        link: function (scope, el, attrs) {
-            scope.label = attrs.popoverLabel;
-            $(el).popover({
-                trigger: 'click',
-                html: true,
-                content: attrs.popoverHtml,
-                placement: attrs.popoverPlacement
-            });
-        }
-    };
-});
-
-angular.module('CustomComponents', ['customDirectives']); */

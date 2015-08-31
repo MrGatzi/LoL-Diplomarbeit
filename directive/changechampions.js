@@ -4,6 +4,8 @@ sampleApp.directive('champSelection', function() {
         restrict: 'A',
         scope:  
 		{
+			'selectedRight': '=',
+			'selectedLeft': '=',
 			'playersRight': '=',
 			'playersLeft': '='		
 		}, 

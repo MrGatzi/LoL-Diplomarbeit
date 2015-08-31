@@ -6,6 +6,8 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		};
 		ChartOverTimeData.Lines[0]=['0','0'];
 		ChartOverTimeData.Lines[1]=['0','0'];
+		$scope.othersleft=['0','0'];
+		$scope.othersright=['0','0'];
 	data1 = {
 			'SumName':$routeParams.sumName,
 			'ServName':$routeParams.servName,
@@ -37,7 +39,6 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 				console.log("succ");
 				InitCharts();
 				sortChamps();
-				passChampions();
 				$scope.ShowGameDetails=false;
 				$scope.selectedchamp=2;
 				// loading cointainer wieder hide.
@@ -114,7 +115,7 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.InputOverTime=ChartOverTimeData;
 	};
 	
-	passChampions = function(){
+/* 	passChampions = function(){
 		var right;
 		var left;
 		var players;
@@ -130,43 +131,52 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		$scope.leftchamps=left;
 		$scope.rightchamps=right;
 	
-	}
+	} */
 	
 	var sortChamps = function(){
+		
 		var i=0;
+		var j=0;
 		var cnt=0;
 		var flag=0;
 		if($scope.GameInfoOverview.teamId==100){
 				for(i=0;i<5;i++){
 					if($scope.GameInfoOverview.championId==$scope.GameInfoTimeLine.participants[i].championId){
-						$( ".champimage1" ).append('<img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png">');
+						$scope.leftplayerselected=$scope.GameInfoTimeLine.participants[i].championId;
 						flag=i;
 					}	
 				}
 				for(i=0;i<5;i++){
 					if(i!=flag){
-						$( ".leftlist" ).append('<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png"></li>');
+						
+						$scope.othersleft[j]=$scope.GameInfoTimeLine.participants[i].championId;
+						j++;
 					}
 					
 				}
 			for(i=5;i<10;i++){
 				if($scope.GameInfoTimeLine.participants[flag].timeline.lane==$scope.GameInfoTimeLine.participants[i].timeline.lane){
 					if($scope.GameInfoTimeLine.participants[flag].timeline.role==$scope.GameInfoTimeLine.participants[i].timeline.role){
-						$( ".champimage2" ).append('<img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png">');
+						$scope.rightplayerselected=$scope.GameInfoTimeLine.participants[i].championId;
 						cnt=1;
 						flag=i;
 					}
 				}
 			}
+			j=0;
 			if(cnt==0){
-				$( ".champimage2" ).append('<img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[5].championId+'.png">');
+				
+				$scope.rightplayerselected=$scope.GameInfoTimeLine.participants[5].championId;
 				for(i=6;i<10;i++){
-					$( ".rightlist" ).append('<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png"></li>');
+					
+					$scope.othersright[j]=$scope.GameInfoTimeLine.participants[i].championId;
+					j++;
 				}
 			}else{
 				for(i=5;i<10;i++){
 					if(i!=flag){
-						$( ".rightlist" ).append('<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png"></li>');
+						$scope.othersright[j]=$scope.GameInfoTimeLine.participants[i].championId;
+						j++;
 					}
 					
 				}
@@ -176,35 +186,39 @@ sampleApp.controller('GameDetailsCRL',['$scope','$routeParams','$http','$window'
 		}else{
 				for(i=5;i<10;i++){
 					if($scope.GameInfoOverview.championId==$scope.GameInfoTimeLine.participants[i].championId){
-						$( ".champimage1" ).append('<img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png">');
+						$scope.leftplayerselected=$scope.GameInfoTimeLine.participants[i].championId;
 						flag=i;
 					}	
 				}
 				for(i=5;i<10;i++){
 					if(i!=flag){
-						$( ".leftlist" ).append('<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png"></li>');
+						$scope.othersleft[j]=$scope.GameInfoTimeLine.participants[i].championId;
+						j++;
 					}
 					
 				}
 			for(i=0;i<5;i++){
 				if($scope.GameInfoTimeLine.participants[flag].timeline.lane==$scope.GameInfoTimeLine.participants[i].timeline.lane){
 					if($scope.GameInfoTimeLine.participants[flag].timeline.role==$scope.GameInfoTimeLine.participants[i].timeline.role){
-						$( ".champimage2" ).append('<img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png">');
+						$scope.rightplayerselected=$scope.GameInfoTimeLine.participants[i].championId;
 						cnt=1;
 						flag=i;
 					}
 				}
 			}
+			j=0;
 			if(cnt==0){
-				$( ".champimage2" ).append('<img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[0].championId+'.png">');
+				$scope.rightplayerselected=$scope.GameInfoTimeLine.participants[0].championId;
 				for(i=1;i<5;i++){
-					$( ".rightlist" ).append('<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png"></li>');
+					$scope.othersright[j]=$scope.GameInfoTimeLine.participants[i].championId;
+					j++;
 				}
 			}else{
 				
 				for(i=0;i<5;i++){
 					if(i!=flag){
-						$( ".rightlist" ).append('<li><img style="heigth:64px; width:64px;" src="Libraries/img/champion/'+$scope.GameInfoTimeLine.participants[i].championId+'.png"></li>');
+						$scope.othersright[j]=$scope.GameInfoTimeLine.participants[i].championId;
+						j++;
 					}
 					
 				}

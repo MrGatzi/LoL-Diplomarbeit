@@ -1,126 +1,109 @@
-#body{	
-   background: url(http://digitalhint.net/wp-content/uploads/2015/03/league-of-legends-champions-art.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+#body {
+    background: url(http://digitalhint.net/wp-content/uploads/2015/03/league-of-legends-champions-art.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
-
-#sumName{
-	padding-top: 15px;
-	padding-bottom: 15px;
+#sumName {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
-
-#server{
-	padding-top: 15px;
-	padding-bottom: 15px;
-	padding-left: 10px;
+#server {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
 }
-
-#Hit_it{
-	margin-top: 15px;
-	margin-bottom: 15px;
-	margin-left: 10px;
-  
+#Hit_it {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 10px;
 }
-
-#template{
-
+#template {} #ng-view {
+    margin-top: 25px;
+    height: 900px;
 }
-
-#ng-view{
-	margin-top: 25px;
-	height: 900px;
+#SumInfo {
+    height: 200px;
+    border: 1px solid black;
+    margin-top: 30px;
 }
-
-#SumInfo{
-	height:200px;
-	border: 1px solid black;
-	margin-top:30px;
+.game {
+    margin-top: 30px;
+    height: 250px;
+    border: 1px solid black;
 }
-
-.game{
-	margin-top:30px;
-	height:250px;
-	border: 1px solid black;
-	
+#gamerow1 {
+    margin-top: 10px;
 }
-
-#gamerow1{
-	margin-top: 10px;
+#SumIcon {
+    margin-top: 40px;
+    height: auto;
 }
-
-#SumIcon{
-	margin-top: 40px;
-	height: auto;
+#lvl {
+    margin-top: 80px;
 }
-
-#lvl{
-	margin-top: 80px;
+.win_true {
+    background: url(../Libraries/Background/win_true.png);
 }
-
-
-.win_true{
-	background: url(../Libraries/Background/win_true.png);
+.win_false {
+    background: url(../Libraries/Background/win_false.png);
 }
-.win_false{
-	background: url(../Libraries/Background/win_false.png);
+#game-container {
+    background: url(../Libraries/Background/paper.jpg);
 }
-
-#game-container{
-	background: url(../Libraries/Background/paper.jpg);
-	
+#item-container {
+    height: 203px;
+    background: url(../Libraries/Background/Background_Itemset.png);
 }
-#item-container{
-	height: 203px;
-	
+#items {
+    margin-top: 30px;
+    float: left;
+    width: 252px;
 }
-#items{
-	margin-top: 30px;
-	float:left;
-	width:252px;
+.itemrow1 {
+    float: left;
 }
-.itemrow1{
-	float: left;
+.itemrow2 {
+    float: left;
+    margin-top: 15px;
 }
-.itemrow2{
-	float: left;
-	margin-top: 15px;
+.itemIcon {
+    width: 64px;
+    margin-left: 15px;
 }
-
-.itemIcon{
-	width: 64px;
-	margin-left: 15px;
+#trinket {
+    margin-top: 69px;
 }
-
-#trinket{
-	margin-top: 69px;
+#sumSpells {
+    margin-top: 20px;
 }
-
-#sumSpells{
-	margin-top: 20px;
+#spell1 {
+    float: left;
 }
-
-#spell1{
-	float: left;
+#spell2 {
+    float: left;
+    margin-left: 15px;
 }
-
-#spell2{
-	float: left;
-	margin-left: 15px;
+.team1 {
+    margin-top: 17px;
+    float: left;
+    margin-left: 15px;
 }
-
-.team1{
-	margin-top: 17px;
-	float: left;
-	margin-left: 15px;
+.team2 {
+    float: left;
+    margin-left: 15px;
+    margin-top: 59px;
 }
-.team2{
-	float: left;
-	margin-left: 15px;
-	margin-top: 59px;
+#fellowPlayers {
+    height: 225px;
+    background-repeat: no-repeat;
 }
-#fellowPlayers{
-	height: 225px;
-	background-repeat: no-repeat;
+#stats {
+    margin-top: 90px;
+}
+#About-container {
+	height:600px;
+	width:500px;
+    background: url(../Libraries/Background/paper.jpg);
 }

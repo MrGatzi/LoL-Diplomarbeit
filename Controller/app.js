@@ -27,7 +27,10 @@ sampleApp.config(['$routeProvider',
             templateUrl: 'templates/About.html',
             controller: 'AboutCRL'
         }).
-
+		when('/Contact', {
+            templateUrl: 'templates/Contact.html',
+            controller: 'ContaktCRL'
+        }).
         otherwise({
             redirectTo: '/Home'
         });

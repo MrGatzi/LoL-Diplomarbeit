@@ -94,6 +94,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         $scope.ShowRight = ToRight;
         $scope.InputOverTime = "changed";
         var i = 0;
+		part++;
         while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
             ChartOverTimeData.Lines[1][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[part].minionsKilled];
             i++;
@@ -112,6 +113,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         $scope.ShowRight = ToRight;
         $scope.InputOverTime = "changed";
         var i = 0;
+		part++;
         while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
             ChartOverTimeData.Lines[0][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[part].minionsKilled];
             i++;

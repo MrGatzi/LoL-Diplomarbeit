@@ -32,15 +32,21 @@ sampleApp.directive('chartsovertime', function($rootScope) {
             scope.$watch('showData', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
                     data = newValue;
-                    console.log();
-					var maxX=0;
-					var maxY=0;
+                    
+					var maxX=['0','0'];
+					var maxY=['0','0'];
+					var i=data.Lines.length-1;
+					while(i!=-1){
+						maxY.push(data.Lines[i][data.Lines[i].length - 1][1]);
+						i--;	
+					};
+					maxY.splice(0, 2);
                     var x = d3.scale.linear()
                         .domain([0, data.Lines[0].length])
                         .range([0, width]);
 
                     var y = d3.scale.linear()
-                        .domain([0, data.Lines[0][data.Lines[0].length - 1][1]])
+                        .domain([0, d3.max(maxY)])
                         .range([height, 0]);
 
 

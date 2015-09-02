@@ -1,12 +1,12 @@
 sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$window', function($scope, $routeParams, $http, $window) {
     $scope.A=[true,true,true,true,true,true,true,true,true,true];
-	
+	var Friend=000;
+	var Enemy=000;
 	$scope.ShowGameDetails = true;
-    ChartOverTimeData = {
+   $scope.InputOverTime = {
         'Lines': []
     };
-    ChartOverTimeData.Lines[0] = ['0', '0'];
-    ChartOverTimeData.Lines[1] = ['0', '0'];
+    $scope.InputOverTime.Lines[0] = ['A', 'A'];
     $scope.othersleft = ['0', '0'];
     $scope.othersright = ['0', '0'];
     data1 = {
@@ -42,8 +42,9 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
                         	$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp'
                         };*/
                         console.log("succ");
+						sortChamps();
                         InitCharts();
-                        sortChamps();
+                        
                         $scope.ShowGameDetails = false;
                         $scope.selectedchamp = 2;
                         // loading cointainer wieder hide.
@@ -59,9 +60,12 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
     //console.log($scope.GameInfoOverview+"??");
     //$scope.ShowLeft=$scope.GameInfoOverview.stats;
     var InitCharts = function() {
-        ToLeft = $scope.GameInfoTimeLine.participants[1].stats;
+		console.log( );
+		$scope.A[$scope.leftplayerselected.participantId-1]=false;
+		$scope.A[$scope.rightplayerselected.participantId-1]=false;
+        ToLeft = $scope.GameInfoTimeLine.participants[$scope.leftplayerselected.participantId-1].stats;
 
-        ToRight = $scope.GameInfoTimeLine.participants[4].stats;
+        ToRight = $scope.GameInfoTimeLine.participants[$scope.rightplayerselected.participantId-1].stats;
 
         var highestLeft = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.physicalDamageDealtToChampions, ToLeft.physicalDamageTaken, ToLeft.magicDamageDealtToChampions, ToLeft.magicDamageTaken, ToLeft.trueDamageDealt, ToLeft.trueDamageDealtToChampions, ToLeft.trueDamageTaken);
         var highestRight = Math.max(ToRight.physicalDamageDealt, ToRight.magicDamageDealt, ToRight.physicalDamageDealtToChampions, ToRight.physicalDamageTaken, ToRight.magicDamageDealtToChampions, ToRight.magicDamageTaken, ToRight.trueDamageDealt, ToRight.trueDamageDealtToChampions, ToRight.trueDamageTaken);
@@ -69,24 +73,25 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         ToRight.highestChart = ToLeft.highestChart;
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
-        $scope.InputOverTime = "changed";
-        var i = 0;
+       /* var i = 0;
         while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData.Lines[0][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[2].minionsKilled];
+            ChartOverTimeData.Lines[0][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[$scope.leftplayerselected.participantId].minionsKilled];
             i++;
         };
         var i = 0;
         while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData.Lines[1][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[3].minionsKilled];
+            ChartOverTimeData.Lines[1][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[$scope.rightplayerselected.participantId].minionsKilled];
             i++;
         };
 		ChartOverTimeData.Lines[1].color="green";
 		ChartOverTimeData.Lines[0].color="red";
-		ChartOverTimeData.Lines[1].PartID=3;
-		ChartOverTimeData.Lines[0].PartID=2;
+		ChartOverTimeData.Lines[1].PartID=$scope.rightplayerselected.participantId;
+		ChartOverTimeData.Lines[0].PartID=$scope.leftplayerselected.participantId;
         $scope.InputOverTime = ChartOverTimeData;
-        $scope.InputOverTime.text = "CreepCrore";
-        console.log($scope.InputOverTime);
+        $scope.InputOverTime.text = "CreepScore";
+        console.log($scope.InputOverTime);*/
+		$scope.ChartOverTimeUpdate($scope.leftplayerselected.participantId,"draw",$scope.leftplayerselected.teamId);
+		$scope.ChartOverTimeUpdate($scope.rightplayerselected.participantId,"draw",$scope.rightplayerselected.teamId);
     };
     $scope.changeChartLeft = function(part) {
         ToLeft = $scope.GameInfoTimeLine.participants[part].stats;
@@ -97,17 +102,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
         $scope.InputOverTime = "changed";
-        var i = 0;
-		part++;
-        while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData.Lines[1][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[part].minionsKilled];
-            i++;
-        };
-		ChartOverTimeData.Lines[1].color="green";
-		ChartOverTimeData.Lines[1].PartID=part;
-
-		console.log(ChartOverTimeData);
-        $scope.InputOverTime = ChartOverTimeData;
+        
     };
     $scope.changeChartRight = function(part) {
         ToRight = $scope.GameInfoTimeLine.participants[part].stats;
@@ -118,16 +113,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
         $scope.InputOverTime = "changed";
-        var i = 0;
-		part++;
-        while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData.Lines[0][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[part].minionsKilled];
-            i++;
-        };
-		ChartOverTimeData.Lines[0].color="green";
-		ChartOverTimeData.Lines[0].PartID=part;
-		console.log(ChartOverTimeData);
-        $scope.InputOverTime = ChartOverTimeData;
+        
     };
 
     /* 	passChampions = function(){
@@ -154,7 +140,10 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         var j = 0;
         var cnt = 0;
         var flag = 0;
+		Friend=$scope.GameInfoOverview.teamId;
+		console.log(Friend);
         if ($scope.GameInfoOverview.teamId == 100) {
+			Enemy=200;
             for (i = 0; i < 5; i++) {
                 if ($scope.GameInfoOverview.championId == $scope.GameInfoTimeLine.participants[i].championId) {
                     $scope.leftplayerselected = $scope.GameInfoTimeLine.participants[i];
@@ -199,6 +188,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
 
 
         } else {
+			Enemy=100;
             for (i = 5; i < 10; i++) {
                 if ($scope.GameInfoOverview.championId == $scope.GameInfoTimeLine.participants[i].championId) {
                     $scope.leftplayerselected = $scope.GameInfoTimeLine.participants[i];
@@ -303,7 +293,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
 		if($scope.A[index]){
 			OptionToUpdate="remove";
 		}
-		$scope.ChartOverTimeUpdate(	ParticipantIdToDraw,OptionToUpdate);
+		$scope.ChartOverTimeUpdate(	ParticipantIdToDraw,OptionToUpdate,team);
     };
 	
 	$scope.Hide = function(index, team) {
@@ -314,8 +304,8 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
 		return $scope.A[index];
 	};
 	
-	$scope.ChartOverTimeUpdate = function(participantId,option) {
-		console.log(  $scope.InputOverTime);
+	$scope.ChartOverTimeUpdate = function(participantId,option,team) {
+		
 		if(option=="draw"){
 			var ExistFlag=0;
 			var counti=0;
@@ -332,14 +322,29 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
 					Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].minionsKilled];
 					i++;
 				};
-				Dummy.color="green";
+				if(team==Friend){
+					Dummy.color="green";	
+				}else{
+					Dummy.color="red";
+				};
+				if($scope.InputOverTime.Lines[0][0]=='A'){
+					$scope.InputOverTime.Lines.splice(0,1);
+				}	
 				Dummy.PartID=participantId;
-				console.log(Dummy);
 				$scope.InputOverTime.Lines.push(Dummy);
-				console.log($scope.InputOverTime);
 			};
 		}
-		if(option=="delete"){
+		if(option=="remove"){
+			console.log($scope.InputOverTime);
+			var ExistFlag=0;
+			var counti=0;
+			while(counti!=$scope.InputOverTime.Lines.length){
+				if(participantId==$scope.InputOverTime.Lines[counti].PartID){
+					ExistFlag=counti;
+				}
+				counti++;
+			}
+			$scope.InputOverTime.Lines.splice(ExistFlag,1);
 		}
 	};
 }]);

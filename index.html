@@ -12,15 +12,14 @@
   </head>
   <body ng-app="sampleApp" id="body">
     <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
+      <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Match Up League</a>
+          <a class="navbar-brand"  href="#">Match Up League</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -28,16 +27,16 @@
             <li><a href="#About">About</a></li>
             <li><a href="#Contact">Contact</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right" ng-controller="NavBarCRL">
+          <ul class="nav navbar-nav navbar-right" style="margin-right:50px" ng-controller="NavBarCRL">
             <li id="sumName"><input ng-model="SumName" placeholder="Enter Summoner Name" class="form-control" type="text"></li>
             <li id="server"><select id="ServName" ng-model="ServName" class="form-control">
-				<option value="euw">EUW</option>
+				<option selected="selected" value="euw">EUW</option>
 				<option value="na">NA</option>
 				<option value="eue">EUE</option>
-				<option value="eu">RU</option>
+				<option value="ru">RU</option>
 			</select></li>
             <li>
-			<input ng-click="handleClick()" id="Hit_it" class="btn btn-danger " type="submit" value="HIT IT !">
+			<input ng-click="handleClick()" id="Hit_it" class="btn btn-danger " type="submit" value="Search">
 			</li>
           </ul>
         </div><!--/.nav-collapse -->

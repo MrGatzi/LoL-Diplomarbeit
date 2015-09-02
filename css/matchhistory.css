@@ -40,9 +40,13 @@
     margin-top: 40px;
     height: auto;
 }
-#lvl {
-	width: 100px;
-    margin-top: 80px;
+.SumInfo{
+	font-family: 'Lobster';
+	font-size: 28px;
+	font-weight: bold;
+}
+.lvl {
+    margin-top: 60px;
 }
 .win_true {
     background: url(../Libraries/Background/win_true.png);
@@ -51,7 +55,7 @@
     background: url(../Libraries/Background/win_false.png);
 }
 #game-container {
-    background: url(../Libraries/Background/paper.jpg);
+    background: url(../Libraries/Background/paper2.jpg);
 }
 #item-container {
     height: 203px;
@@ -109,6 +113,8 @@
 	font-size: 28px;
 	font-weight: bold;
 }
+
+
 
 #About-container {
 	margin-top:40px;

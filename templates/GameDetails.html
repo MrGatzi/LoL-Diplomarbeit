@@ -1,7 +1,7 @@
 <div id="GameOverview-container" class="container">
    <div id="Show_and_Hide_GameDetails" ng-hide="ShowGameDetails">
       <div id="LaneOpponent" class="container clearfix"  >
-         <div champ-selection players-left="othersleft" selected-left="leftplayerselected" class="champ-selection left">
+         <div champ-selection players-left="othersleft" selected-left="leftplayerselected" data-method="UpdateCharts" class="champ-selection left">
             <div class="champimage1">
                <img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{selectedLeft.championId}}.png">
             </div>
@@ -10,7 +10,7 @@
                <li ng-repeat="player in playersLeft"><img class="{{player.championId}}" style="heigth:64px; width:64px;" src="Libraries/img/champion/{{player.championId}}.png"></li>
             </ul>
          </div>
-         <div champ-selection players-right="othersright" selected-right="rightplayerselected" class="champ-selection right">
+         <div champ-selection players-right="othersright" selected-right="rightplayerselected" data-method="UpdateCharts" class="champ-selection right">
             <div class="champimage2">
                <img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{selectedRight.championId}}.png">
             </div>
@@ -32,10 +32,6 @@
                   <svg class="chartRight" ></svg>
                </differentscharts>
             </div>
-         </div>
-         <div style="float:left; margin-top:2%; margin-left:35%;">
-            <input ng-click="changeChartLeft()" id="ChartChanger" class="btn btn-danger " type="submit" value="Change Cart Left">
-            <input ng-click="changeChartRight()" id="ChartChanger" class="btn btn-danger " type="submit" value="Change Cart Right">
          </div>
       </div>
       <div id="OverTimeCharts">

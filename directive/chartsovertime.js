@@ -33,7 +33,8 @@ sampleApp.directive('chartsovertime', function($rootScope) {
                 if (newValue !== oldValue) {
                     data = newValue;
                     console.log();
-
+					var maxX=0;
+					var maxY=0;
                     var x = d3.scale.linear()
                         .domain([0, data.Lines[0].length])
                         .range([0, width]);
@@ -96,7 +97,9 @@ sampleApp.directive('chartsovertime', function($rootScope) {
                         .append('path')
                         .attr('class', 'line')
                         .attr('fill', 'none')
-                        .attr('stroke', 'green');
+                        .attr('stroke', function(d,i) {
+                            return d.color ;
+                        });
 
                     lines.attr('d', function(d) {
                         return lineGen(d);

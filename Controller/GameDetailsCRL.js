@@ -78,13 +78,14 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
             ChartOverTimeData.Lines[1][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[3].minionsKilled];
             i++;
         };
-
+		ChartOverTimeData.Lines[1].color="green";
+		ChartOverTimeData.Lines[0].color="red";
         $scope.InputOverTime = ChartOverTimeData;
         $scope.InputOverTime.text = "CreepCrore";
         console.log($scope.InputOverTime);
     };
-    $scope.changeChartLeft = function() {
-        ToLeft = $scope.GameInfoTimeLine.participants[3].stats;
+    $scope.changeChartLeft = function(part) {
+        ToLeft = $scope.GameInfoTimeLine.participants[part].stats;
         var highestLeft = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.physicalDamageDealtToChampions, ToLeft.physicalDamageTaken, ToLeft.magicDamageDealtToChampions, ToLeft.magicDamageTaken, ToLeft.trueDamageDealt, ToLeft.trueDamageDealtToChampions, ToLeft.trueDamageTaken);
         var highestRight = Math.max(ToRight.physicalDamageDealt, ToRight.magicDamageDealt, ToRight.physicalDamageDealtToChampions, ToRight.physicalDamageTaken, ToRight.magicDamageDealtToChampions, ToRight.magicDamageTaken, ToRight.trueDamageDealt, ToRight.trueDamageDealtToChampions, ToRight.trueDamageTaken);
         ToLeft.highestChart = Math.max(highestLeft, highestRight);
@@ -94,13 +95,15 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         $scope.InputOverTime = "changed";
         var i = 0;
         while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData.Lines[1][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[4].minionsKilled];
+            ChartOverTimeData.Lines[1][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[part].minionsKilled];
             i++;
         };
+		ChartOverTimeData.Lines[1].color="green";
+		console.log(ChartOverTimeData);
         $scope.InputOverTime = ChartOverTimeData;
     };
-    $scope.changeChartRight = function() {
-        ToRight = $scope.GameInfoTimeLine.participants[5].stats;
+    $scope.changeChartRight = function(part) {
+        ToRight = $scope.GameInfoTimeLine.participants[part].stats;
         var highestLeft = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.physicalDamageDealtToChampions, ToLeft.physicalDamageTaken, ToLeft.magicDamageDealtToChampions, ToLeft.magicDamageTaken, ToLeft.trueDamageDealt, ToLeft.trueDamageDealtToChampions, ToLeft.trueDamageTaken);
         var highestRight = Math.max(ToRight.physicalDamageDealt, ToRight.magicDamageDealt, ToRight.physicalDamageDealtToChampions, ToRight.physicalDamageTaken, ToRight.magicDamageDealtToChampions, ToRight.magicDamageTaken, ToRight.trueDamageDealt, ToRight.trueDamageDealtToChampions, ToRight.trueDamageTaken);
         ToLeft.highestChart = Math.max(highestLeft, highestRight);
@@ -110,10 +113,10 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         $scope.InputOverTime = "changed";
         var i = 0;
         while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData.Line[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[6].minionsKilled];
+            ChartOverTimeData.Lines[0][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[part].minionsKilled];
             i++;
         };
-
+		console.log(ChartOverTimeData);
         $scope.InputOverTime = ChartOverTimeData;
     };
 
@@ -263,6 +266,18 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         console.log("xp");
         console.log("Gold");
     };
-
+	$scope.UpdateCharts = function (textArray) {
+		if(textArray[2]==0){
+			textArray[1]=10;
+		}
+		
+		if(textArray[0]=="R"){
+			$scope.changeChartRight(textArray.split(':')[1]);
+			$scope.$apply();
+		}else{
+			$scope.changeChartLeft(textArray.split(':')[1]);
+			$scope.$apply();
+		}
+    };
 
 }]);

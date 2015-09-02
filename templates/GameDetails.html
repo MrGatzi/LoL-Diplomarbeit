@@ -41,7 +41,22 @@
          <chartsovertime show-data="InputOverTime">
             <svg class="OverTime"></svg>
          </chartsovertime>
+		<div class="SelectChamps1">
+			<div ng-repeat="ChampsSelect in GameInfoTimeLine.participants |  filter: { teamId: '100' }" class="ChampsForOverTimeCharts">
+				<img class="ChampInChampselectForChart" style="heigth:32px; width:32px;" src="Libraries/img/champion/{{ChampsSelect.championId}}.png" ng-click="ChampSelectForTimeCharts($index,100)"></li>
+				<div class="CheckColor" ng-hide="Hide($index,100)">
+				</div>
+			</div>
+		</div>
+		<div class="SelectChamps2">
+			<div ng-repeat="ChampsSelect in GameInfoTimeLine.participants |  filter: { teamId: '200' }" class="ChampsForOverTimeCharts">
+				<img class="ChampInChampselectForChart" style="heigth:32px; width:32px;" src="Libraries/img/champion/{{ChampsSelect.championId}}.png" ng-click="ChampSelectForTimeCharts($index,200)"></li>
+				<div class="CheckColor" ng-hide="Hide($index,200)">
+				</div>
+			</div>
+		</div>
       </div>
+	  
    </div>
    <div id="LoadingSpinner" ng-show="ShowGameDetails"> </div>
 </div>

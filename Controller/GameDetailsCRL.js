@@ -1,10 +1,10 @@
 sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$window', function($scope, $routeParams, $http, $window) {
-    $scope.A=[true,true,true,true,true,true,true,true,true,true];
-	var Friend=000;
-	var Enemy=000;
-	var CurrenChart=0; //0 -> Minions| 1-> Gold | 2 -> Xp
-	$scope.ShowGameDetails = true;
-   $scope.InputOverTime = {
+    $scope.A = [true, true, true, true, true, true, true, true, true, true];
+    var Friend = 000;
+    var Enemy = 000;
+    var CurrenChart = 0; //0 -> Minions| 1-> Gold | 2 -> Xp
+    $scope.ShowGameDetails = true;
+    $scope.InputOverTime = {
         'Lines': []
     };
     $scope.InputOverTime.Lines[0] = ['A', 'A'];
@@ -43,9 +43,9 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
                         	$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp'
                         };*/
                         console.log("succ");
-						sortChamps();
+                        sortChamps();
                         InitCharts();
-                        
+
                         $scope.ShowGameDetails = false;
                         $scope.selectedchamp = 2;
                         // loading cointainer wieder hide.
@@ -61,12 +61,12 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
     //console.log($scope.GameInfoOverview+"??");
     //$scope.ShowLeft=$scope.GameInfoOverview.stats;
     var InitCharts = function() {
-		console.log( );
-		$scope.A[$scope.leftplayerselected.participantId-1]=false;
-		$scope.A[$scope.rightplayerselected.participantId-1]=false;
-        ToLeft = $scope.GameInfoTimeLine.participants[$scope.leftplayerselected.participantId-1].stats;
+        console.log();
+        $scope.A[$scope.leftplayerselected.participantId - 1] = false;
+        $scope.A[$scope.rightplayerselected.participantId - 1] = false;
+        ToLeft = $scope.GameInfoTimeLine.participants[$scope.leftplayerselected.participantId - 1].stats;
 
-        ToRight = $scope.GameInfoTimeLine.participants[$scope.rightplayerselected.participantId-1].stats;
+        ToRight = $scope.GameInfoTimeLine.participants[$scope.rightplayerselected.participantId - 1].stats;
 
         var highestLeft = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.physicalDamageDealtToChampions, ToLeft.physicalDamageTaken, ToLeft.magicDamageDealtToChampions, ToLeft.magicDamageTaken, ToLeft.trueDamageDealt, ToLeft.trueDamageDealtToChampions, ToLeft.trueDamageTaken);
         var highestRight = Math.max(ToRight.physicalDamageDealt, ToRight.magicDamageDealt, ToRight.physicalDamageDealtToChampions, ToRight.physicalDamageTaken, ToRight.magicDamageDealtToChampions, ToRight.magicDamageTaken, ToRight.trueDamageDealt, ToRight.trueDamageDealtToChampions, ToRight.trueDamageTaken);
@@ -74,7 +74,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         ToRight.highestChart = ToLeft.highestChart;
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
-       /* var i = 0;
+        /* var i = 0;
         while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
             ChartOverTimeData.Lines[0][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[$scope.leftplayerselected.participantId].minionsKilled];
             i++;
@@ -91,8 +91,8 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         $scope.InputOverTime = ChartOverTimeData;
         $scope.InputOverTime.text = "CreepScore";
         console.log($scope.InputOverTime);*/
-		$scope.ChartOverTimeUpdate($scope.leftplayerselected.participantId,"draw",$scope.leftplayerselected.teamId);
-		$scope.ChartOverTimeUpdate($scope.rightplayerselected.participantId,"draw",$scope.rightplayerselected.teamId);
+        $scope.ChartOverTimeUpdate($scope.leftplayerselected.participantId, "draw", $scope.leftplayerselected.teamId);
+        $scope.ChartOverTimeUpdate($scope.rightplayerselected.participantId, "draw", $scope.rightplayerselected.teamId);
     };
     $scope.changeChartLeft = function(part) {
         ToLeft = $scope.GameInfoTimeLine.participants[part].stats;
@@ -102,7 +102,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         ToRight.highestChart = ToLeft.highestChart;
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
-        
+
     };
     $scope.changeChartRight = function(part) {
         ToRight = $scope.GameInfoTimeLine.participants[part].stats;
@@ -138,10 +138,10 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         var j = 0;
         var cnt = 0;
         var flag = 0;
-		Friend=$scope.GameInfoOverview.teamId;
-		console.log(Friend);
+        Friend = $scope.GameInfoOverview.teamId;
+        console.log(Friend);
         if ($scope.GameInfoOverview.teamId == 100) {
-			Enemy=200;
+            Enemy = 200;
             for (i = 0; i < 5; i++) {
                 if ($scope.GameInfoOverview.championId == $scope.GameInfoTimeLine.participants[i].championId) {
                     $scope.leftplayerselected = $scope.GameInfoTimeLine.participants[i];
@@ -186,7 +186,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
 
 
         } else {
-			Enemy=100;
+            Enemy = 100;
             for (i = 5; i < 10; i++) {
                 if ($scope.GameInfoOverview.championId == $scope.GameInfoTimeLine.participants[i].championId) {
                     $scope.leftplayerselected = $scope.GameInfoTimeLine.participants[i];
@@ -229,210 +229,259 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
 
         }
     }
+/* 	Function XpGainedUpdate()
+
+	Input : ----
+	Set the ChartMarker on 2 (stands for XP)
+	Create a Dummy.
+	Check how much Lines have to be changed to XP.
+	Change the existing lines to Xp-Lines and write them into the dummy
+	Delete all the not-used DummySpace and send them to the Chart-Directiv
+*/
     $scope.XpGainedUpdate = function() {
-		CurrenChart=2;
-		var Dummy= {
-			'Lines': []
-		};
-		Dummy.Lines[0] = ['A', 'A'];
-		Dummy.Lines[1] = ['A', 'A'];
-		Dummy.Lines[2] = ['A', 'A'];
-		Dummy.Lines[3] = ['A', 'A'];
-		Dummy.Lines[4] = ['A', 'A'];
-		Dummy.Lines[5] = ['A', 'A'];
-		Dummy.Lines[6] = ['A', 'A'];
-		Dummy.Lines[7] = ['A', 'A'];
-		Dummy.Lines[8] = ['A', 'A'];
-		Dummy.Lines[9] = ['A', 'A'];							
-		var Participants=['0']
+        CurrenChart = 2;
+        var Dummy = {
+            'Lines': []
+        };
+        Dummy.Lines[0] = ['A', 'A'];
+        Dummy.Lines[1] = ['A', 'A'];
+        Dummy.Lines[2] = ['A', 'A'];
+        Dummy.Lines[3] = ['A', 'A'];
+        Dummy.Lines[4] = ['A', 'A'];
+        Dummy.Lines[5] = ['A', 'A'];
+        Dummy.Lines[6] = ['A', 'A'];
+        Dummy.Lines[7] = ['A', 'A'];
+        Dummy.Lines[8] = ['A', 'A'];
+        Dummy.Lines[9] = ['A', 'A'];
+        var Participants = ['0']
         var i = 0;
-		while(i!=$scope.InputOverTime.Lines.length){
-			Participants[i]=$scope.InputOverTime.Lines[i].PartID
-			i++;
-		}
-		i=0;
-		var j=0;
-		while(j!=Participants.length){
-			while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-				Dummy.Lines[j][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[Participants[j]].xp];
-				i++;
-			};
-			Dummy.Lines[j].PartID=$scope.InputOverTime.Lines[j].PartID;
-			Dummy.Lines[j].color=$scope.InputOverTime.Lines[j].color;
-			i=0;
-			j++;
-		}
-		Dummy.Lines.splice(j,10-j);
-		Dummy.text="XP";
-		$scope.InputOverTime=Dummy;
-		console.log(Dummy);
+        while (i != $scope.InputOverTime.Lines.length) {
+            Participants[i] = $scope.InputOverTime.Lines[i].PartID
+            i++;
+        }
+        i = 0;
+        var j = 0;
+        while (j != Participants.length) {
+            while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
+                Dummy.Lines[j][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[Participants[j]].xp];
+                i++;
+            };
+            Dummy.Lines[j].PartID = $scope.InputOverTime.Lines[j].PartID;
+            Dummy.Lines[j].color = $scope.InputOverTime.Lines[j].color;
+            i = 0;
+            j++;
+        }
+        Dummy.Lines.splice(j, 10 - j);
+        Dummy.text = "XP";
+        $scope.InputOverTime = Dummy;
+        console.log(Dummy);
     };
-	
+/* 	Function CreepsFarmedUpdate()
+
+	Input : ----
+	Set the ChartMarker on 0 (stands for Minions)
+	Create a Dummy.
+	Check how much Lines have to be changed to Minions.
+	Change the existing lines to Minions-Lines and write them into the dummy
+	Delete all the not-used DummySpace and send them to the Chart-Directiv
+*/
     $scope.CreepsFarmedUpdate = function() {
-		CurrenChart=0;
-       var Dummy= {
-			'Lines': []
-		};
-		Dummy.Lines[0] = ['A', 'A'];
-		Dummy.Lines[1] = ['A', 'A'];
-		Dummy.Lines[2] = ['A', 'A'];
-		Dummy.Lines[3] = ['A', 'A'];
-		Dummy.Lines[4] = ['A', 'A'];
-		Dummy.Lines[5] = ['A', 'A'];
-		Dummy.Lines[6] = ['A', 'A'];
-		Dummy.Lines[7] = ['A', 'A'];
-		Dummy.Lines[8] = ['A', 'A'];
-		Dummy.Lines[9] = ['A', 'A'];							
-		var Participants=['0']
+        CurrenChart = 0;
+        var Dummy = {
+            'Lines': []
+        };
+        Dummy.Lines[0] = ['A', 'A'];
+        Dummy.Lines[1] = ['A', 'A'];
+        Dummy.Lines[2] = ['A', 'A'];
+        Dummy.Lines[3] = ['A', 'A'];
+        Dummy.Lines[4] = ['A', 'A'];
+        Dummy.Lines[5] = ['A', 'A'];
+        Dummy.Lines[6] = ['A', 'A'];
+        Dummy.Lines[7] = ['A', 'A'];
+        Dummy.Lines[8] = ['A', 'A'];
+        Dummy.Lines[9] = ['A', 'A'];
+        var Participants = ['0']
         var i = 0;
-		while(i!=$scope.InputOverTime.Lines.length){
-			Participants[i]=$scope.InputOverTime.Lines[i].PartID
-			i++;
-		}
-		i=0;
-		var j=0;
-		while(j!=Participants.length){
-			while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-				Dummy.Lines[j][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[Participants[j]].minionsKilled];
-				i++;
-			};
-			Dummy.Lines[j].PartID=$scope.InputOverTime.Lines[j].PartID;
-			Dummy.Lines[j].color=$scope.InputOverTime.Lines[j].color;
-			i=0;
-			j++;
-		}
-		Dummy.Lines.splice(j,10-j);
-		Dummy.text="Minions";
-		$scope.InputOverTime=Dummy;
-		console.log(Dummy);
+        while (i != $scope.InputOverTime.Lines.length) {
+            Participants[i] = $scope.InputOverTime.Lines[i].PartID
+            i++;
+        }
+        i = 0;
+        var j = 0;
+        while (j != Participants.length) {
+            while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
+                Dummy.Lines[j][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[Participants[j]].minionsKilled];
+                i++;
+            };
+            Dummy.Lines[j].PartID = $scope.InputOverTime.Lines[j].PartID;
+            Dummy.Lines[j].color = $scope.InputOverTime.Lines[j].color;
+            i = 0;
+            j++;
+        }
+        Dummy.Lines.splice(j, 10 - j);
+        Dummy.text = "Minions";
+        $scope.InputOverTime = Dummy;
+        console.log(Dummy);
     };
-	
+/* 	Function GoldGainedUpdate()
+
+	Input : ----
+	Set the ChartMarker on 1 (stands for Gold)
+	Create a Dummy.
+	Check how much Lines have to be changed to Gold.
+	Change the existing lines to Gold-Lines and write them into the dummy
+	Delete all the not-used DummySpace and send them to the Chart-Directiv
+*/
     $scope.GoldGainedUpdate = function() {
-	CurrenChart=1;
-              var Dummy= {
-			'Lines': []
-		};
-		Dummy.Lines[0] = ['A', 'A'];
-		Dummy.Lines[1] = ['A', 'A'];
-		Dummy.Lines[2] = ['A', 'A'];
-		Dummy.Lines[3] = ['A', 'A'];
-		Dummy.Lines[4] = ['A', 'A'];
-		Dummy.Lines[5] = ['A', 'A'];
-		Dummy.Lines[6] = ['A', 'A'];
-		Dummy.Lines[7] = ['A', 'A'];
-		Dummy.Lines[8] = ['A', 'A'];
-		Dummy.Lines[9] = ['A', 'A'];							
-		var Participants=['0']
+        CurrenChart = 1;
+        var Dummy = {
+            'Lines': []
+        };
+        Dummy.Lines[0] = ['A', 'A'];
+        Dummy.Lines[1] = ['A', 'A'];
+        Dummy.Lines[2] = ['A', 'A'];
+        Dummy.Lines[3] = ['A', 'A'];
+        Dummy.Lines[4] = ['A', 'A'];
+        Dummy.Lines[5] = ['A', 'A'];
+        Dummy.Lines[6] = ['A', 'A'];
+        Dummy.Lines[7] = ['A', 'A'];
+        Dummy.Lines[8] = ['A', 'A'];
+        Dummy.Lines[9] = ['A', 'A'];
+        var Participants = ['0']
         var i = 0;
-		while(i!=$scope.InputOverTime.Lines.length){
-			Participants[i]=$scope.InputOverTime.Lines[i].PartID
-			i++;
-		}
-		i=0;
-		var j=0;
-		while(j!=Participants.length){
-			while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-				Dummy.Lines[j][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[Participants[j]].totalGold];
-				i++;
-			};
-			Dummy.Lines[j].PartID=$scope.InputOverTime.Lines[j].PartID;
-			Dummy.Lines[j].color=$scope.InputOverTime.Lines[j].color;
-			i=0;
-			j++;
-		}
-		Dummy.Lines.splice(j,10-j);
-		Dummy.text="Gold";
-		$scope.InputOverTime=Dummy;
-		console.log(Dummy);
+        while (i != $scope.InputOverTime.Lines.length) {
+            Participants[i] = $scope.InputOverTime.Lines[i].PartID
+            i++;
+        }
+        i = 0;
+        var j = 0;
+        while (j != Participants.length) {
+            while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
+                Dummy.Lines[j][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[Participants[j]].totalGold];
+                i++;
+            };
+            Dummy.Lines[j].PartID = $scope.InputOverTime.Lines[j].PartID;
+            Dummy.Lines[j].color = $scope.InputOverTime.Lines[j].color;
+            i = 0;
+            j++;
+        }
+        Dummy.Lines.splice(j, 10 - j);
+        Dummy.text = "Gold";
+        $scope.InputOverTime = Dummy;
+        console.log(Dummy);
     };
-	
-	$scope.UpdateCharts = function (textArray) {
-		if(textArray[2]==0){
-			textArray[1]=10;
-		}
-		
-		if(textArray[0]=="R"){
-			$scope.changeChartRight(textArray.split(':')[1]);
-			$scope.$apply();
-		}else{
-			$scope.changeChartLeft(textArray.split(':')[1]);
-			$scope.$apply();
-		}
+/*Funktion UpdateCharts()
+	Input :  textArray z.b : R3 (stands for : RightSide Participant 3)
+			if first Letter is R call .changeChartRight(Participnat)
+			if first Letter is L call .changeChartLeft(Participnat)
+*/
+    $scope.UpdateCharts = function(textArray) {
+        if (textArray[2] == 0) {
+            textArray[1] = 10;
+        }
+
+        if (textArray[0] == "R") {
+            $scope.changeChartRight(textArray.split(':')[1]);
+            $scope.$apply();
+        } else {
+            $scope.changeChartLeft(textArray.split(':')[1]);
+            $scope.$apply();
+        }
     };
-	
-	$scope.ChampSelectForTimeCharts = function (index, team) {
-		if(team==200){
-			index=index+5;
-		};
-		
-		$scope.A[index]=!$scope.A[index];
-		ParticipantIdToDraw=index+1;
-		OptionToUpdate="draw";
-		if($scope.A[index]){
-			OptionToUpdate="remove";
-		}
-		$scope.ChartOverTimeUpdate(	ParticipantIdToDraw,OptionToUpdate,team);
+/* Function : ChampSelectForTimeCharts()
+
+	Input: 	Index of the Player how was clicked (Right side of OverTimeCHarts)
+			team of the Player
+	If the team is 200 then the index will be add 5 cause the index of the palyer always goes form 5 to 10.
+	the marker for the position will be toggelt.
+	If the marker is true afterwards then Option should be "remove"
+	call ChartOverTimeUpdate();
+*/
+    $scope.ChampSelectForTimeCharts = function(index, team) {
+        if (team == 200) {
+            index = index + 5;
+        };
+
+        $scope.A[index] = !$scope.A[index];
+        ParticipantIdToDraw = index + 1;
+        OptionToUpdate = "draw";
+        if ($scope.A[index]) {
+            OptionToUpdate = "remove";
+        }
+        $scope.ChartOverTimeUpdate(ParticipantIdToDraw, OptionToUpdate, team);
     };
+
+    $scope.Hide = function(index, team) {
+        if (team == 200) {
+            index = index + 5;
+        };
+
+        return $scope.A[index];
+    };
+/* Function : ChartOverTimeUpdate()
 	
-	$scope.Hide = function(index, team) {
-		if(team==200){
-			index=index+5;
-		};
-		
-		return $scope.A[index];
-	};
+	Input: ParticipantId (which player schould be drawn or removed)
+			Option (draw or remove)
+			team (100 or 200)
+	It will check if it has to draw a Line or remove one.
+	By "draw" it will check if the Participant already exist if so then it does nothing
+	It will Check the variable "CurrentChart" which data it schould load into the Dummy
+	The Dummy will be pushed in the d3-lines Array on the end.
 	
-	$scope.ChartOverTimeUpdate = function(participantId,option,team) {
-		
-		if(option=="draw"){
-			var ExistFlag=0;
-			var counti=0;
-			while(counti!=$scope.InputOverTime.Lines.length){
-				if(participantId==$scope.InputOverTime.Lines[counti].PartID){
-					ExistFlag++;
-				}
-				counti++;
-			}
-			if(ExistFlag==0){
-				var Dummy=['',''];
-				var i = 0;
-				while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-					if(CurrenChart==0){
-						Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].minionsKilled];
-					}
-					if(CurrenChart==1){
-						Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].totalGold];
-					}
-					if(CurrenChart==2){
-						Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].xp];
-					}
-					i++;
-				};
-				if(team==Friend){
-					Dummy.color="green";	
-				}else{
-					Dummy.color="red";
-				};
-				if($scope.InputOverTime.Lines[0][0]=='A'){
-					$scope.InputOverTime.Lines.splice(0,1);
-					$scope.InputOverTime.text="Minions";
-				}	
-				Dummy.PartID=participantId;
-				$scope.InputOverTime.Lines.push(Dummy);
-			};
-		}
-		if(option=="remove"){
-			console.log($scope.InputOverTime);
-			var ExistFlag=0;
-			var counti=0;
-			while(counti!=$scope.InputOverTime.Lines.length){
-				if(participantId==$scope.InputOverTime.Lines[counti].PartID){
-					ExistFlag=counti;
-				}
-				counti++;
-			}
-			$scope.InputOverTime.Lines.splice(ExistFlag,1);
-			console.log($scope.InputOverTime.Lines);
-		}
-	};
+	By "remove"  it will check if the Participant even exist in the d3-line Array and if where
+	Just a simple splice in the end.
+*/
+    $scope.ChartOverTimeUpdate = function(participantId, option, team) {
+
+        if (option == "draw") {
+            var ExistFlag = 0;
+            var counti = 0;
+            while (counti != $scope.InputOverTime.Lines.length) {
+                if (participantId == $scope.InputOverTime.Lines[counti].PartID) {
+                    ExistFlag++;
+                }
+                counti++;
+            }
+            if (ExistFlag == 0) {
+                var Dummy = ['', ''];
+                var i = 0;
+                while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
+                    if (CurrenChart == 0) {
+                        Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].minionsKilled];
+                    }
+                    if (CurrenChart == 1) {
+                        Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].totalGold];
+                    }
+                    if (CurrenChart == 2) {
+                        Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].xp];
+                    }
+                    i++;
+                };
+                if (team == Friend) {
+                    Dummy.color = "green";
+                } else {
+                    Dummy.color = "red";
+                };
+                if ($scope.InputOverTime.Lines[0][0] == 'A') {
+                    $scope.InputOverTime.Lines.splice(0, 1);
+                    $scope.InputOverTime.text = "Minions";
+                }
+                Dummy.PartID = participantId;
+                $scope.InputOverTime.Lines.push(Dummy);
+            };
+        }
+        if (option == "remove") {
+            console.log($scope.InputOverTime);
+            var ExistFlag = 0;
+            var counti = 0;
+            while (counti != $scope.InputOverTime.Lines.length) {
+                if (participantId == $scope.InputOverTime.Lines[counti].PartID) {
+                    ExistFlag = counti;
+                }
+                counti++;
+            }
+            $scope.InputOverTime.Lines.splice(ExistFlag, 1);
+            console.log($scope.InputOverTime.Lines);
+        }
+    };
 }]);

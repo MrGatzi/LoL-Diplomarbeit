@@ -1,8 +1,9 @@
 sampleApp.directive('champSelection', function() {
     return {
         restrict: 'A',
+		//selected are the Champions with the big Icon on the page
+		//players are the others wich you can select
         scope: {
-
             'selectedRight': '=',
             'selectedLeft': '=',
             'playersRight': '=',
@@ -13,13 +14,13 @@ sampleApp.directive('champSelection', function() {
             $scope.isVisible = false;
             var passValue = 0;
             console.log($scope);
-
+			// function to open the selectbar of the other teammates
             $('.champion,.open', element[0]).bind('click', function(event) {
                 event.stopPropagation();
                 $scope.isVisible = !$scope.isVisible;
                 $scope.$apply();
             });
-
+			//If clicked on the left list it will swap the selected with the current selected champion
             $('.leftlist', element[0]).bind('click', function(event) {
                 var i = 0;
                 var j = 0;
@@ -37,6 +38,7 @@ sampleApp.directive('champSelection', function() {
                 }
 				$scope.finish("L:"+($scope.selectedLeft.participantId-1));
             });
+			//If clicked on the right list it will swap the selected with the current selected champion
             $('.rightlist', element[0]).bind('click', function(event) {
                 event.stopPropagation();
                 passValue = $scope.selectedRight;

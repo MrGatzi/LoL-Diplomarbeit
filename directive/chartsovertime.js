@@ -42,7 +42,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						maxY.splice(0, 2); 
 						
 						var x = d3.scale.linear()
-							.domain([0, data.Lines[0].length;])
+							.domain([0, data.Lines[0].length])
 							.range([0, width]);
 						
 						var y = d3.scale.linear()

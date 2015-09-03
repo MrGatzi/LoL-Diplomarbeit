@@ -2,6 +2,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
     $scope.A=[true,true,true,true,true,true,true,true,true,true];
 	var Friend=000;
 	var Enemy=000;
+	var CurrenChart=0; //0 -> Minions| 1-> Gold | 2 -> Xp
 	$scope.ShowGameDetails = true;
    $scope.InputOverTime = {
         'Lines': []
@@ -229,40 +230,120 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         }
     }
     $scope.XpGainedUpdate = function() {
+		CurrenChart=2;
+		var Dummy= {
+			'Lines': []
+		};
+		Dummy.Lines[0] = ['A', 'A'];
+		Dummy.Lines[1] = ['A', 'A'];
+		Dummy.Lines[2] = ['A', 'A'];
+		Dummy.Lines[3] = ['A', 'A'];
+		Dummy.Lines[4] = ['A', 'A'];
+		Dummy.Lines[5] = ['A', 'A'];
+		Dummy.Lines[6] = ['A', 'A'];
+		Dummy.Lines[7] = ['A', 'A'];
+		Dummy.Lines[8] = ['A', 'A'];
+		Dummy.Lines[9] = ['A', 'A'];							
+		var Participants=['0']
         var i = 0;
-
-        while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData.Lines[0][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[5].xp];
-            i++;
-        };
-		console.log(ChartOverTimeData);
-        $scope.InputOverTime = ChartOverTimeData;
-        $scope.InputOverTime.text = "Xp";
-        console.log("xp");
+		while(i!=$scope.InputOverTime.Lines.length){
+			Participants[i]=$scope.InputOverTime.Lines[i].PartID
+			i++;
+		}
+		i=0;
+		var j=0;
+		while(j!=Participants.length){
+			while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
+				Dummy.Lines[j][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[Participants[j]].xp];
+				i++;
+			};
+			Dummy.Lines[j].PartID=$scope.InputOverTime.Lines[j].PartID;
+			Dummy.Lines[j].color=$scope.InputOverTime.Lines[j].color;
+			i=0;
+			j++;
+		}
+		Dummy.Lines.splice(j,10-j);
+		Dummy.text="XP";
+		$scope.InputOverTime=Dummy;
+		console.log(Dummy);
     };
 	
     $scope.CreepsFarmedUpdate = function() {
+		CurrenChart=0;
+       var Dummy= {
+			'Lines': []
+		};
+		Dummy.Lines[0] = ['A', 'A'];
+		Dummy.Lines[1] = ['A', 'A'];
+		Dummy.Lines[2] = ['A', 'A'];
+		Dummy.Lines[3] = ['A', 'A'];
+		Dummy.Lines[4] = ['A', 'A'];
+		Dummy.Lines[5] = ['A', 'A'];
+		Dummy.Lines[6] = ['A', 'A'];
+		Dummy.Lines[7] = ['A', 'A'];
+		Dummy.Lines[8] = ['A', 'A'];
+		Dummy.Lines[9] = ['A', 'A'];							
+		var Participants=['0']
         var i = 0;
-        while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[2].minionsKilled];
-            i++;
-        };
-
-        $scope.InputOverTime = ChartOverTimeData;
-        $scope.InputOverTime.text = "CreepCrore";
-        console.log("Creeps");
+		while(i!=$scope.InputOverTime.Lines.length){
+			Participants[i]=$scope.InputOverTime.Lines[i].PartID
+			i++;
+		}
+		i=0;
+		var j=0;
+		while(j!=Participants.length){
+			while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
+				Dummy.Lines[j][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[Participants[j]].minionsKilled];
+				i++;
+			};
+			Dummy.Lines[j].PartID=$scope.InputOverTime.Lines[j].PartID;
+			Dummy.Lines[j].color=$scope.InputOverTime.Lines[j].color;
+			i=0;
+			j++;
+		}
+		Dummy.Lines.splice(j,10-j);
+		Dummy.text="Minions";
+		$scope.InputOverTime=Dummy;
+		console.log(Dummy);
     };
 	
     $scope.GoldGainedUpdate = function() {
+	CurrenChart=1;
+              var Dummy= {
+			'Lines': []
+		};
+		Dummy.Lines[0] = ['A', 'A'];
+		Dummy.Lines[1] = ['A', 'A'];
+		Dummy.Lines[2] = ['A', 'A'];
+		Dummy.Lines[3] = ['A', 'A'];
+		Dummy.Lines[4] = ['A', 'A'];
+		Dummy.Lines[5] = ['A', 'A'];
+		Dummy.Lines[6] = ['A', 'A'];
+		Dummy.Lines[7] = ['A', 'A'];
+		Dummy.Lines[8] = ['A', 'A'];
+		Dummy.Lines[9] = ['A', 'A'];							
+		var Participants=['0']
         var i = 0;
-        while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData.Lines[0][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[2].totalGold];
-            i++;
-        };
-
-        $scope.InputOverTime = ChartOverTimeData;
-        $scope.InputOverTime.text = "Gold";
-        console.log("Gold");
+		while(i!=$scope.InputOverTime.Lines.length){
+			Participants[i]=$scope.InputOverTime.Lines[i].PartID
+			i++;
+		}
+		i=0;
+		var j=0;
+		while(j!=Participants.length){
+			while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
+				Dummy.Lines[j][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[Participants[j]].totalGold];
+				i++;
+			};
+			Dummy.Lines[j].PartID=$scope.InputOverTime.Lines[j].PartID;
+			Dummy.Lines[j].color=$scope.InputOverTime.Lines[j].color;
+			i=0;
+			j++;
+		}
+		Dummy.Lines.splice(j,10-j);
+		Dummy.text="Gold";
+		$scope.InputOverTime=Dummy;
+		console.log(Dummy);
     };
 	
 	$scope.UpdateCharts = function (textArray) {
@@ -316,7 +397,15 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
 				var Dummy=['',''];
 				var i = 0;
 				while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-					Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].minionsKilled];
+					if(CurrenChart==0){
+						Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].minionsKilled];
+					}
+					if(CurrenChart==1){
+						Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].totalGold];
+					}
+					if(CurrenChart==2){
+						Dummy[i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[participantId].xp];
+					}
 					i++;
 				};
 				if(team==Friend){
@@ -326,6 +415,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
 				};
 				if($scope.InputOverTime.Lines[0][0]=='A'){
 					$scope.InputOverTime.Lines.splice(0,1);
+					$scope.InputOverTime.text="Minions";
 				}	
 				Dummy.PartID=participantId;
 				$scope.InputOverTime.Lines.push(Dummy);

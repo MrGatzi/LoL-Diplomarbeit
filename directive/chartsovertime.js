@@ -32,7 +32,6 @@ sampleApp.directive('chartsovertime', function($rootScope) {
             scope.$watch('showData', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
                     data = newValue;
-                    if(data.Lines.length!=0){
 						var maxX=['0','0'];
 						var maxY=['0','0'];
 						var i=data.Lines.length-1;
@@ -40,11 +39,12 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 							maxY.push(data.Lines[i][data.Lines[i].length - 1][1]);
 							i--;	
 						};
-						maxY.splice(0, 2);
+						maxY.splice(0, 2); 
+						
 						var x = d3.scale.linear()
-							.domain([0, data.Lines[0].length])
+							.domain([0, data.Lines[0].length;])
 							.range([0, width]);
-
+						
 						var y = d3.scale.linear()
 							.domain([0, d3.max(maxY)])
 							.range([height, 0]);
@@ -110,7 +110,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 						lines.attr('d', function(d) {
 							return lineGen(d);
 						});
-
+						
 						lines.exit().remove();
 
 
@@ -157,7 +157,7 @@ sampleApp.directive('chartsovertime', function($rootScope) {
 								.duration(200)
 								.style("opacity", 1e-6);
 						};*/
-					}
+					
                 }
             }, true);
         }

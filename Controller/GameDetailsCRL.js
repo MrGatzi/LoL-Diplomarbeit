@@ -101,7 +101,6 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         ToRight.highestChart = ToLeft.highestChart;
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
-        $scope.InputOverTime = "changed";
         
     };
     $scope.changeChartRight = function(part) {
@@ -112,8 +111,6 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         ToRight.highestChart = ToLeft.highestChart;
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
-        $scope.InputOverTime = "changed";
-        
     };
 
     /* 	passChampions = function(){
@@ -345,6 +342,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
 				counti++;
 			}
 			$scope.InputOverTime.Lines.splice(ExistFlag,1);
+			console.log($scope.InputOverTime.Lines);
 		}
 	};
 }]);

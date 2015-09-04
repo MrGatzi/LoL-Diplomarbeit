@@ -132,7 +132,9 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
     };
-
+	//Function to sort the champion of each team so that your champion is always on the left side selected
+	//your direct LaneOpponent is selcted on the right side
+	// the other champions are moved into an array 
     var sortChamps = function() {
 
         var i = 0;
@@ -141,14 +143,17 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         var flag = 0;
         Friend = $scope.GameInfoOverview.teamId;
         console.log(Friend);
+		//find out wich team you were
         if ($scope.GameInfoOverview.teamId == 100) {
             Enemy = 200;
+			//find your own champion
             for (i = 0; i < 5; i++) {
                 if ($scope.GameInfoOverview.championId == $scope.GameInfoTimeLine.participants[i].championId) {
                     $scope.leftplayerselected = $scope.GameInfoTimeLine.participants[i];
                     flag = i;
                 }
             }
+			//get your other team mates
             for (i = 0; i < 5; i++) {
                 if (i != flag) {
 
@@ -157,6 +162,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
                 }
 
             }
+			//find out your lane opponent
             for (i = 5; i < 10; i++) {
                 if ($scope.GameInfoTimeLine.participants[flag].timeline.lane == $scope.GameInfoTimeLine.participants[i].timeline.lane) {
                     if ($scope.GameInfoTimeLine.participants[flag].timeline.role == $scope.GameInfoTimeLine.participants[i].timeline.role) {
@@ -167,14 +173,17 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
                 }
             }
             j = 0;
+			//If there is no lane opponent choose a random one
             if (cnt == 0) {
 
                 $scope.rightplayerselected = $scope.GameInfoTimeLine.participants[5];
+				//find other team mates on the other team
                 for (i = 6; i < 10; i++) {
 
                     $scope.othersright[j] = $scope.GameInfoTimeLine.participants[i];
                     j++;
                 }
+				//find other team mates on the other team
             } else {
                 for (i = 5; i < 10; i++) {
                     if (i != flag) {

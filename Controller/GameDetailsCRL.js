@@ -1,38 +1,60 @@
 sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$window', function($scope, $routeParams, $http, $window) {
-    $scope.A = [true, true, true, true, true, true, true, true, true, true];
+    /* Variable $scope.A
+		Safes which Champions (The campions on the Left side of the OverTImeCHart) is selectet.
+		true = not selectet
+		false= selectet
+		$scope.A[0]=1 Champion ...
+	*/
+	$scope.A = [true, true, true, true, true, true, true, true, true, true];
+	/*Variable Friend/Enemy 
+		Determinds if an ally is an Friend or an Enemy. 
+		One of them has to be 100 the other 200
+	*/
     var Friend = 000;
     var Enemy = 000;
     var CurrenChart = 0; //0 -> Minions| 1-> Gold | 2 -> Xp
+	/*
+		Flag for the Spinner.
+	*/
     $scope.ShowGameDetails = true;
+	/*
+		Variable : $scope.InputOverTime
+		The Pass Variable to OverTimeChart
+	*/
     $scope.InputOverTime = {
         'Lines': []
     };
     $scope.InputOverTime.Lines[0] = ['A', 'A'];
     $scope.othersleft = ['0', '0'];
     $scope.othersright = ['0', '0'];
+	// Getting the Data from the URL
     data1 = {
         'SumName': $routeParams.sumName,
         'ServName': $routeParams.servName,
         'MatchId': $routeParams.MatchID,
         'Mode': 'get'
     };
+	//Dummy for Passing to PartCHart Left
     ToLeft = {
         'physicalDamageDealt': 0,
     };
+	//Dummy for Passing to PartCHart Right
     ToRight = {
         'physicalDamageDealt': 0,
     };
-    // show loading coinainter mit spin
+	
+    // Main Function
+	//try to get the Init Data like SumInfo ...
     $http.post('PHP/Cache_Game_Contents_Overview.php', {
         data1
     }).
     success(function(data, status, config) {
             $scope.GameInfoOverview = data;
             console.log($scope.GameInfoOverview);
-
             if ($scope.GameInfoOverview == 'Error') {
                 $window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
             } else {
+				// If you got the SumInfoData then try to get the GAmeDetails
                 $http.post('PHP/Cache_GameTimeline_ByMatchID.php', {
                     data1
                 }).
@@ -46,9 +68,7 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
                         sortChamps();
                         InitCharts();
 
-                        $scope.ShowGameDetails = false;
-                        $scope.selectedchamp = 2;
-                        // loading cointainer wieder hide.
+                        $scope.ShowGameDetails = false; //Hide LoadingSpinner Show Content
                     })
                     .error(function(data, status, headers, config) {
                         $window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
@@ -58,8 +78,10 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         .error(function(data, status, headers, config) {
             $window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
         });
-    //console.log($scope.GameInfoOverview+"??");
-    //$scope.ShowLeft=$scope.GameInfoOverview.stats;
+/* 	Function InitCharts()
+
+	Will be called on the Beginning. Init both charts with the selectet Player Right and left.
+*/	
     var InitCharts = function() {
         console.log();
         $scope.A[$scope.leftplayerselected.participantId - 1] = false;
@@ -74,26 +96,16 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         ToRight.highestChart = ToLeft.highestChart;
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
-        /* var i = 0;
-        while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData.Lines[0][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[$scope.leftplayerselected.participantId].minionsKilled];
-            i++;
-        };
-        var i = 0;
-        while (i < $scope.GameInfoTimeLine.timeline.frames.length) {
-            ChartOverTimeData.Lines[1][i] = [i, $scope.GameInfoTimeLine.timeline.frames[i].participantFrames[$scope.rightplayerselected.participantId].minionsKilled];
-            i++;
-        };
-		ChartOverTimeData.Lines[1].color="green";
-		ChartOverTimeData.Lines[0].color="red";
-		ChartOverTimeData.Lines[1].PartID=$scope.rightplayerselected.participantId;
-		ChartOverTimeData.Lines[0].PartID=$scope.leftplayerselected.participantId;
-        $scope.InputOverTime = ChartOverTimeData;
-        $scope.InputOverTime.text = "CreepScore";
-        console.log($scope.InputOverTime);*/
         $scope.ChartOverTimeUpdate($scope.leftplayerselected.participantId, "draw", $scope.leftplayerselected.teamId);
         $scope.ChartOverTimeUpdate($scope.rightplayerselected.participantId, "draw", $scope.rightplayerselected.teamId);
     };
+/* 	Function changeChartLeft()
+
+	UpdateFunction for the LeftBarCHart
+	Input : part (Partisipant Id to Show stats in the BarCHarts)
+	Load the Dummy with the stats(from the Participant) Data of the Timline.
+	Find The HighestData und Load it into the right und left Chart.
+*/
     $scope.changeChartLeft = function(part) {
         ToLeft = $scope.GameInfoTimeLine.participants[part].stats;
         var highestLeft = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.physicalDamageDealtToChampions, ToLeft.physicalDamageTaken, ToLeft.magicDamageDealtToChampions, ToLeft.magicDamageTaken, ToLeft.trueDamageDealt, ToLeft.trueDamageDealtToChampions, ToLeft.trueDamageTaken);
@@ -104,6 +116,13 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         $scope.ShowRight = ToRight;
 
     };
+/* 	Function changeChartRight()
+
+	UpdateFunction for the RightBarCHart
+	Input : part (Partisipant Id to Show stats in the BarCHarts)
+	Load the Dummy with the stats(from the Participant) Data of the Timline.
+	Find The HighestData und Load it into the right und left Chart.
+*/
     $scope.changeChartRight = function(part) {
         ToRight = $scope.GameInfoTimeLine.participants[part].stats;
         var highestLeft = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.physicalDamageDealtToChampions, ToLeft.physicalDamageTaken, ToLeft.magicDamageDealtToChampions, ToLeft.magicDamageTaken, ToLeft.trueDamageDealt, ToLeft.trueDamageDealtToChampions, ToLeft.trueDamageTaken);
@@ -113,24 +132,6 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
     };
-
-    /* 	passChampions = function(){
-    		var right;
-    		var left;
-    		var players;
-    		right=$scope.GameInfoTimeLine.participants;
-    		if($scope.GameInfoOverview.teamId==100){
-    			left=right.splice(0,5);
-    			
-    		}else{
-    			left=right;
-    			right=left.splice(0,5);
-    			
-    		}
-    		$scope.leftchamps=left;
-    		$scope.rightchamps=right;
-    	
-    	} */
 
     var sortChamps = function() {
 

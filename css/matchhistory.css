@@ -119,14 +119,31 @@
 #About-container {
 	margin-top:40px;
 	margin-bottom:30px;
-	height:1200px;
-	width:900px;
+	height:1300px;
     background: url(../Libraries/Background/BackgroundSandChall.png);
+	background-repeat: no-repeat;
+	background-position: center;
 }
 #Home-container {
 	margin-top:40px;
 	margin-bottom:30px;
-	height:1200px;
-	width:900px;
+	height:1300px;
     background: url(../Libraries/Background/BackgroundSandChall.png);
+	background-repeat: no-repeat;
+	background-position: center;
 }
+#Contact-container {
+	margin-top:40px;
+	margin-bottom:30px;
+	height:1300px;
+    background: url(../Libraries/Background/BackgroundSandChall.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.place-holder{
+	margin-top:80px;
+	margin-left:100px;
+
+}
+
+

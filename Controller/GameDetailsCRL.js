@@ -481,17 +481,26 @@ sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$win
             };
         }
         if (option == "remove") {
-            console.log($scope.InputOverTime);
+			var Dummy = ['', ''];
             var ExistFlag = 0;
             var counti = 0;
+			
             while (counti != $scope.InputOverTime.Lines.length) {
                 if (participantId == $scope.InputOverTime.Lines[counti].PartID) {
                     ExistFlag = counti;
                 }
                 counti++;
             }
+			if($scope.InputOverTime.Lines.length==1){
+				var GameLenght=0;
+				while(GameLenght!=$scope.InputOverTime.Lines[0].length){
+					Dummy[GameLenght]=[GameLenght,0];
+					GameLenght++;
+				};
+				$scope.InputOverTime.Lines.push(Dummy);
+			}
             $scope.InputOverTime.Lines.splice(ExistFlag, 1);
-            console.log($scope.InputOverTime.Lines);
+			console.log($scope.InputOverTime.Lines)
         }
     };
 }]);

@@ -1,4 +1,4 @@
-sampleApp.directive('champSelection', function() {
+MainController.directive('champSelection', function() {
     return {
         restrict: 'A',
 		//selected are the Champions with the big Icon on the page

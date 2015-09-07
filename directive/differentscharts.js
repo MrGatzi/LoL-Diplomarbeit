@@ -1,4 +1,4 @@
-sampleApp.directive('differentscharts', function($rootScope) {
+MainController.directive('differentscharts', function($rootScope) {
     return {
         restrict: 'AE',
         // scope object defines the attributes that can be used in the HTML tag

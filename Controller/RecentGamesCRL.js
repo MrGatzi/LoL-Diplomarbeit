@@ -1,4 +1,4 @@
-sampleApp.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http', function($scope,$window,$routeParams,$http) {
+MainController.controller('RecentGamesCRL',['$scope','$window','$routeParams','$http', function($scope,$window,$routeParams,$http) {
 	$scope.Overview={
 			'SumName':0 ,
 			'SumInfo':0 ,

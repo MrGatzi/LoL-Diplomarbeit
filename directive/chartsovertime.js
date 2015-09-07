@@ -1,4 +1,4 @@
-sampleApp.directive('chartsovertime', function($rootScope) {
+MainController.directive('chartsovertime', function($rootScope) {
     return {
         restrict: 'AE',
         scope: {

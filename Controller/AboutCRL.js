@@ -1,4 +1,4 @@
-sampleApp.controller('AboutCRL', function($scope) {
+MainController.controller('AboutCRL', function($scope) {
  
     $scope.message = 'This is About screen';
  

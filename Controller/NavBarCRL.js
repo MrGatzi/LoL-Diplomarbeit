@@ -1,4 +1,4 @@
-sampleApp.controller('NavBarCRL',['$scope', '$http','$window', function($scope,$http,$window,$routeParams) {
+MainController.controller('NavBarCRL',['$scope', '$http','$window', function($scope,$http,$window,$routeParams) {
 	$scope.Input = [
         {SumName:$scope.SumName},
         {ServName:$scope.ServName}

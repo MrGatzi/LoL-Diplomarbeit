@@ -1,4 +1,4 @@
-sampleApp.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$window', function($scope, $routeParams, $http, $window) {
+MainController.controller('GameDetailsCRL', ['$scope', '$routeParams', '$http', '$window', function($scope, $routeParams, $http, $window) {
     /* Variable $scope.A
 		Safes which Champions (The campions on the Left side of the OverTImeCHart) is selectet.
 		true = not selectet

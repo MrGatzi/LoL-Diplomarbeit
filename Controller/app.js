@@ -1,10 +1,10 @@
 //Define an angular module for our app
-var sampleApp = angular.module('sampleApp', ['ui.bootstrap']);
+var MainController = angular.module('MainController', ['ui.bootstrap']);
 
 //Define Routing for app
 //Uri /AddNewOrder -> template add_order.html and Controller AddOrderController
 //Uri /ShowOrders -> template show_orders.html and Controller AddOrderController
-sampleApp.config(['$routeProvider',
+MainController.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
         when('/RecentGames/:sumName/:servName', {

@@ -7,13 +7,13 @@ var MainController = angular.module('MainController', ['ui.bootstrap']);
 MainController.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/RecentGames/:sumName/:servName', {
-            templateUrl: 'templates/RecentGames.html',
-            controller: 'RecentGamesCRL'
+        when('/RecentMatches/:sumName/:servName', {
+            templateUrl: 'templates/RecentMatches.html',
+            controller: 'RecentMatchesCRL'
         }).
-        when('/GameDetails/:sumName/:servName/:MatchID', {
-            templateUrl: 'templates/GameDetails.html',
-            controller: 'GameDetailsCRL'
+        when('/MatchDetails/:sumName/:servName/:MatchID', {
+            templateUrl: 'templates/MatchDetails.html',
+            controller: 'MatchDetailsCRL'
         }).
         when('/Home', {
             templateUrl: 'templates/home.html',

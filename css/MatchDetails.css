@@ -1,0 +1,148 @@
+#GameOverview-container {
+    margin-top: 5%;
+    background: url(../Libraries/Background/BackgroundSandChall.png);
+    background-repeat: no-repeat;
+    height: 1300px;
+    background-position: center;
+}
+#LaneOpponent {
+    margin-top: 70px;
+}
+.bar:hover {
+    fill: brown;
+}
+.axis {
+    fill: none;
+    stroke: #000;
+    stroke-width: 1.8;
+    shape-rendering: crispEdges;
+}
+.champ-selection {
+    position: relative;
+}
+.champ-selection .open {
+    margin-top: 32px;
+}
+.champ-selection.left {
+    float: left;
+    margin-left: 80px;
+}
+.champ-selection.left .open {
+    float: right;
+    margin-left: 3px;
+}
+.champ-selection.right {
+    float: right;
+    margin-right: 110px;
+}
+.champ-selection.right .open {
+    float: left;
+    margin-right: 3px;
+}
+.champ-selection .selector {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    width: 270px;
+    list-style: none;
+}
+.champ-selection.left .selector {
+    left: 137px;
+}
+.champ-selection.right .selector {
+    right: 137px;
+}
+.champ-selection .selector li {
+    display: inline-block;
+}
+.champimage1 {
+    float: left;
+}
+.champimage2 {
+    float: right;
+}
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: 90px;
+    height: 31px;
+    padding: 8px;
+    font: 15px sans-serif;
+    background: #ddd;
+    border: solid 1px #aaa;
+    border-radius: 6px;
+    pointer-events: none;
+}
+.tooltip_ChartsOverTime {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    height: 50px;
+    padding: 8px;
+    font: 15px sans-serif;
+    background: #ddd;
+    border: solid 1px #aaa;
+    border-radius: 6px;
+    pointer-events: none;
+}
+#LoadingSpinner {
+    width: 220px;
+    height: 20px;
+    margin-left: 460px;
+    margin-top: 80px;
+    background-image: url(../Libraries/Background/ajax-loader.gif);
+}
+#OverTimeCharts {
+    margin-left: 50px;
+    margin-top: 120px;
+    width: 100%;
+    height: 700px;
+}
+.OverTime {
+    width: 80%;
+    height: 500px;
+	float:left;
+}
+.label {
+    position: absolute;
+    text-align: center;
+    width: 90px;
+    height: 31px;
+    padding: 8px;
+    font: 15px sans-serif;
+    background: #ddd;
+    border: solid 1px #aaa;
+    border-radius: 6px;
+    pointer-events: none;
+}
+.dot {
+    background-color: red;
+}
+.ChampsForOverTimeCharts{
+	margin-top:10px;
+	margin-left:20px;
+	margin-right:10px;
+	width:50px;
+	height:33px;
+}
+.SelectChamps1{
+	float:left;
+	height:240px;
+	width:200px;
+}
+.SelectChamps2{
+	float:left;
+	height:240px;
+	width:100px;
+}
+.CheckColor{
+	width:10px;
+	height:32px;
+	background-color:blue;
+	float:left;
+}
+.ChampInChampselectForChart{
+float:left;
+}

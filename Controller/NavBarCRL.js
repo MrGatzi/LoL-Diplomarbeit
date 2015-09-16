@@ -30,10 +30,10 @@ MainController.controller('NavBarCRL',['$scope', '$http','$window', function($sc
 				if($scope.valid.SumInfo != null){
 					$scope.valid.Name=angular.lowercase($scope.SumName);
 					$scope.valid.Server=$scope.ServName;
-					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/RecentGames/'+$scope.valid.Name+'/'+$scope.valid.Server;
+					$window.location.href = 'http://www.matchupleague.com/#/RecentMatches/'+$scope.valid.Name+'/'+$scope.valid.Server;
 					
 				}else{
-					$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
+					$window.location.href = 'http://www.matchupleague.com/#/errortmp';
 				}	
 		}
 		},true);

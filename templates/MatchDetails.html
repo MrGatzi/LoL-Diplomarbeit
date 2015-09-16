@@ -1,0 +1,62 @@
+<div id="GameOverview-container" class="container">
+   <div id="Show_and_Hide_GameDetails" ng-hide="ShowGameDetails">
+      <div id="LaneOpponent" class="container clearfix"  >
+         <div champ-selection players-left="othersleft" selected-left="leftplayerselected" data-method="UpdateCharts" class="champ-selection left">
+            <div class="champimage1">
+               <img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{selectedLeft.championId}}.png">
+            </div>
+            <a class="open" ng-hide="isVisible"><img style="heigth:64px; width:32px;" src="Libraries/Background/arrow1.png"></a>
+            <ul class="selector leftlist" ng-show="isVisible">
+               <li ng-repeat="player in playersLeft"><img class="{{player.championId}}" style="heigth:64px; width:64px;" src="Libraries/img/champion/{{player.championId}}.png"></li>
+            </ul>
+         </div>
+         <div champ-selection players-right="othersright" selected-right="rightplayerselected" data-method="UpdateCharts" class="champ-selection right">
+            <div class="champimage2">
+               <img class="champion" style="heigth:128px; width:128px;" src="Libraries/img/champion/{{selectedRight.championId}}.png">
+            </div>
+            <a class="open" ng-hide="isVisible"><img style="heigth:64px; width:32px;" src="Libraries/Background/arrow2.png"></a>
+            <ul class="selector rightlist" ng-show="isVisible">
+               <li ng-repeat="player in playersRight"><img class="{{player.championId}}" style="heigth:64px; width:64px;" src="Libraries/img/champion/{{player.championId}}.png"></li>
+            </ul>
+         </div>
+      </div>
+      <div>
+         <div style="height: 300px; width:100%;">
+            <div style="margin-left : 12%; float:left;">
+               <differentscharts left-player="ShowLeft">
+                  <svg class="chartLeft"></svg>
+               </differentscharts>
+            </div>
+            <div style="margin-left :0%; width:50%; float:left;">
+               <differentscharts right-player="ShowRight">
+                  <svg class="chartRight" ></svg>
+               </differentscharts>
+            </div>
+         </div>
+      </div>
+      <div id="OverTimeCharts">
+         <input ng-click="CreepsFarmedUpdate()" id="ChartChanger" class="btn btn-danger" type="submit" value="Creeps farmed" style="margin-left : 230px">
+         <input ng-click="GoldGainedUpdate()" id="ChartChanger" class="btn btn-danger " type="submit" value="Gold gained">
+         <input ng-click="XpGainedUpdate()" id="ChartChanger" class="btn btn-danger " type="submit" value="Xp gained">
+         <chartsovertime show-data="InputOverTime">
+            <svg class="OverTime"></svg>
+         </chartsovertime>
+		<div class="SelectChamps1">
+			<div ng-repeat="ChampsSelect in GameInfoTimeLine.participants |  filter: { teamId: '100' }" class="ChampsForOverTimeCharts">
+				<img class="ChampInChampselectForChart" style="heigth:32px; width:32px;" src="Libraries/img/champion/{{ChampsSelect.championId}}.png" ng-click="ChampSelectForTimeCharts($index,100)"></li>
+				<div class="CheckColor" ng-hide="Hide($index,100)">
+				</div>
+			</div>
+		</div>
+		<div class="SelectChamps2">
+			<div ng-repeat="ChampsSelect in GameInfoTimeLine.participants |  filter: { teamId: '200' }" class="ChampsForOverTimeCharts">
+				<img class="ChampInChampselectForChart" style="heigth:32px; width:32px;" src="Libraries/img/champion/{{ChampsSelect.championId}}.png" ng-click="ChampSelectForTimeCharts($index,200)"></li>
+				<div class="CheckColor" ng-hide="Hide($index,200)">
+				</div>
+			</div>
+		</div>
+      </div>
+	  
+   </div>
+   <div id="LoadingSpinner" ng-show="ShowGameDetails"> </div>
+</div>

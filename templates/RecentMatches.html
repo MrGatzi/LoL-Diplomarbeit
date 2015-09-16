@@ -1,0 +1,65 @@
+{{Data_RecentGames.SumName}}
+<div id="template" style="height:100%">
+   <div id="game-container" class="container">
+      <div  id="SumInfo" class="row">
+         <div id="SumIcon" class="col-md-offset-1 col-md-2">
+            <img class="img-responsive" alt="Responsive image" src="Libraries/img/profileicon/{{message.SumInfo[message.Name].profileIconId}}.png">
+         </div>
+         <div class="col-md-2 lvl">
+            <p class="SumInfo">{{message.SumInfo[message.Name].name}} </p>
+			<p class="SumInfo" >Level: {{message.SumInfo[message.Name].summonerLevel}} </p>
+         </div>
+      </div>
+      <div  id="game{{$index}}" class=" col-md-12 win_{{item.stats.win}} game" ng-repeat="item in message.SumGames.games" ng-click="GameClick($index)">
+         <div id="gamerow1" class="row">
+            <div id="champIcon" class=" col-md-2">
+               <img class="img-responsive" alt="Responsive image" src="Libraries/img/champion/{{item.championId}}.png">
+               <div id="sumSpells">
+                  <div id="spell1" class="spells">
+                     <img alt="Responsive image" src="Libraries/img/spell/{{item.spell1}}.png">
+                  </div>
+                  <div id="spell2" class="spells">
+                     <img alt="Responsive image" src="Libraries/img/spell/{{item.spell2}}.png">
+                  </div>
+               </div>
+            </div>
+            <div id="stats" class="col-md-1">
+                  <p class="kda">{{ item.stats.championsKilled}}/{{item.stats.numDeaths}}/{{item.stats.assists}}</p>
+            </div>
+            <div id="item-container" class="col-md-4">
+               <div id="items">
+                  <div  id="item0" class="itemrow1 itemIcon">
+                     <img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item0}}.png">
+                  </div>
+                  <div  id="item1" class="itemrow1 itemIcon">
+                     <img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item1}}.png">
+                  </div>
+                  <div  id="item2" class="itemrow1 itemIcon">
+                     <img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item2}}.png">
+                  </div>
+                  <div  id="item3" class="itemrow2 itemIcon">
+                     <img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item3}}.png">
+                  </div>
+                  <div  id="item4" class="itemrow2 itemIcon">
+                     <img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item4}}.png">
+                  </div>
+                  <div  id="item5" class="itemrow2 itemIcon">
+                     <img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item5}}.png">
+                  </div>
+               </div>
+               <div  id="trinket">
+                  <img class="img-responsive" alt="Responsive image" src="Libraries/img/item/{{item.stats.item6}}.png">
+               </div>
+            </div>
+            <div id="fellowPlayers" class="col-md-5"style="background-image: url(Libraries/Background/{{item.teamId}}{{item.stats.win}}.png)">
+               <div  class="team1"  ng-repeat= "team1 in item.fellowPlayers |  filter: { teamId: '100' }" >
+                  <img class="img-responsive" alt="Responsive image" style="width:64px;height:64px;" src="Libraries/img/champion/{{team1.championId}}.png">
+               </div>
+               <div  class="team2"  ng-repeat= "team2 in item.fellowPlayers |  filter: { teamId: '200' }">
+                  <img class="img-responsive" alt="Responsive image" style="width:64px;height:64px;" src="Libraries/img/champion/{{team2.championId}}.png">
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

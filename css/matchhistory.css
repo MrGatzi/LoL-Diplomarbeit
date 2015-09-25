@@ -1,149 +1,302 @@
 #body {
-    background: url(http://digitalhint.net/wp-content/uploads/2015/03/league-of-legends-champions-art.jpg) no-repeat center center fixed;
+
     -webkit-background-size: cover;
+
     -moz-background-size: cover;
+
     -o-background-size: cover;
+
     background-size: cover;
+
 }
+
+.input-box{
+	height:40px;
+}
+
 #sumName {
+
     padding-top: 15px;
+
     padding-bottom: 15px;
+
 }
-#server {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 10px;
+
+.SearchBar{
+	float:left;
+	width:120px;
+
 }
+
+.ServName {
+
+	float:left;
+
+}
+
+
 #Hit_it {
+
     margin-top: 15px;
+
     margin-bottom: 15px;
+
     margin-left: 10px;
+
 }
+
 #template {} #ng-view {
+
     margin-top: 25px;
+
     height: 900px;
+
 }
+
 #SumInfo {
+
     height: 200px;
+
     border: 1px solid black;
+
     margin-top: 30px;
+
 }
+
 .game {
+
     margin-top: 30px;
+
     height: 250px;
+
     border: 1px solid black;
+
 }
+
 #gamerow1 {
+
     margin-top: 10px;
+
 }
+
 #SumIcon {
+
     margin-top: 40px;
+
     height: auto;
+
 }
+
 .SumInfo{
+
 	font-family: 'Lobster';
+
 	font-size: 28px;
+
 	font-weight: bold;
+
 }
+
 .lvl {
+
     margin-top: 60px;
+
 }
+
 .win_true {
+
     background: url(../Libraries/Background/win_true.png);
+
 }
+
 .win_false {
+
     background: url(../Libraries/Background/win_false.png);
+
 }
+
 #game-container {
+
     background: url(../Libraries/Background/paper2.jpg);
+
 }
+
 #item-container {
+
     height: 203px;
+
     background: url(../Libraries/Background/Background_Itemset.png);
+
 }
+
 #items {
+
     margin-top: 30px;
+
     float: left;
+
     width: 252px;
+
 }
+
 .itemrow1 {
+
     float: left;
+
 }
+
 .itemrow2 {
+
     float: left;
+
     margin-top: 15px;
+
 }
+
 .itemIcon {
+
     width: 64px;
+
     margin-left: 15px;
+
 }
+
 #trinket {
+
     margin-top: 69px;
+
 }
+
 #sumSpells {
+
     margin-top: 20px;
+
 }
+
 #spell1 {
+
     float: left;
+
 }
+
 #spell2 {
+
     float: left;
+
     margin-left: 15px;
+
 }
+
 .team1 {
+
     margin-top: 17px;
+
     float: left;
+
     margin-left: 15px;
+
 }
+
 .team2 {
+
     float: left;
+
     margin-left: 15px;
+
     margin-top: 59px;
+
 }
+
 #fellowPlayers {
+
     height: 225px;
+
     background-repeat: no-repeat;
 }
 
+
+
 .kda{
+
 	margin-right: 10px;
+
 	float:right;
+
 	margin-top: 70px;
+
 	font-family: 'Lobster';
+
 	font-size: 28px;
+
 	font-weight: bold;
+
 }
+
+
+
+
 
 
 
 #About-container {
+
 	margin-top:40px;
+
 	margin-bottom:30px;
+
 	height:1300px;
+
     background: url(../Libraries/Background/BackgroundSandChall.png);
+
 	background-repeat: no-repeat;
+
 	background-position: center;
-}
-#Home-container {
-	margin-top:40px;
-	margin-bottom:30px;
-	height:1300px;
-    background: url(../Libraries/Background/BackgroundSandChall.png);
-	background-repeat: no-repeat;
-	background-position: center;
-}
-#Contact-container {
-	margin-top:40px;
-	margin-bottom:30px;
-	height:1300px;
-    background: url(../Libraries/Background/BackgroundSandChall.png);
-	background-repeat: no-repeat;
-	background-position: center;
-}
-.place-holder{
-	margin-top:80px;
-	margin-left:100px;
 
 }
+
+#Home-container {
+
+	margin-top:40px;
+
+	margin-bottom:30px;
+
+	height:1300px;
+
+    background: url(../Libraries/Background/BackgroundSandChall.png);
+
+	background-repeat: no-repeat;
+
+	background-position: center;
+
+}
+
+#Contact-container {
+
+	margin-top:40px;
+
+	margin-bottom:30px;
+
+	height:1300px;
+
+    background: url(../Libraries/Background/BackgroundSandChall.png);
+
+	background-repeat: no-repeat;
+
+	background-position: center;
+
+}
+
+.place-holder{
+
+	margin-top:80px;
+
+	margin-left:100px;
+
+
+
+}
+
+
+
 
 

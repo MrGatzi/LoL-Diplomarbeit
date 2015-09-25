@@ -1,68 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/bootstrap-theme.css">
-	<link rel="stylesheet" href="css/matchhistory.css">
-	<link rel="stylesheet" href="css/MatchDetails.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-	<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-    <title>Match Up League</title>
-  </head>
-  <link rel="icon" 
+   <head>
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap.css">
+      <link rel="stylesheet" href="css/bootstrap-theme.css">
+      <link rel="stylesheet" href="css/matchhistory.css">
+      <link rel="stylesheet" href="css/MatchDetails.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+      <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+      <title>Match Up League</title>
+   </head>
+   <link rel="icon" 
       type="image/png" 
       href="/Libraries/Background/favicon32.png" />
-    </link>
-  <body ng-app="MainController" id="body">
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand"  href="#">Match Up League</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#Home">Home</a></li>
-            <li><a href="#About">About</a></li>
-            <li><a href="#Contact">Contact</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right" style="margin-right:50px" ng-controller="NavBarCRL">
-            <li id="sumName"><input ng-model="SumName" placeholder="Enter Summoner Name" class="form-control" type="text"></li>
-            <li id="server"><select id="ServName" ng-model="ServName" class="form-control">
-				<option selected="selected" value="euw">EUW</option>
-				<option value="na">NA</option>
-				<option value="eue">EUE</option>
-				<option value="ru">RU</option>
-			</select></li>
-            <li>
-			<input ng-click="handleClick()" id="Hit_it" class="btn btn-danger " type="submit" value="Search">
-			</li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-	<br/>
-	<br/>
-	<div id="ng-view" ng-view></div>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-	<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
-	<script src="//labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
-    <script src="Controller/app.js"></script>
-	<script src="directive/differentscharts.js"></script>
-	<script src="directive/chartsovertime.js"></script>
-	<script src="directive/changechampions.js"></script>
-	<script src="Controller/homeCRL.js"></script>
-	<script src="Controller/MatchDetailsCRL.js"></script>
-	<script src="Controller/NavBarCRL.js"></script>
-	<script src="Controller/AboutCRL.js"></script>
-	<script src="Controller/RecentMatchesCRL.js"></script>
-	
-	</body>
+   </link>
+   <body ng-app="MainController" id="body">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+         <div class="container">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true">			
+			   <span class="sr-only">Toggle navigation</span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               </button>
+               <a class="navbar-brand"  href="#">Match Up League</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+               <ul class="nav navbar-nav">
+                  <li><a href="#Home">Home</a></li>
+                  <li><a href="#About">About</a></li>
+                  <li><a href="#Contact">Contact</a></li>
+               </ul>
+               <div class="col-sm-4 col-md-4 navbar-right input-box" ng-controller="NavBarCRL">
+                  <form class="navbar-form" role="search">
+                     <div class="input-group">
+						<div class="input-group SearchBar">
+                        <input type="text" class="form-control input-group" placeholder="Enter Summoner" name="q">			
+                        </div>
+						<div class="input-group ServName">
+                           <select id="ServName" ng-init="ServName=euw" ng-model="ServName" class="form-control">
+                              <option value="euw">EUW</option>
+                              <option value="na">NA</option>
+                              <option value="eue">EUE</option>
+                              <option value="ru">RU</option>
+                        </div>
+                        </select>                    
+                        <div class="input-group-btn">                       
+                           <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>                    
+                        </div>
+                     </div>
+                  </form>
+               </div>
+               <!--        <ul class="nav navbar-nav navbar-right" style="margin-right:50px" ng-controller="NavBarCRL">
+                  <li id="sumName"><input ng-model="SumName" placeholder="Enter Summoner Name" class="form-control" type="text"></li>
+                  <li id="server"><select id="ServName" ng-model="ServName" class="form-control">
+                  <option selected="selected" value="euw">EUW</option>
+                  <option value="na">NA</option>
+                  <option value="eue">EUE</option>
+                  <option value="ru">RU</option>
+                  </select></li>
+                  <li>
+                  <input ng-click="handleClick()" id="Hit_it" class="btn btn-danger " type="submit" value="Search">
+                  </li>
+                  </ul> -->
+            </div>
+            <!--/.nav-collapse -->
+         </div>
+      </nav>
+      <br/>
+      <br/>
+      <div id="ng-view" ng-view></div>
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+      <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+      <script src="//labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+      <script src="Controller/app.js"></script>
+      <script src="directive/differentscharts.js"></script>
+      <script src="directive/chartsovertime.js"></script>
+      <script src="directive/changechampions.js"></script>
+      <script src="Controller/homeCRL.js"></script>
+      <script src="Controller/MatchDetailsCRL.js"></script>
+      <script src="Controller/NavBarCRL.js"></script>
+      <script src="Controller/AboutCRL.js"></script>
+      <script src="Controller/RecentMatchesCRL.js"></script>
+   </body>
 </html>

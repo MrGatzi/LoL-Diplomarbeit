@@ -52,7 +52,8 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
             $scope.GameInfoOverview = data;
             console.log($scope.GameInfoOverview);
             if ($scope.GameInfoOverview == 'Error') {
-                $window.location.href = 'http://www.matchupleague.com/#/errortmp';
+                //$window.location.href = 'http://www.matchupleague.com/#/errortmp';
+				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
             } else {
 				// If you got the SumInfoData then try to get the GAmeDetails
                 $http.post('PHP/Cache_MatchTimeline_ByMatchID.php', {
@@ -71,12 +72,14 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
                         $scope.ShowGameDetails = false; //Hide LoadingSpinner Show Content
                     })
                     .error(function(data, status, headers, config) {
-                        $window.location.href = 'http://www.matchupleague.com/#/errortmp';
+                        //$window.location.href = 'http://www.matchupleague.com/#/errortmp';
+						$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
                     });
             };
         })
         .error(function(data, status, headers, config) {
-            $window.location.href = 'http://www.matchupleague.com/#/errortmp';
+            //$window.location.href = 'http://www.matchupleague.com/#/errortmp';
+			$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
         });
 /* 	Function InitCharts()
 

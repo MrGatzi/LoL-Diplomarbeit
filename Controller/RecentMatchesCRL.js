@@ -25,7 +25,8 @@ MainController.controller('RecentMatchesCRL',['$scope','$window','$routeParams',
 				};
 			});
 			if($scope.message.SumInfo == null){
-				$window.location.href = 'http://www.matchupleague.com/#/errortmp';
+				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';
+				//$window.location.href = 'http://www.matchupleague.com/#/errortmp';
 			}
 			if($scope.message.SumInfo){
 			}
@@ -46,9 +47,10 @@ MainController.controller('RecentMatchesCRL',['$scope','$window','$routeParams',
             'GameInfoOverview' : $scope.message.SumGames.games[GameId],
 			'Mode': 'set'
         };
-        $http.post('PHP/Cache_Match_Contents_Overview.php', {data1} ).
+        $http.post('PHP/Cache_Game_Contents_Overview.php', {data1} ).
 		success(function(data, status, config) {
-			$window.location.href = 'http://www.matchupleague.com/#/MatchDetails/'+$scope.message.Name+'/'+$scope.message.Server+'/'+$scope.message.SumGames.games[GameId].gameId;
+			$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/MatchDetails/'+$scope.message.Name+'/'+$scope.message.Server+'/'+$scope.message.SumGames.games[GameId].gameId;
+			//$window.location.href = http://www.matchupleague.com/#/GameDetails/'+$scope.message.Name+'/'+$scope.message.Server+'/'+$scope.message.SumGames.games[GameId].gameId;
 			})
 		.error(function(data, status, headers, config) {
 			alert("fail");

@@ -37,18 +37,14 @@
                   <form class="navbar-form" role="search">
                      <div class="input-group">
 						<div class="col-sm-8 col-md-8 input-group SearchBar">
-                        <input type="text" class="form-control" placeholder="Enter Summoner" name="q">			
+                        <input type="text" ng-model="SumName" class="form-control" placeholder="Enter Summoner" name="q">			
                         </div>
 						<div class="col-sm-4 col-md-4 input-group ServName">
-                           <select id="ServName" ng-init="ServName=euw" ng-model="ServName" class="form-control">
-                              <option value="euw">EUW</option>
-                              <option value="na">NA</option>
-                              <option value="eue">EUE</option>
-                              <option value="ru">RU</option>
+                           <select id="ServName" ng-model="ServName.type" class="form-control" required ng-options='option.value as option.name for option in ServerOptions'>
 							   </select>
                         </div>
                                            
-                        <div class=" input-group-btn SearchButton">                       
+                        <div class=" input-group-btn SearchButton" ng-click="handleClick()">                       
                            <button class="btn btn-primary" type="submit"><i class="glyphicon glyphicon-search"></i></button>                    
                         </div>
                      </div>

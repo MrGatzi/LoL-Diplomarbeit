@@ -23,6 +23,15 @@ MainController.controller('RecentMatchesCRL',['$scope','$window','$routeParams',
 					'summonerId': 'you',
 					'teamId': value.teamId
 				};
+				if(value.stats.assists == null){
+					value.stats.assists=0;
+				}
+				if(value.stats.championsKilled == null){
+					value.stats.championsKilled=0;
+				}
+				if(value.stats.numDeaths == null){
+					value.stats.numDeaths=0;
+				}
 			});
 			if($scope.message.SumInfo == null){
 				$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp';

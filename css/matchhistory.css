@@ -120,7 +120,7 @@
 
 #game-container {
 
-    background: url(../Libraries/Background/paper2.jpg);
+   /*  background: url(../Libraries/Background/paper2.jpg); */
 
 }
 
@@ -128,7 +128,7 @@
 
     height: 203px;
 
-    background: url(../Libraries/Background/Background_Itemset.png);
+   /*  background: url(../Libraries/Background/Background_Itemset.png); */
 
 }
 

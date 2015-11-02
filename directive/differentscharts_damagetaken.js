@@ -1,4 +1,4 @@
-MainController.directive('differentscharts', function($rootScope) {
+MainController.directive('differentscharts_damagetaken', function($rootScope) {
     return {
         restrict: 'AE',
         // scope object defines the attributes that can be used in the HTML tag
@@ -23,14 +23,14 @@ MainController.directive('differentscharts', function($rootScope) {
                 gapBetweenGroups = 30,
                 spaceForLabels = 0,
                 spaceForLegend = 90,
-                chartHeight = 350;
+                chartHeight = 200;
 
 
-            var chartLeft = d3.select(".chartLeft")
+            var chartLeft = d3.select(".chartLeft_damagetaken")
                 .attr("width", chartWidth)
                 .attr("height", chartHeight);
 
-            var chartRight = d3.select(".chartRight")
+            var chartRight = d3.select(".chartRight_damagetaken")
                 .attr("width", chartWidth + spaceForLegend)
                 .attr("height", chartHeight);
 
@@ -51,17 +51,17 @@ MainController.directive('differentscharts', function($rootScope) {
                 if (newValue != oldValue) {
                     var data = {
                         labels: [
-                            'Damage Dealt to Champ', 'Damage delt', 'Damage taken'
+                            'Damage Dealt to Champ'
                         ],
                         series: [{
                             label: 'Physical',
-                            values: [scope.leftPlayer.physicalDamageDealt, scope.leftPlayer.physicalDamageDealtToChampions, scope.leftPlayer.physicalDamageTaken]
+                            values: [scope.leftPlayer.physicalDamageDealt, scope.leftPlayer.physicalDamageDealtToChampions, /*scope.leftPlayer.physicalDamageTaken*/]
                         }, {
                             label: 'Magical',
-                            values: [scope.leftPlayer.magicDamageDealt, scope.leftPlayer.magicDamageDealtToChampions, scope.leftPlayer.magicDamageTaken]
+                            values: [scope.leftPlayer.magicDamageDealt, scope.leftPlayer.magicDamageDealtToChampions,/* scope.leftPlayer.magicDamageTaken*/]
                         }, {
                             label: 'True',
-                            values: [scope.leftPlayer.trueDamageDealt, scope.leftPlayer.trueDamageDealtToChampions, scope.leftPlayer.trueDamageTaken]
+                            values: [scope.leftPlayer.trueDamageDealt, scope.leftPlayer.trueDamageDealtToChampions,/* scope.leftPlayer.trueDamageTaken*/]
                         }, ]
                     };
                    
@@ -129,7 +129,7 @@ MainController.directive('differentscharts', function($rootScope) {
 
                     bar // update the the DOM element according to the data (D3 does the for-loop here for you)
                         .attr("transform", function(d, i) { // shift the group element to the correct position
-                            return "translate(" + 0 + "," + (i * barHeight+20 + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
+                            return "translate(" + 0 + "," + (i * barHeight+10 + gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
                         })
                         .select("rect") // select the rect inside the group element
                         .attr("width", function(d) {
@@ -149,7 +149,7 @@ MainController.directive('differentscharts', function($rootScope) {
                         .remove();
                     NewXAxisL
                         .call(xAxisShow)
-						.attr("transform", "translate(" + 0 + ", "+280+ ")")
+						.attr("transform", "translate(" + 0 + ", "+chartHeight+ ")")
 						.selectAll("text")
                         .style("text-anchor", "end")
                         .attr("dx", "-.8em")
@@ -184,17 +184,17 @@ MainController.directive('differentscharts', function($rootScope) {
 					var PositionLabelY=[10,100,190];
                     var data = {
                         labels: [
-                             'Damage-Delt','Damage Dealt to Champions', 'Damage-Taken'
+                             'Damage-Delt'
                         ],
                         series: [{
                             label: 'Physikl',
-                            values: [scope.rightPlayer.physicalDamageDealt, scope.rightPlayer.physicalDamageDealtToChampions, scope.rightPlayer.physicalDamageTaken]
+                            values: [scope.rightPlayer.physicalDamageDealt, scope.rightPlayer.physicalDamageDealtToChampions, /*scope.rightPlayer.physicalDamageTaken*/]
                         }, {
                             label: 'Magical',
-                            values: [scope.rightPlayer.magicDamageDealt, scope.rightPlayer.magicDamageDealtToChampions, scope.rightPlayer.magicDamageTaken]
+                            values: [scope.rightPlayer.magicDamageDealt, scope.rightPlayer.magicDamageDealtToChampions,/* scope.rightPlayer.magicDamageTaken*/]
                         }, {
                             label: 'True',
-                            values: [scope.rightPlayer.trueDamageDealt, scope.rightPlayer.trueDamageDealtToChampions, scope.rightPlayer.trueDamageTaken]
+                            values: [scope.rightPlayer.trueDamageDealt, scope.rightPlayer.trueDamageDealtToChampions, /* scope.rightPlayer.trueDamageTaken*/]
                         }, ]
                     };
                     // Zip the series data together (first values, second values, etc.)
@@ -256,7 +256,7 @@ MainController.directive('differentscharts', function($rootScope) {
 
                     bar // update the the DOM element according to the data (D3 does the for-loop here for you)
                         .attr("transform", function(d, i) { // shift the group element to the correct position
-                            return "translate(" + 0 + "," + (i * barHeight +20+ gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
+                            return "translate(" + 0 + "," + (i * barHeight +10+ gapBetweenGroups * (0.5 + Math.floor(i / data.series.length))) + ")";
                         })
                         .select("rect") // select the rect inside the group element
                         .attr("width", function(d) {
@@ -276,7 +276,7 @@ MainController.directive('differentscharts', function($rootScope) {
 
                     NewXAxisR
                         .call(xAxis)
-						.attr("transform", "translate(" + 0 + ", "+280+ ")")
+						.attr("transform", "translate(" + 0 + ", "+chartHeight+ ")")
                         .selectAll("text")
                         .style("text-anchor", "end")
                         .attr("dx", "-.8em")
@@ -328,22 +328,6 @@ MainController.directive('differentscharts', function($rootScope) {
 						
 					var LabelRectSize = 18,
                         LabelSpacing = 4;
-
-                    var Label = chartRight.selectAll('.label')
-                        .data(data.labels)
-                        .enter()
-                        .append('g')
-                        .attr('transform', function(d, i) {
-                            return 'translate(' + PositionLabelX[i] + ',' + PositionLabelY[i] + ')';
-                        });
-
-                    Label.append('text')
-                        .attr('class', 'label')
-                        .attr('x', -100)
-                        .attr('y', LabelRectSize - LabelSpacing)
-                        .text(function(d,i) {
-                            return data.labels[i];
-                        });
 
 
                     function mouseover(data, color, width) {

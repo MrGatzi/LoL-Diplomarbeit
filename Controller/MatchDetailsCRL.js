@@ -37,10 +37,12 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 	//Dummy for Passing to PartCHart Left
     ToLeft = {
         'physicalDamageDealt': 0,
+		'highestChart': {'taken':0}
     };
 	//Dummy for Passing to PartCHart Right
     ToRight = {
         'physicalDamageDealt': 0,
+		'highestChart': {'taken':0}
     };
 	
     // Main Function
@@ -92,11 +94,13 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
         ToLeft = $scope.GameInfoTimeLine.participants[$scope.leftplayerselected.participantId - 1].stats;
 
         ToRight = $scope.GameInfoTimeLine.participants[$scope.rightplayerselected.participantId - 1].stats;
-
-        var highestLeft = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.physicalDamageDealtToChampions, ToLeft.physicalDamageTaken, ToLeft.magicDamageDealtToChampions, ToLeft.magicDamageTaken, ToLeft.trueDamageDealt, ToLeft.trueDamageDealtToChampions, ToLeft.trueDamageTaken);
-        var highestRight = Math.max(ToRight.physicalDamageDealt, ToRight.magicDamageDealt, ToRight.physicalDamageDealtToChampions, ToRight.physicalDamageTaken, ToRight.magicDamageDealtToChampions, ToRight.magicDamageTaken, ToRight.trueDamageDealt, ToRight.trueDamageDealtToChampions, ToRight.trueDamageTaken);
-        ToLeft.highestChart = Math.max(highestLeft, highestRight);
-        ToRight.highestChart = ToLeft.highestChart;
+		
+		ToLeft.highestCharttaken = Math.max(ToLeft.physicalDamageTaken, ToLeft.magicDamageTaken, ToLeft.trueDamageTaken, ToRight.physicalDamageTaken, ToRight.magicDamageTaken, ToRight.trueDamageTaken);
+        ToRight.highestCharttaken = ToLeft.highestCharttaken;
+		ToLeft.highestChartdealt = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.trueDamageDealt,ToRight.physicalDamageDealt, ToRight.magicDamageDealt, ToRight.trueDamageDealt);
+        ToRight.highestChartdealt = ToLeft.highestChartdealt;
+		ToLeft.highestChartdealtChamp = Math.max(ToLeft.physicalDamageDealtToChampions, ToLeft.magicDamageDealtToChampions, ToLeft.trueDamageDealtToChampions,ToRight.physicalDamageDealtToChampions, ToRight.magicDamageDealtToChampions, ToRight.trueDamageDealtToChampions);
+        ToRight.highestChartdealtChamp = ToLeft.highestChartdealtChamp;
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
         $scope.ChartOverTimeUpdate($scope.leftplayerselected.participantId, "draw", $scope.leftplayerselected.teamId);
@@ -111,10 +115,12 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 */
     $scope.changeChartLeft = function(part) {
         ToLeft = $scope.GameInfoTimeLine.participants[part].stats;
-        var highestLeft = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.physicalDamageDealtToChampions, ToLeft.physicalDamageTaken, ToLeft.magicDamageDealtToChampions, ToLeft.magicDamageTaken, ToLeft.trueDamageDealt, ToLeft.trueDamageDealtToChampions, ToLeft.trueDamageTaken);
-        var highestRight = Math.max(ToRight.physicalDamageDealt, ToRight.magicDamageDealt, ToRight.physicalDamageDealtToChampions, ToRight.physicalDamageTaken, ToRight.magicDamageDealtToChampions, ToRight.magicDamageTaken, ToRight.trueDamageDealt, ToRight.trueDamageDealtToChampions, ToRight.trueDamageTaken);
-        ToLeft.highestChart = Math.max(highestLeft, highestRight);
-        ToRight.highestChart = ToLeft.highestChart;
+		ToLeft.highestCharttaken = Math.max(ToLeft.physicalDamageTaken, ToLeft.magicDamageTaken, ToLeft.trueDamageTaken, ToRight.physicalDamageTaken, ToRight.magicDamageTaken, ToRight.trueDamageTaken);
+        ToRight.highestCharttaken = ToLeft.highestCharttaken;
+		ToLeft.highestChartdealt = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.trueDamageDealt,ToRight.physicalDamageDealt, ToRight.magicDamageDealt, ToRight.trueDamageDealt);
+        ToRight.highestChartdealt = ToLeft.highestChartdealt;
+		ToLeft.highestChartdealtChamp = Math.max(ToLeft.physicalDamageDealtToChampions, ToLeft.magicDamageDealtToChampions, ToLeft.trueDamageDealtToChampions,ToRight.physicalDamageDealtToChampions, ToRight.magicDamageDealtToChampions, ToRight.trueDamageDealtToChampions);
+        ToRight.highestChartdealtChamp = ToLeft.highestChartdealtChamp;
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
 
@@ -128,10 +134,12 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 */
     $scope.changeChartRight = function(part) {
         ToRight = $scope.GameInfoTimeLine.participants[part].stats;
-        var highestLeft = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.physicalDamageDealtToChampions, ToLeft.physicalDamageTaken, ToLeft.magicDamageDealtToChampions, ToLeft.magicDamageTaken, ToLeft.trueDamageDealt, ToLeft.trueDamageDealtToChampions, ToLeft.trueDamageTaken);
-        var highestRight = Math.max(ToRight.physicalDamageDealt, ToRight.magicDamageDealt, ToRight.physicalDamageDealtToChampions, ToRight.physicalDamageTaken, ToRight.magicDamageDealtToChampions, ToRight.magicDamageTaken, ToRight.trueDamageDealt, ToRight.trueDamageDealtToChampions, ToRight.trueDamageTaken);
-        ToLeft.highestChart = Math.max(highestLeft, highestRight);
-        ToRight.highestChart = ToLeft.highestChart;
+        ToLeft.highestCharttaken = Math.max(ToLeft.physicalDamageTaken, ToLeft.magicDamageTaken, ToLeft.trueDamageTaken, ToRight.physicalDamageTaken, ToRight.magicDamageTaken, ToRight.trueDamageTaken);
+        ToRight.highestCharttaken = ToLeft.highestCharttaken;
+		ToLeft.highestChartdealt = Math.max(ToLeft.physicalDamageDealt, ToLeft.magicDamageDealt, ToLeft.trueDamageDealt,ToRight.physicalDamageDealt, ToRight.magicDamageDealt, ToRight.trueDamageDealt);
+        ToRight.highestChartdealt = ToLeft.highestChartdealt;
+		ToLeft.highestChartdealtChamp = Math.max(ToLeft.physicalDamageDealtToChampions, ToLeft.magicDamageDealtToChampions, ToLeft.trueDamageDealtToChampions,ToRight.physicalDamageDealtToChampions, ToRight.magicDamageDealtToChampions, ToRight.trueDamageDealtToChampions);
+        ToRight.highestChartdealtChamp = ToLeft.highestChartdealtChamp;
         $scope.ShowLeft = ToLeft;
         $scope.ShowRight = ToRight;
     };

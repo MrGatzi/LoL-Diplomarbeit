@@ -21,18 +21,43 @@
          </div>
       </div>
       <div>
-         <div style="height: 300px; width:100%;">
+         <div style="height: 200px; width:100%; margin-top:2%;">
             <div style="margin-left : 12%; float:left;">
-               <differentscharts left-player="ShowLeft">
-                  <svg class="chartLeft"></svg>
-               </differentscharts>
+               <differentsdealt left-player="ShowLeft">
+                  <svg class="chartLeftdifferentsdealt"></svg>
+               </differentsdealt>
             </div>
             <div style="margin-left :0%; width:50%; float:left;">
-               <differentscharts right-player="ShowRight">
-                  <svg class="chartRight" ></svg>
-               </differentscharts>
+               <differentsdealt right-player="ShowRight">
+                  <svg class="chartRightdifferentsdealt" ></svg>
+               </differentsdealt>
             </div>
          </div>
+		 <div style="height: 200px; width:100%;">
+            <div style="margin-left : 12%; float:left;">
+               <differnetsdealtchamp left-player="ShowLeft">
+                  <svg class="chartLeftdiffernetsdealtchamp"></svg>
+               </differnetsdealtchamp>
+            </div>
+            <div style="margin-left :0%; width:50%; float:left;">
+               <differnetsdealtchamp right-player="ShowRight">
+                  <svg class="chartRightdiffernetsdealtchamp" ></svg>
+               </differnetsdealtchamp>
+            </div>
+         </div>
+		 <div style="height: 200px; width:100%;">
+            <div style="margin-left : 12%; float:left;">
+               <differnetstaken left-player="ShowLeft">
+                  <svg class="chartLeftDiffernetsTaken"></svg>
+               </differnetstaken>
+            </div>
+            <div style="margin-left :0%; width:50%; float:left;">
+               <differnetstaken right-player="ShowRight">
+                  <svg class="chartRightDiffernetsTaken" ></svg>
+               </differnetstaken>
+            </div>
+         </div>
+		 
       </div>
       <div id="OverTimeCharts">
          <input ng-click="CreepsFarmedUpdate()" id="ChartChanger" class="btn btn-danger" type="submit" value="Creeps farmed" style="margin-left : 230px">

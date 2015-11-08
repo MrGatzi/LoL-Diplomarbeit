@@ -266,6 +266,15 @@
 	background-repeat: no-repeat;
 
 	background-position: center;
+	
+	 background-color: lightgrey; 
+	 border-radius: 6px;
+
+}
+
+.text{
+
+	margin-right:100px;
 
 }
 

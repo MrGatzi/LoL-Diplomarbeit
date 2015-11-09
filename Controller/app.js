@@ -28,8 +28,7 @@ MainController.config(['$routeProvider',
             controller: 'AboutCRL'
         }).
 		when('/Contact', {
-            templateUrl: 'templates/Contact.html',
-            controller: 'ContaktCRL'
+            templateUrl: 'templates/Contact.html'
         }).
         otherwise({
             redirectTo: '/Home'

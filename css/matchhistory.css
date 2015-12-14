@@ -243,16 +243,35 @@
 
 #About-container {
 
-	margin-top:40px;
+	margin-top:80px;
+	
+	
 
-	margin-bottom:30px;
+}
+#About{
+	height:450px;
 
-	height:1300px;
+}
 
-	background-repeat: no-repeat;
+.Donate{
+	
+	
 
-	background-position: center;
+	background-color: lightgrey; 
+	border-radius: 6px;
+}
 
+.Like{
+
+	background-color: lightgrey; 
+	border-radius: 6px;
+	height:450px;
+}
+
+.Donate_Button{
+
+	margin-top: 30px;
+	
 }
 
 #Home-container {
@@ -279,6 +298,7 @@
 }
 
 #Contact-container {
+	
 
 	margin-top:40px;
 
@@ -304,6 +324,14 @@
 
 }
 
+p {
+	font-family: 'Montserrat', sans-serif;
+
+	font-size: 15px;
+
+	/* font-weight: bold; */
+
+}
 
 
 

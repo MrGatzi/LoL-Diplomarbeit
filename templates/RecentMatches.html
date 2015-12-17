@@ -57,6 +57,7 @@
             <div id="fellowPlayers" class="col-md-5">
                <div  class="team1"  ng-repeat= "team1 in item.fellowPlayers |  filter: { teamId: '100' }" >
                   <img class="img-responsive" alt="Responsive image" style="width:64px;height:64px;" src="Libraries/img/champion/{{team1.championId}}.png">
+				  
                </div>
                <div  class="team2"  ng-repeat= "team2 in item.fellowPlayers |  filter: { teamId: '200' }">
                   <img class="img-responsive" alt="Responsive image" style="width:64px;height:64px;" src="Libraries/img/champion/{{team2.championId}}.png">

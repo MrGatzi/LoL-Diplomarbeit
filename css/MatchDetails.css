@@ -143,5 +143,74 @@
 	float:left;
 }
 .ChampInChampselectForChart{
-float:left;
+	float:left;
+}
+#MatchBoard{
+	height: 700px;
+	border-style: solid;
+    border-width: 5px;
+	margin-bot:5%;
+}
+.Player_MatchBoard_Leftside{
+	margin-top:1%;
+	margin-left:2.5%;
+    height:18.5%;
+	width:95%;
+	border-style: solid;
+    border-width: 5px;
+}
+.Player_MatchBoard_Rightside{
+	margin-top:1%;
+	margin-left:2.5%;
+    height:18.5%;
+	width:95%;
+	border-style: solid;
+    border-width: 5px;
+}
+.PlayersLeft_MatchBoard{
+	margin-top:1%;
+	margin-left:1%;
+    height:95%;
+	width:48.5%;
+	border-style: solid;
+    border-width: 5px;
+	float: left;
+}
+.PlayersRight_MatchBoard{
+	margin-top:1%;
+	margin-left:1%;
+    height:95%;
+	width:48.5%;
+	border-style: solid;
+    border-width: 5px;
+	float:left;
+}
+.ChampionIcon_48_left{
+ width: 92px;
+ float: left;
+}
+.ChampionIcon_48_right{
+ width: 92px;
+ float:right;
+}
+.MatchBoard_ItemSlot{
+	width: 32px;
+	height: 32px;
+	float:left;
+	margin-left:1.5%;
+}
+.UpperRow{
+	margin-top:1%;
+	height:35px;
+}
+.LowerRow{
+	margin-top:1%;
+	height:35px;
+}
+.ItemSlot{
+	margin-left: 1%;
+	float:left;
+	margin-top:1%;
+	height:80px;
+	width: 120px;
 }

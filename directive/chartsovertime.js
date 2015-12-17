@@ -32,6 +32,7 @@ MainController.directive('chartsovertime', function($rootScope) {
             scope.$watch('showData', function(newValue, oldValue) {
                 if (newValue !== oldValue) {
                     data = newValue;
+					console.log(data);
 						var maxX=['0','0'];
 						var maxY=['0','0'];
 						var i=data.Lines.length-1;
@@ -104,7 +105,9 @@ MainController.directive('chartsovertime', function($rootScope) {
 							.attr('class', 'line')
 							.attr('fill', 'none')
 							.attr('stroke', function(d,i) {
+								console.log(d.color);
 								return d.color ;
+								
 							});
 
 						lines.attr('d', function(d) {
@@ -115,21 +118,26 @@ MainController.directive('chartsovertime', function($rootScope) {
 
 
 						/*var dots = svg.selectAll(".dot").data(data.Lines);
-
-
+						
 						dots
 							.enter()
 							.append("circle")
 							.attr("class", "dot")
-							.attr("cx", lineGen.x())
-							.attr("cy", lineGen.y())
+							.attr("cx", function(d,i) {
+								console.log(d[9][0]);
+								return d[9][0];
+							})
+							.attr("cy", function(d,i) {
+								console.log(d[9][1]);
+								return d[9][1];
+							})
 							.attr("r", 10)
-							.attr("fill", "rgba(25, 25, 25, 0.01)")
+							.attr("fill", "rgba(25, 25, 25, 1)")
 							.on("mouseover", function(d) {
 								mouseover(d, "green");
 							})
 							.on("mouseout", mouseout);
-							
+						
 						dots
 							.enter()
 							.append("circle")
@@ -156,7 +164,8 @@ MainController.directive('chartsovertime', function($rootScope) {
 							div.transition()
 								.duration(200)
 								.style("opacity", 1e-6);
-						};*/
+						};
+						*/
 					
                 }
             }, true);

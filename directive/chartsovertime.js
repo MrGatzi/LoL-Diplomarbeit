@@ -24,7 +24,7 @@ MainController.directive('chartsovertime', function($rootScope) {
                 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
             var NewXAxis = svg.append("g")
                 .attr("class", "x axis")
-                .attr("transform", "translate(0," + height + ")");
+                .attr("transform", "translate(0," + height + ")");	
 			var TextX=svg.append("text");
 			var TextY=svg.append("text");
             var NewYAxis = svg.append("g")
@@ -117,28 +117,36 @@ MainController.directive('chartsovertime', function($rootScope) {
 						lines.exit().remove();
 
 
-						/*var dots = svg.selectAll(".dot").data(data.Lines);
+						/*var dots = svg.selectAll("g.dot").data( function(d,i) {
+								console.log(d);
+								return data.Lines[i] ;
+							});*/
+							
+						var dots = svg.selectAll("g.dot")
+						.data(data.Lines)
+						.enter().append("g")
+						.attr("class", "dot");
 						
-						dots
+						
+						dots_dot= dots.selectAll("circle")
+						.data(function(d) { console.log(d); return d;});		
+						
+							
+						dots_dot
 							.enter()
 							.append("circle")
 							.attr("class", "dot")
-							.attr("cx", function(d,i) {
-								console.log(d[9][0]);
-								return d[9][0];
-							})
-							.attr("cy", function(d,i) {
-								console.log(d[9][1]);
-								return d[9][1];
-							})
+							.attr("cx",  lineGen.x())
+							.attr("cy", lineGen.y())
 							.attr("r", 10)
-							.attr("fill", "rgba(25, 25, 25, 1)")
-							.on("mouseover", function(d) {
-								mouseover(d, "green");
+							.attr("fill", "rgba(25, 25, 25, 0)")
+							.on("mouseover", function(d,i) {
+								//console.log(d +" hy "+i);
+								mouseover(d, d.color);
 							})
 							.on("mouseout", mouseout);
 						
-						dots
+						dots_dot
 							.enter()
 							.append("circle")
 							.attr("class", "dot_Black")
@@ -146,7 +154,7 @@ MainController.directive('chartsovertime', function($rootScope) {
 							.attr("cy", lineGen.y())
 							.attr("r", 4);
 						
-						dots.exit().remove();
+						dots_dot.exit().remove();
 							
 							
 						function mouseover(d, color) {
@@ -154,7 +162,7 @@ MainController.directive('chartsovertime', function($rootScope) {
 								.duration(500)
 								.style("opacity", 1);
 							div
-								.text(d[0] + ":00 -- " + d[1] + " Creeps")
+								.text(d[0] + ":00 -- " + d[1])
 								.style("left", (d3.event.pageX + 50) + "px")
 								.style("top", (d3.event.pageY + 20) + "px")
 								.style("background", color);
@@ -165,7 +173,7 @@ MainController.directive('chartsovertime', function($rootScope) {
 								.duration(200)
 								.style("opacity", 1e-6);
 						};
-						*/
+						
 					
                 }
             }, true);

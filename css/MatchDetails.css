@@ -181,7 +181,7 @@
 	margin-left:1%;
     height:95%;
 	width:48.5%;
-	border-style: solid;
+border-style: solid;
     border-width: 5px;
 	float:left;
 }
@@ -200,17 +200,36 @@
 	margin-left:1.5%;
 }
 .UpperRow{
-	margin-top:1%;
 	height:35px;
 }
 .LowerRow{
 	margin-top:1%;
 	height:35px;
 }
-.ItemSlot{
+.ItemSlot_Rightside{
+	margin-right: 1%;
+	float:right;
+	margin-top:1%;
+	height:80px;
+	width: 105px;
+}
+.ItemSlot_Leftside{
 	margin-left: 1%;
 	float:left;
 	margin-top:1%;
 	height:80px;
-	width: 120px;
+	width: 105px;
+}
+.TrinketSlot_Leftside{
+	float:left;
+	margin-top:1%;
+}
+.TrinketSlot_Rightside{
+	margin-right:0.5%;
+	float:right;
+	margin-top:1%;
+}
+.Playerstats_MachBoard{
+	margin-top:7%;
+	margin-left:50%;
 }

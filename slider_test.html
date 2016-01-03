@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Slider - Snap to increments</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+  $(function() {
+	value=1;
+    $( "#slider" ).slider({
+      value:100,
+      min: 0,
+      max: 500,
+      step: 1,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.value );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+	
+	
+	var iFrequency = 5000; // expressed in miliseconds
+	var myInterval = 1;
+
+// STARTS and Resets the loop if any
+	 
+
+	function doSomething(){
+		value++;
+		 $( "#slider" ).slider( "option", "value",value );
+	};
+	var intervalID = window.setInterval(doSomething, 50);
+	$( "#stop" ).click(function() {
+		clearInterval(intervalID);
+	});
+	$( "#play" ).click(function() {
+		intervalID = window.setInterval(doSomething, 50);
+	});
+  });
+  </script>
+</head>
+<body>
+ 
+<p>
+  <label for="amount">Donation amount ($50 increments):</label>
+  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+
+<div id="slider"></div>
+<p>
+<button id="stop">STOP</button>
+<button id="play">Play</button>
+ 
+ 
+ 
+</body>
+</html>

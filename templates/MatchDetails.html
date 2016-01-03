@@ -100,13 +100,13 @@
 				<div class="TrinketSlot_Leftside">
 					<img class="img-responsive MatchBoard_ItemSlot" alt="Responsive image" src="Libraries/img/item/.png">
 				</div>
-				<div class="Playerstats_MachBoard">
+				<div class="Playerstats_MachBoard_Leftside">
 				{{item.stats.kills}}/{{item.stats.assists}}/{{item.stats.deaths}}	
 				</div>
             </div>
 		</div>
 		<div class="PlayersRight_MatchBoard">
-			<div class="Player_MatchBoard_Rightside"  ng-repeat="item in GameInfoOverview.fellowPlayers | filter: { teamId: '200' } ">
+			<div class="Player_MatchBoard_Rightside"  ng-repeat="item in GameInfoTimeLine.participants  | filter: { teamId: '200' } ">
 				<img class="img-responsive ChampionIcon_48_right" alt="Responsive image" src="Libraries/img/champion/{{item.championId}}.png">
 				<div class="ItemSlot_Rightside">
 					<div class="UpperRow">
@@ -122,6 +122,9 @@
 				</div>
 				<div class="TrinketSlot_Rightside">
 					<img class="img-responsive MatchBoard_ItemSlot" alt="Responsive image" src="Libraries/img/item/.png">
+				</div>
+				<div class="Playerstats_MachBoard_Rightside">
+				{{item.stats.kills}}/{{item.stats.assists}}/{{item.stats.deaths}}	
 				</div>
 			</div>
 		</div>

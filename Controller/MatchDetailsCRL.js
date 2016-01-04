@@ -13,6 +13,9 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 	var myInterval = 1;
 	//Flag that you can't press the playbutton twice
 	var PlayFlag=0;
+	//For the Slider all Frames are in there
+	var AllFrames=[
+	];
 	/*Variable Friend/Enemy 
 		Determinds if an ally is an Friend or an Enemy. 
 		One of them has to be 100 the other 200
@@ -54,7 +57,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 	//Dummy to Init the MatchBoard
 	$scope.MatchBoardDummy=[
 	{
-			 'ID': 0,
+			 'ID': 99,
 			 'Items':{
 				'1':'.',
 				'2':'.',
@@ -170,6 +173,25 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 	{
 			 'ID': 0,
 			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			 'Items':{
 				'1':'.',
 				'2':'.',
 				'3':'.',
@@ -263,6 +285,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
                 success(function(data, status, config) {
                         $scope.GameInfoTimeLine = data;
 						MatchBoardDummy=$scope.InitParticipantsForMatchBoard(data);
+						$scope.CreateFrames(data);
                         console.log($scope.GameInfoTimeLine);
                         /*if($scope.GameInfoTimeLine=="null"){
                         	$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp'
@@ -721,37 +744,42 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
     $scope.InitParticipantsForMatchBoard = function(GameTimeLine){
 	var whileFlag=0;
 		while(whileFlag<=GameTimeLine.participants.length-1){
-			 $scope.MatchBoardDummy[whileFlag].championId=GameTimeLine.participants[whileFlag].championId;
-			 $scope.MatchBoardDummy[whileFlag].ID=GameTimeLine.participants[whileFlag].participantId;
-			 $scope.MatchBoardDummy[whileFlag].teamId=GameTimeLine.participants[whileFlag].teamId;
+			 $scope.MatchBoardDummy[whileFlag+1].championId=GameTimeLine.participants[whileFlag].championId;
+			 $scope.MatchBoardDummy[whileFlag+1].ID=GameTimeLine.participants[whileFlag].participantId;
+			 $scope.MatchBoardDummy[whileFlag+1].teamId=GameTimeLine.participants[whileFlag].teamId;
 			whileFlag++;
 		}
+		console.log($scope.MatchBoardDummy);
 	};
 	/* Function : InitSlider()
 		inittializ the Slider Div
 	*/
     $scope.InitSlider = function(){
 		$( "#slider" ).slider({
-      value:100,
+      value:0,
       min: 0,
-      max: 5000,
+      max: AllFrames[AllFrames.length-1].timestamp,
       step: 100,
       slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.value );
+        $( "#amount" ).val( ui.value );
       }
     });
-    $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+    $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
 	};
 	/* Function : TimeStampFunction()
 		This function will be called every 50 ms.
 		
 	*/
 	function TimeStampFunction(){
-		$( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+		$( "#amount" ).val( $( "#slider" ).slider( "value" ) );
 		value = $( "#slider" ).slider( "option", "value" );
 		value++;
 		$( "#amount" ).val(value);
 		$( "#slider" ).slider( "option", "value",value );
+		if(AllFrames[value].eventType=='CHAMPION_KILL'){
+			console.log(AllFrames[value].timestamp);
+			$scope.MatchBoardDummy[AllFrames[value].killerId].Kills++;
+		};
 	};
 	/* Stops the TimeStampFunction when the button is pressed
 	*/
@@ -763,8 +791,25 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 	*/
 	$( "#play" ).click(function() {
 		if(PlayFlag==0){
-		intervalID = window.setInterval(TimeStampFunction, 50);
+		intervalID = window.setInterval(TimeStampFunction, 1);
 		PlayFlag=1;
 		}
 	});
+	/* Function : CreateFrames()
+		creates a FrameArray for the Timeline
+	*/
+	$scope.CreateFrames = function(GameTimeLine_ForFrames){
+		var Events=0;
+		var Minutes=1;
+		while(Minutes<=GameTimeLine_ForFrames.timeline.frames.length-1){
+			while(Events<=GameTimeLine_ForFrames.timeline.frames[Minutes].events.length-1){
+				console.log(GameTimeLine_ForFrames.timeline.frames[Minutes].events[Events]);
+				AllFrames.push(GameTimeLine_ForFrames.timeline.frames[Minutes].events[Events]);
+				Events++;
+			}
+			Minutes++;
+			Events=0;
+		}
+		console.log(AllFrames);
+	};
 }]);

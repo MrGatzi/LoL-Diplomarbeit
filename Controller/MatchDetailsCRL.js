@@ -6,6 +6,13 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		$scope.A[0]=1 Champion ...
 	*/
 	$scope.A = [true, true, true, true, true, true, true, true, true, true];
+	
+	//iFrequency= time for slider in milliseconds
+	var iFrequency = 5000;
+	// Varibale for setting the Slider on/off
+	var myInterval = 1;
+	//Flag that you can't press the playbutton twice
+	var PlayFlag=0;
 	/*Variable Friend/Enemy 
 		Determinds if an ally is an Friend or an Enemy. 
 		One of them has to be 100 the other 200
@@ -237,24 +244,6 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			'trinket':'.',
 	}
 	];
-	Participant={
-			 'ID': 0,
-			 'Items':{
-				'0':0,
-				'0':0,
-				'0':0,
-				'0':0,
-				'0':0,
-				'0':0
-			 },
-			'Kills':0,
-			'Deaths':0,
-			'Assists':0,
-			'Level':0,
-			'Minions':0,
-			'teamId':0,
-			'championId':0,
-	};
     // Main Function
 	//try to get the Init Data like SumInfo ...
     $http.post('PHP/Cache_Match_Contents_Overview.php', {
@@ -281,7 +270,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
                         console.log("succ");
                         sortChamps();
                         InitCharts();
-						$( "#slider" ).slider();
+						$scope.InitSlider();
                         $scope.ShowGameDetails = false; //Hide LoadingSpinner Show Content
                     })
                     .error(function(data, status, headers, config) {
@@ -738,4 +727,44 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			whileFlag++;
 		}
 	};
+	/* Function : InitSlider()
+		inittializ the Slider Div
+	*/
+    $scope.InitSlider = function(){
+		$( "#slider" ).slider({
+      value:100,
+      min: 0,
+      max: 5000,
+      step: 100,
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.value );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+	};
+	/* Function : TimeStampFunction()
+		This function will be called every 50 ms.
+		
+	*/
+	function TimeStampFunction(){
+		$( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+		value = $( "#slider" ).slider( "option", "value" );
+		value++;
+		$( "#amount" ).val(value);
+		$( "#slider" ).slider( "option", "value",value );
+	};
+	/* Stops the TimeStampFunction when the button is pressed
+	*/
+	$( "#stop" ).click(function() {
+		clearInterval(intervalID);
+		PlayFlag=0;
+	});
+	/* starts the TimeStampFunction when the button is pressed
+	*/
+	$( "#play" ).click(function() {
+		if(PlayFlag==0){
+		intervalID = window.setInterval(TimeStampFunction, 50);
+		PlayFlag=1;
+		}
+	});
 }]);

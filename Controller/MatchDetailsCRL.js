@@ -45,11 +45,16 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		'highestChart': {'taken':0}
     };
 	//Dummy to Init the MatchBoard
-	MatchBoardDummy=[
+	$scope.MatchBoardDummy=[
 	{
 			 'ID': 0,
 			 'Items':{
-				'0':0
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
 			 },
 			'Kills':0,
 			'Deaths':0,
@@ -58,11 +63,36 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			'Minions':0,
 			'teamId':0,
 			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
 	},
 	{
 			 'ID': 0,
 			 'Items':{
-				'0':0
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
 			 },
 			'Kills':0,
 			'Deaths':0,
@@ -71,11 +101,93 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			'Minions':0,
 			'teamId':0,
 			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
 	},
 	{
 			 'ID': 0,
 			 'Items':{
-				'0':0
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
 			 },
 			'Kills':0,
 			'Deaths':0,
@@ -84,11 +196,17 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			'Minions':0,
 			'teamId':0,
 			'championId':0,
+			'trinket':'.',
 	},
 	{
 			 'ID': 0,
 			 'Items':{
-				'0':0
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
 			 },
 			'Kills':0,
 			'Deaths':0,
@@ -97,11 +215,17 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			'Minions':0,
 			'teamId':0,
 			'championId':0,
+			'trinket':'.',
 	},
 	{
 			 'ID': 0,
 			 'Items':{
-				'0':0
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
 			 },
 			'Kills':0,
 			'Deaths':0,
@@ -110,76 +234,17 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			'Minions':0,
 			'teamId':0,
 			'championId':0,
-	},
-	{
-			 'ID': 0,
-			 'Items':{
-				'0':0
-			 },
-			'Kills':0,
-			'Deaths':0,
-			'Assists':0,
-			'Level':0,
-			'Minions':0,
-			'teamId':0,
-			'championId':0,
-	},
-	{
-			 'ID': 0,
-			 'Items':{
-				'0':0
-			 },
-			'Kills':0,
-			'Deaths':0,
-			'Assists':0,
-			'Level':0,
-			'Minions':0,
-			'teamId':0,
-			'championId':0,
-	},
-	{
-			 'ID': 0,
-			 'Items':{
-				'0':0
-			 },
-			'Kills':0,
-			'Deaths':0,
-			'Assists':0,
-			'Level':0,
-			'Minions':0,
-			'teamId':0,
-			'championId':0,
-	},
-	{
-			 'ID': 0,
-			 'Items':{
-				'0':0
-			 },
-			'Kills':0,
-			'Deaths':0,
-			'Assists':0,
-			'Level':0,
-			'Minions':0,
-			'teamId':0,
-			'championId':0,
-	},
-	{
-			 'ID': 0,
-			 'Items':{
-				'0':0
-			 },
-			'Kills':0,
-			'Deaths':0,
-			'Assists':0,
-			'Level':0,
-			'Minions':0,
-			'teamId':0,
-			'championId':0,
+			'trinket':'.',
 	}
 	];
 	Participant={
 			 'ID': 0,
 			 'Items':{
+				'0':0,
+				'0':0,
+				'0':0,
+				'0':0,
+				'0':0,
 				'0':0
 			 },
 			'Kills':0,
@@ -661,21 +726,16 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
         }
     };
 	/* Function : InitParticipantsForMatchBoard()
+		Input: GameTimeLine(API Callback)
+		This Function will load the Dummy with the First Data to show on the Matchboard
 	*/
     $scope.InitParticipantsForMatchBoard = function(GameTimeLine){
 	var whileFlag=0;
-		/*while(whileFlag<=GameTimeLine.participants.length-1){
-			//Participant.championId=GameTimeLine.participants[whileFlag].championId;
-			MatchBoardDummy[whileFlag]=Participant;
-			whileFlag++;
-		}*/
 		while(whileFlag<=GameTimeLine.participants.length-1){
-			MatchBoardDummy[whileFlag].championId=GameTimeLine.participants[whileFlag].championId;
-			MatchBoardDummy[whileFlag].ID=GameTimeLine.participants[whileFlag].participantId;
-			MatchBoardDummy[whileFlag].teamId=GameTimeLine.participants[whileFlag].teamId;
+			 $scope.MatchBoardDummy[whileFlag].championId=GameTimeLine.participants[whileFlag].championId;
+			 $scope.MatchBoardDummy[whileFlag].ID=GameTimeLine.participants[whileFlag].participantId;
+			 $scope.MatchBoardDummy[whileFlag].teamId=GameTimeLine.participants[whileFlag].teamId;
 			whileFlag++;
 		}
-		console.log(MatchBoardDummy);
-		
 	};
 }]);

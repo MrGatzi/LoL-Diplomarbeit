@@ -44,7 +44,152 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
         'physicalDamageDealt': 0,
 		'highestChart': {'taken':0}
     };
-	
+	//Dummy to Init the MatchBoard
+	MatchBoardDummy=[
+	{
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	}
+	];
+	Participant={
+			 'ID': 0,
+			 'Items':{
+				'0':0
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+	};
     // Main Function
 	//try to get the Init Data like SumInfo ...
     $http.post('PHP/Cache_Match_Contents_Overview.php', {
@@ -63,6 +208,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
                 }).
                 success(function(data, status, config) {
                         $scope.GameInfoTimeLine = data;
+						MatchBoardDummy=$scope.InitParticipantsForMatchBoard(data);
                         console.log($scope.GameInfoTimeLine);
                         /*if($scope.GameInfoTimeLine=="null"){
                         	$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp'
@@ -514,4 +660,22 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			console.log($scope.InputOverTime.Lines)
         }
     };
+	/* Function : InitParticipantsForMatchBoard()
+	*/
+    $scope.InitParticipantsForMatchBoard = function(GameTimeLine){
+	var whileFlag=0;
+		/*while(whileFlag<=GameTimeLine.participants.length-1){
+			//Participant.championId=GameTimeLine.participants[whileFlag].championId;
+			MatchBoardDummy[whileFlag]=Participant;
+			whileFlag++;
+		}*/
+		while(whileFlag<=GameTimeLine.participants.length-1){
+			MatchBoardDummy[whileFlag].championId=GameTimeLine.participants[whileFlag].championId;
+			MatchBoardDummy[whileFlag].ID=GameTimeLine.participants[whileFlag].participantId;
+			MatchBoardDummy[whileFlag].teamId=GameTimeLine.participants[whileFlag].teamId;
+			whileFlag++;
+		}
+		console.log(MatchBoardDummy);
+		
+	};
 }]);

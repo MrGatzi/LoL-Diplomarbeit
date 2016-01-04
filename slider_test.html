@@ -28,8 +28,10 @@
 	 
 
 	function doSomething(){
+		$( "#amount" ).val( "$" + $( "#slider" ).slider( "value" ) );
+		value = $( "#slider" ).slider( "option", "value" );
 		value++;
-		 $( "#slider" ).slider( "option", "value",value );
+		$( "#slider" ).slider( "option", "value",value );
 	};
 	var intervalID = window.setInterval(doSomething, 50);
 	$( "#stop" ).click(function() {
@@ -52,8 +54,6 @@
 <p>
 <button id="stop">STOP</button>
 <button id="play">Play</button>
- 
- 
  
 </body>
 </html>

@@ -84,8 +84,8 @@
 	  <div id="MatchBoard">
 		<div class="PlayersLeft_MatchBoard">
 			<div class="Player_MatchBoard_Leftside"  ng-repeat="item in GameInfoTimeLine.participants | filter: { teamId: '100' } ">
-				<img class="img-responsive ChampionIcon_48_left" alt="Responsive image" src="Libraries/img/champion/{{item.championId}}.png">
-				<div class="ItemSlot_Leftside">
+				<img class="img-responsive ChampionIcon_48_left PartID{{item.participantId}}" alt="Responsive image" src="Libraries/img/champion/{{item.championId}}.png">
+				<div class="ItemSlot_Leftside PartID{{item.participantId}}">
 					<div class="UpperRow">
 					<img class="img-responsive MatchBoard_ItemSlot" alt="Responsive image" src="Libraries/img/item/.png">
 					<img class="img-responsive MatchBoard_ItemSlot" alt="Responsive image" src="Libraries/img/item/.png">
@@ -97,18 +97,18 @@
 					<img class="img-responsive MatchBoard_ItemSlot" alt="Responsive image" src="Libraries/img/item/.png">
 					</div>
 				</div>
-				<div class="TrinketSlot_Leftside">
+				<div class="TrinketSlot_Leftside PartID{{item.participantId}}">
 					<img class="img-responsive MatchBoard_ItemSlot" alt="Responsive image" src="Libraries/img/item/.png">
 				</div>
-				<div class="Playerstats_MachBoard_Leftside">
+				<div class="Playerstats_MachBoard_Leftside  PartID{{item.participantId}}">
 				{{item.stats.kills}}/{{item.stats.assists}}/{{item.stats.deaths}}	
 				</div>
             </div>
 		</div>
 		<div class="PlayersRight_MatchBoard">
 			<div class="Player_MatchBoard_Rightside"  ng-repeat="item in GameInfoTimeLine.participants  | filter: { teamId: '200' } ">
-				<img class="img-responsive ChampionIcon_48_right" alt="Responsive image" src="Libraries/img/champion/{{item.championId}}.png">
-				<div class="ItemSlot_Rightside">
+				<img class="img-responsive ChampionIcon_48_right PartID{{item.participantId}}" alt="Responsive image" src="Libraries/img/champion/{{item.championId}}.png">
+				<div class="ItemSlot_Rightside PartID{{item.participantId}}">
 					<div class="UpperRow">
 					<img class="img-responsive MatchBoard_ItemSlot" alt="Responsive image" src="Libraries/img/item/.png">
 					<img class="img-responsive MatchBoard_ItemSlot" alt="Responsive image" src="Libraries/img/item/.png">
@@ -120,10 +120,10 @@
 					<img class="img-responsive MatchBoard_ItemSlot" alt="Responsive image" src="Libraries/img/item/.png">
 					</div>
 				</div>
-				<div class="TrinketSlot_Rightside">
+				<div class="TrinketSlot_Rightside PartID{{item.participantId}}">
 					<img class="img-responsive MatchBoard_ItemSlot" alt="Responsive image" src="Libraries/img/item/.png">
 				</div>
-				<div class="Playerstats_MachBoard_Rightside">
+				<div class="Playerstats_MachBoard_Rightside PartID{{item.participantId}}">
 				{{item.stats.kills}}/{{item.stats.assists}}/{{item.stats.deaths}}	
 				</div>
 			</div>

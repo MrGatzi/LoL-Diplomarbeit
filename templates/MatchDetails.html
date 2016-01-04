@@ -81,6 +81,17 @@
 			</div>
 		</div>
       </div>
+
+	<p>
+  <label for="amount">Donation amount ($50 increments):</label>
+  <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+</p>
+
+<div id="slider"></div>
+<p>
+<button id="stop">STOP</button>
+<button id="play">Play</button>
+		
 	  <div id="MatchBoard">
 		<div class="PlayersLeft_MatchBoard">
 			<div class="Player_MatchBoard_Leftside"  ng-repeat="item in MatchBoardDummy | filter: { teamId: '100' } ">

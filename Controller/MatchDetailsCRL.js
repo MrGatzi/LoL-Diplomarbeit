@@ -281,7 +281,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
                         console.log("succ");
                         sortChamps();
                         InitCharts();
-
+						$( "#slider" ).slider();
                         $scope.ShowGameDetails = false; //Hide LoadingSpinner Show Content
                     })
                     .error(function(data, status, headers, config) {

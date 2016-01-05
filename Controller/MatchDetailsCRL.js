@@ -6,8 +6,10 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		$scope.A[0]=1 Champion ...
 	*/
 	$scope.A = [true, true, true, true, true, true, true, true, true, true];
+	//Minute Counter for TimeStampFunction
+	var MinuteCounter=0;
 	//Time Value for slider and Dummy
-	Time_value=0;
+	var Time_value=0;
 	//iFrequency= time for slider in milliseconds
 	var iFrequency = 5000;
 	// Varibale for setting the Slider on/off
@@ -772,25 +774,38 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		
 	*/
 	function TimeStampFunction(){
+		if(AllFrames[Time_value].timestamp>=$( "#slider" ).slider( "option", "max" )){
+			clearInterval(intervalID);
+		};
 		$scope.$apply(function () {
 		//$( "#amount" ).val( $( "#slider" ).slider( "value" ) );
 		//value = $( "#slider" ).slider( "option", "value" );
 		Time_value++;
-		console.log(Time_value);
+		//console.log(Time_value);
+		if(typeof AllFrames[Time_value] != "undefined"){
 		$( "#amount" ).val(AllFrames[Time_value].timestamp);
 		$( "#slider" ).slider( "option", "value",AllFrames[Time_value].timestamp );
 		if(AllFrames[Time_value].eventType=='CHAMPION_KILL'){
-			console.log(AllFrames[Time_value].timestamp);
+			//console.log(AllFrames[Time_value].timestamp);
 			$scope.MatchBoardDummy[AllFrames[Time_value].killerId].Kills++;
 			$scope.MatchBoardDummy[AllFrames[Time_value].victimId].Deaths++;
 			if (typeof AllFrames[Time_value].assistingParticipantIds != "undefined") {
 				$.each(AllFrames[Time_value].assistingParticipantIds,function( index, value ) {
-					console.log(Time_value);
+					//console.log(Time_value);
 					$scope.MatchBoardDummy[value].Assists++;
 				});
 			}
 		};
-		});
+			if(AllFrames[Time_value].timestamp>=60000*MinuteCounter){
+				MinuteCounter++;
+				$.each($scope.GameInfoTimeLine.timeline.frames[MinuteCounter].participantFrames ,function( index, value ) {
+					$scope.MatchBoardDummy[value.participantId].Minions=value.minionsKilled+value.jungleMinionsKilled;
+					$scope.MatchBoardDummy[value.participantId].Level=value.level;
+				});
+			};
+		};
+	});
+		
 	};
 	/* Stops the TimeStampFunction when the button is pressed
 	*/

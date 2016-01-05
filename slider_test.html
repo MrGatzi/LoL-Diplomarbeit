@@ -34,12 +34,12 @@
 		$( "#amount" ).val(value);
 		$( "#slider" ).slider( "option", "value",value );
 	};
-	var intervalID = window.setInterval(doSomething, 50);
+	var intervalID = window.setInterval(doSomething, 5);
 	$( "#stop" ).click(function() {
 		clearInterval(intervalID);
 	});
 	$( "#play" ).click(function() {
-		intervalID = window.setInterval(doSomething, 50);
+		intervalID = window.setInterval(doSomething, 5);
 	});
   });
   </script>

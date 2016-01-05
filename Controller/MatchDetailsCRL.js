@@ -791,7 +791,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 	*/
 	$( "#play" ).click(function() {
 		if(PlayFlag==0){
-		intervalID = window.setInterval(TimeStampFunction, 1);
+		intervalID = window.setInterval(TimeStampFunction, 10);
 		PlayFlag=1;
 		}
 	});

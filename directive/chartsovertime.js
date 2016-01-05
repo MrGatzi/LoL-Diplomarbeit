@@ -123,12 +123,13 @@ MainController.directive('chartsovertime', function($rootScope) {
 							});*/
 							
 						var dots = svg.selectAll("g.dot")
-						.data(data.Lines)
-						.enter().append("g")
+						.data(data.Lines);
+						
+						var dots_enter=dots.enter().append("g")
 						.attr("class", "dot");
 						
 						
-						dots_dot= dots.selectAll("circle")
+						dots_dot= dots_enter.selectAll("circle")
 						.data(function(d) { console.log(d); return d;});		
 						
 							
@@ -136,8 +137,6 @@ MainController.directive('chartsovertime', function($rootScope) {
 							.enter()
 							.append("circle")
 							.attr("class", "dot")
-							.attr("cx",  lineGen.x())
-							.attr("cy", lineGen.y())
 							.attr("r", 10)
 							.attr("fill", "rgba(25, 25, 25, 0)")
 							.on("mouseover", function(d,i) {
@@ -147,15 +146,21 @@ MainController.directive('chartsovertime', function($rootScope) {
 							.on("mouseout", mouseout);
 						
 						dots_dot
+							.attr("cx",  lineGen.x())
+							.attr("cy", lineGen.y());
+						
+						dots_dot
 							.enter()
 							.append("circle")
 							.attr("class", "dot_Black")
-							.attr("cx",  lineGen.x())
-							.attr("cy", lineGen.y())
 							.attr("r", 4);
+							
+						dots_dot
+						.attr("cx",  lineGen.x())
+							.attr("cy", lineGen.y());
 						
 						dots_dot.exit().remove();
-							
+						dots.exit().remove();	
 							
 						function mouseover(d, color) {
 							div.transition()

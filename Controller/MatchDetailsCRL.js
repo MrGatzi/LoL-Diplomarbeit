@@ -1,4 +1,4 @@
-MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http', '$window', function($scope, $routeParams, $http, $window) {
+MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http', '$window',  function($scope, $routeParams, $http, $window) {
     /* Variable $scope.A
 		Safes which Champions (The campions on the Left side of the OverTImeCHart) is selectet.
 		true = not selectet
@@ -771,6 +771,9 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		
 	*/
 	function TimeStampFunction(){
+		$scope.$apply(function () {
+            
+       
 		$( "#amount" ).val( $( "#slider" ).slider( "value" ) );
 		value = $( "#slider" ).slider( "option", "value" );
 		value++;
@@ -779,11 +782,21 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		if(AllFrames[value].eventType=='CHAMPION_KILL'){
 			console.log(AllFrames[value].timestamp);
 			$scope.MatchBoardDummy[AllFrames[value].killerId].Kills++;
+			$scope.MatchBoardDummy[AllFrames[value].victimId].Deaths++;
+			if (typeof AllFrames[value].assistingParticipantIds != "undefined") {
+			$.each(AllFrames[value].assistingParticipantIds,function( index, value ) {
+				console.log(value);
+				$scope.MatchBoardDummy[value].Assists++;
+			});
+			console.log("!=undefined");
+			}
 		};
+		});
 	};
 	/* Stops the TimeStampFunction when the button is pressed
 	*/
 	$( "#stop" ).click(function() {
+		//$interval.cancel(intervalID);
 		clearInterval(intervalID);
 		PlayFlag=0;
 	});
@@ -792,6 +805,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 	$( "#play" ).click(function() {
 		if(PlayFlag==0){
 		intervalID = window.setInterval(TimeStampFunction, 10);
+		//intervalID = $interval(TimeStampFunction, 100);
 		PlayFlag=1;
 		}
 	});

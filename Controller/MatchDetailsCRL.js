@@ -809,14 +809,19 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		if(AllFrames[Time_value].eventType=='ITEM_PURCHASED'){
 			var Item_while_Flag=0;
 			var Out_of_while_FLag=0;
-			while( Item_while_Flag<7 && Out_of_while_FLag==0){
-				if($scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=='.'){
-					$scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=AllFrames[Time_value].itemId+".";
-					Out_of_while_FLag++;
+			if($scope.CheckIfTrinket(AllFrames[Time_value].itemId)){
+				$scope.MatchBoardDummy[AllFrames[Time_value].participantId].trinket=AllFrames[Time_value].itemId+".";
+			}else{
+				if($scope.CheckIfValidItem(AllFrames[Time_value].itemId)){
+					while( Item_while_Flag<7 && Out_of_while_FLag==0){
+						if($scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=='.'){
+							$scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=AllFrames[Time_value].itemId+".";
+							Out_of_while_FLag++;
+						};
+						Item_while_Flag++;
+					};
 				};
-				Item_while_Flag++;
 			};
-		
 		};
 			if(AllFrames[Time_value].timestamp>=60000*MinuteCounter){
 				MinuteCounter++;
@@ -863,8 +868,23 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		console.log(AllFrames);
 	};
 	/* Function : CheckIfValidItem()
-		creates a FrameArray for the Timeline
+		checks if the Item is consumable if then return false
 	*/
-	$scope.CheckIfValidItem(){
+	$scope.CheckIfValidItem= function(ItemID){
+		var returnflag=true;
+		if(ItemID==2003||ItemID==2004||ItemID==2009||ItemID==2010||ItemID==2043||ItemID==2044||ItemID==2052||ItemID==2054||ItemID==2137||ItemID==2138||ItemID==2139||ItemID==2140){
+			returnflag=false;
+		};
+		return returnflag;
+	};
+	/* Function : CheckIfTrinket()
+		checks if the Item is a trinket and if return true
+	*/
+	$scope.CheckIfTrinket= function(ItemID){
+		var returnflag=false;
+		if(ItemID==3340||ItemID==3341||ItemID==3342||ItemID==3361||ItemID==3362||ItemID==3363||ItemID==3364){
+			returnflag=true;
+		};
+		return returnflag;
 	};
 }]);

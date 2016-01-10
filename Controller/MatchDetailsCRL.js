@@ -283,7 +283,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
             } else {
 				// If you got the SumInfoData then try to get the GAmeDetails
                 $http.post('PHP/Cache_MatchTimeline_ByMatchID.php', {
-                    data1
+					data1
                 }).
                 success(function(data, status, config) {
                         $scope.GameInfoTimeLine = data;
@@ -293,11 +293,21 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
                         /*if($scope.GameInfoTimeLine=="null"){
                         	$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp'
                         };*/
-                        console.log("succ");
-                        sortChamps();
-                        InitCharts();
-						$scope.InitSlider();
-                        $scope.ShowGameDetails = false; //Hide LoadingSpinner Show Content
+						$http.post('PHP/Cache_Items_Lib.php', {
+						}).
+						success(function(data, status, config) {
+							$scope.ItemInfo=data;
+							console.log($scope.ItemInfo);
+							 console.log("succ");
+							sortChamps();
+							InitCharts();
+							$scope.InitSlider();
+							$scope.ShowGameDetails = false; //Hide LoadingSpinner Show Content
+						})
+						.error(function(data, status, headers, config) {
+						//---------------------------ERROR FUCNTION EINFÜGEN !!!! ---------------------------------------------------------------------------
+							console.log("ERROR IN PHP");
+						});
                     })
                     .error(function(data, status, headers, config) {
                         //$window.location.href = 'http://www.matchupleague.com/#/errortmp';
@@ -796,6 +806,18 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 				});
 			}
 		};
+		if(AllFrames[Time_value].eventType=='ITEM_PURCHASED'){
+			var Item_while_Flag=0;
+			var Out_of_while_FLag=0;
+			while( Item_while_Flag<7 && Out_of_while_FLag==0){
+				if($scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=='.'){
+					$scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=AllFrames[Time_value].itemId+".";
+					Out_of_while_FLag++;
+				};
+				Item_while_Flag++;
+			};
+		
+		};
 			if(AllFrames[Time_value].timestamp>=60000*MinuteCounter){
 				MinuteCounter++;
 				$.each($scope.GameInfoTimeLine.timeline.frames[MinuteCounter].participantFrames ,function( index, value ) {
@@ -839,5 +861,10 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			Events=0;
 		}
 		console.log(AllFrames);
+	};
+	/* Function : CheckIfValidItem()
+		creates a FrameArray for the Timeline
+	*/
+	$scope.CheckIfValidItem(){
 	};
 }]);

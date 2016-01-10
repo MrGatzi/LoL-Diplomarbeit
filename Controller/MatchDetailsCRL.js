@@ -298,7 +298,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 						success(function(data, status, config) {
 							$scope.ItemInfo=data;
 							console.log($scope.ItemInfo);
-							 console.log("succ");
+							console.log("succ");
 							sortChamps();
 							InitCharts();
 							$scope.InitSlider();
@@ -809,6 +809,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		if(AllFrames[Time_value].eventType=='ITEM_PURCHASED'){
 			var Item_while_Flag=0;
 			var Out_of_while_FLag=0;
+			$scope.DeleteBuiltItems(AllFrames[Time_value].itemId,AllFrames[Time_value].participantId);
 			if($scope.CheckIfTrinket(AllFrames[Time_value].itemId)){
 				$scope.MatchBoardDummy[AllFrames[Time_value].participantId].trinket=AllFrames[Time_value].itemId+".";
 			}else{
@@ -822,6 +823,13 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 					};
 				};
 			};
+		};
+		if(AllFrames[Time_value].eventType=='ITEM_DESTROYED'){
+			$scope.DestroyItem(AllFrames[Time_value].itemId,AllFrames[Time_value].participantId);
+			
+		};
+		if(AllFrames[Time_value].eventType=='ITEM_UNDO'){
+			console.log(AllFrames[Time_value]);
 		};
 			if(AllFrames[Time_value].timestamp>=60000*MinuteCounter){
 				MinuteCounter++;
@@ -886,5 +894,38 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			returnflag=true;
 		};
 		return returnflag;
+	};
+	/* Function : DeleteBuiltItems()
+		delets all Items that ed to be deleted inorder to buy an new item
+	*/
+	$scope.DeleteBuiltItems= function(ItemID,OwnerID){
+		var while_Flag=0;
+		var while_item_Flag=1;
+		if (typeof $scope.ItemInfo.data[ItemID].from != "undefined") {
+			while(while_Flag!=$scope.ItemInfo.data[ItemID].from.length){
+				while(while_item_Flag<7){
+					if($scope.MatchBoardDummy[OwnerID].Items[while_item_Flag]==($scope.ItemInfo.data[ItemID].from[while_Flag]+".")){
+						$scope.MatchBoardDummy[OwnerID].Items[while_item_Flag]=".";
+					};
+					while_item_Flag++;
+				};
+				while_Flag++;
+			};
+			
+		};
+	};
+	/* Function : DestroyItem()
+		delets the Item from the right owner
+	*/
+	$scope.DestroyItem= function(ItemID,OwnerID){
+		var while_item_Flag=1;
+		var Out_of_while_Flag=0;
+		while(while_item_Flag<7&&Out_of_while_Flag<=0){
+			if($scope.MatchBoardDummy[OwnerID].Items[while_item_Flag]==(ItemID+".")){
+				$scope.MatchBoardDummy[OwnerID].Items[while_item_Flag]=".";
+				Out_of_while_Flag++;
+			};
+			while_item_Flag++;
+		};
 	};
 }]);

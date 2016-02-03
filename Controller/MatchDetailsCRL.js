@@ -774,7 +774,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
       max: AllFrames[AllFrames.length-1].timestamp,
       step: 100,
       slide: function( event, ui ) {
-        $( "#amount" ).val( ui.value );
+        $( "#amount" ).val($scope.milisToMin(ui.value)  );
       }
     });
     $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
@@ -793,8 +793,9 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		Time_value++;
 		//console.log(Time_value);
 		if(typeof AllFrames[Time_value] != "undefined"){
-		$( "#amount" ).val(AllFrames[Time_value].timestamp);
-		$( "#slider" ).slider( "option", "value",AllFrames[Time_value].timestamp );
+		$( "#amount" ).val($scope.milisToMin(AllFrames[Time_value].timestamp));
+		$( "#slider" ).slider( "option", "value",AllFrames[Time_value].timestamp);
+		console.log();
 		if(AllFrames[Time_value].eventType=='CHAMPION_KILL'){
 			//console.log(AllFrames[Time_value].timestamp);
 			$scope.MatchBoardDummy[AllFrames[Time_value].killerId].Kills++;
@@ -825,11 +826,37 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			};
 		};
 		if(AllFrames[Time_value].eventType=='ITEM_DESTROYED'){
+			if(AllFrames[Time_value].participantId==7){
+				console.log(AllFrames[Time_value]);
+			};
 			$scope.DestroyItem(AllFrames[Time_value].itemId,AllFrames[Time_value].participantId);
-			
+		};
+		if(AllFrames[Time_value].eventType=='ITEM_SOLD'){
+			$scope.DestroyItem(AllFrames[Time_value].itemId,AllFrames[Time_value].participantId);
 		};
 		if(AllFrames[Time_value].eventType=='ITEM_UNDO'){
-			console.log(AllFrames[Time_value]);
+			var Item_while_Flag=0;
+			var Out_of_while_FLag=0;
+			//console.log(AllFrames[Time_value]);
+			
+			if(AllFrames[Time_value].itemBefore!=0){
+				$scope.DestroyItem(AllFrames[Time_value].itemBefore,AllFrames[Time_value].participantId);
+			}
+			if(AllFrames[Time_value].itemAfter!=0){
+				if($scope.CheckIfTrinket(AllFrames[Time_value].itemAfter)){
+					$scope.MatchBoardDummy[AllFrames[Time_value].participantId].trinket=AllFrames[Time_value].itemAfter+".";
+				}else{
+					if($scope.CheckIfValidItem(AllFrames[Time_value].itemAfter)){
+					while( Item_while_Flag<7 && Out_of_while_FLag==0){
+							if($scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=='.'){
+								$scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=AllFrames[Time_value].itemAfter+".";
+								Out_of_while_FLag++;
+							};
+							Item_while_Flag++;
+						};
+					};
+				};
+			}
 		};
 			if(AllFrames[Time_value].timestamp>=60000*MinuteCounter){
 				MinuteCounter++;
@@ -921,6 +948,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		var while_item_Flag=1;
 		var Out_of_while_Flag=0;
 		while(while_item_Flag<7&&Out_of_while_Flag<=0){
+		Out_of_while_Flag=0;
 			if($scope.MatchBoardDummy[OwnerID].Items[while_item_Flag]==(ItemID+".")){
 				$scope.MatchBoardDummy[OwnerID].Items[while_item_Flag]=".";
 				Out_of_while_Flag++;
@@ -928,4 +956,9 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			while_item_Flag++;
 		};
 	};
+	$scope.milisToMin =	function millisToMinutesAndSeconds(millis) {
+		var minutes = Math.floor(millis / 60000);
+		var seconds = ((millis % 60000) / 1000).toFixed(0);
+		return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+	}
 }]);

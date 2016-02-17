@@ -12,19 +12,20 @@
       </div>
       <div  id="game{{$index}}" class=" col-md-12 win_{{item.stats.win}} game" ng-repeat="item in message.SumGames.games" ng-click="GameClick($index)">
          <div id="gamerow1" class="row">
-            <div id="champIcon" class=" col-xs-2 col-sm-2 col-md-2 col-lg-2">
-               <img class="img-responsive" alt="Not found" src="Libraries/img/champion/{{item.championId}}.png">
-               <div id="sumSpells">
+            <div id="champIcon" class=" col-xs-5 col-sm-5 col-md-5 col-lg-5">
+               <img class="img-responsive champImg" alt="Not found" src="Libraries/img/champion/{{item.championId}}.png">
+               
+<!-- 			   <div id="sumSpells">
                   <div id="spell1" class="spells">
                      <img alt="Not found" class="img-responsive" src="Libraries/img/spell/{{item.spell1}}.png">
                   </div>
                   <div id="spell2" class="spells">
                      <img alt="Not found" class="img-responsive" src="Libraries/img/spell/{{item.spell2}}.png">
                   </div>
-               </div>
-            </div>
+               </div> -->
+            
 			
-            <div id="item-container" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            
                <div id="items">
                   
                      <img id="item0" class="img-responsive itemrow1 itemIcon" alt="Not found" src="Libraries/img/item/{{item.stats.item0}}.png">
@@ -45,9 +46,6 @@
                </div>
             </div>
 			
-			<div id="stats" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                  <p class="kda">{{ item.stats.championsKilled}}/{{item.stats.numDeaths}}/{{item.stats.assists}}</p>
-            </div>
 			
             <div id="fellowPlayers" class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                <div  class="team1"  ng-repeat= "team1 in item.fellowPlayers |  filter: { teamId: '100' }" >
@@ -58,6 +56,19 @@
                </div>
             </div>
          </div>
+		 <!-- <div class="row"> -->
+		   <div id="sumSpells" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <div id="spell1" class="spells">
+                     <img alt="Not found" class="img-responsive" src="Libraries/img/spell/{{item.spell1}}.png">
+                  </div>
+                  <div id="spell2" class="spells">
+                     <img alt="Not found" class="img-responsive" src="Libraries/img/spell/{{item.spell2}}.png">
+                  </div>
+               </div>
+			<div id="stats" class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <p class="kda">{{ item.stats.championsKilled}}/{{item.stats.numDeaths}}/{{item.stats.assists}}</p>
+            </div>
+		 <!-- </div> -->
       </div>
    </div>
 </div>

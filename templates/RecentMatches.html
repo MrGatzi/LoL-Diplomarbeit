@@ -2,17 +2,17 @@
 <div id="template" style="height:100%">
    <div id="game-container" class="container">
       <div  id="SumInfo" class="row">
-         <div id="SumIcon" class="col-md-offset-1 col-md-2">
+         <div id="SumIcon" class="col-md-offset-1 col-xs-2 col-sm-2 col-md-2 col-lg-2">
             <img class="img-responsive" alt="Not found" src="Libraries/img/profileicon/{{message.SumInfo[message.Name].profileIconId}}.png">
          </div>
-         <div class="col-md-2 lvl">
+         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 lvl">
             <p class="SumInfo">{{message.SumInfo[message.Name].name}} </p>
 			<p class="SumInfo" >Level: {{message.SumInfo[message.Name].summonerLevel}} </p>
          </div>
       </div>
       <div  id="game{{$index}}" class=" col-md-12 win_{{item.stats.win}} game" ng-repeat="item in message.SumGames.games" ng-click="GameClick($index)">
          <div id="gamerow1" class="row">
-            <div id="champIcon" class=" col-xs-5 col-sm-5 col-md-5 col-lg-5">
+            <div id="champIcon" class=" col-xs-8 col-sm-7 col-md-5 col-lg-5">
                <img class="img-responsive champImg" alt="Not found" src="Libraries/img/champion/{{item.championId}}.png">
                
 <!-- 			   <div id="sumSpells">
@@ -47,7 +47,7 @@
             </div>
 			
 			
-            <div id="fellowPlayers" class="col-xs-6 col-sm-6 col-md-6 col-lg-5">
+            <div id="fellowPlayers" class="col-xs-0 col-sm-0 col-md-6 col-lg-5 hidden-sm hidden-xs">
                <div  class="team1"  ng-repeat= "team1 in item.fellowPlayers |  filter: { teamId: '100' }" >
                   <img class="img-responsive" alt="Not found" style="width:64px;height:64px;" src="Libraries/img/champion/{{team1.championId}}.png">
                </div>

@@ -269,6 +269,217 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			'trinket':'.',
 	}
 	];
+	$scope.MatchBoardDummyReset=[
+	{
+			 'ID': 99,
+			 'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	},
+	{
+			 'ID': 0,
+			 'Items':{
+				'1':'.',
+				'2':'.',
+				'3':'.',
+				'4':'.',
+				'5':'.',
+				'6':'.'
+			 },
+			'Kills':0,
+			'Deaths':0,
+			'Assists':0,
+			'Level':0,
+			'Minions':0,
+			'teamId':0,
+			'championId':0,
+			'trinket':'.',
+	}
+	];
     // Main Function
 	//try to get the Init Data like SumInfo ...
     $http.post('PHP/Cache_Match_Contents_Overview.php', {
@@ -293,8 +504,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
                         /*if($scope.GameInfoTimeLine=="null"){
                         	$window.location.href = 'http://127.0.0.1/LoL-Diplomarbeit/#/errortmp'
                         };*/
-						$http.post('PHP/Cache_Items_Lib.php', {
-						}).
+						$http.post('PHP/Cache_Items_Lib.php', {}).
 						success(function(data, status, config) {
 							$scope.ItemInfo=data;
 							console.log($scope.ItemInfo);
@@ -760,8 +970,13 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 			 $scope.MatchBoardDummy[whileFlag+1].championId=GameTimeLine.participants[whileFlag].championId;
 			 $scope.MatchBoardDummy[whileFlag+1].ID=GameTimeLine.participants[whileFlag].participantId;
 			 $scope.MatchBoardDummy[whileFlag+1].teamId=GameTimeLine.participants[whileFlag].teamId;
+			 //to init the Reset too
+			 $scope.MatchBoardDummyReset[whileFlag+1].championId=GameTimeLine.participants[whileFlag].championId;
+			 $scope.MatchBoardDummyReset[whileFlag+1].ID=GameTimeLine.participants[whileFlag].participantId;
+			 $scope.MatchBoardDummyReset[whileFlag+1].teamId=GameTimeLine.participants[whileFlag].teamId;
 			whileFlag++;
 		}
+		
 		console.log($scope.MatchBoardDummy);
 	};
 	/* Function : InitSlider()
@@ -774,8 +989,101 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
       max: AllFrames[AllFrames.length-1].timestamp,
       step: 100,
       slide: function( event, ui ) {
+	  
         $( "#amount" ).val($scope.milisToMin(ui.value)  );
-      }
+		console.log(ui.value);
+		//Reset All to 0.
+		// to make a deep copy of it
+		var Reset = JSON.parse(JSON.stringify($scope.MatchBoardDummyReset));
+		$scope.MatchBoardDummy= Reset;
+		clearInterval(intervalID);
+		PlayFlag=0;
+		
+		
+		Time_value=0;
+		while(ui.value>=AllFrames[Time_value].timestamp){
+			
+			//console.log(Time_value);
+			if(typeof AllFrames[Time_value] != "undefined"){
+				$( "#amount" ).val($scope.milisToMin(AllFrames[Time_value].timestamp));
+				$( "#slider" ).slider( "option", "value",AllFrames[Time_value].timestamp);
+			console.log();
+			if(AllFrames[Time_value].eventType=='CHAMPION_KILL'){
+				//console.log(AllFrames[Time_value].timestamp);
+				$scope.MatchBoardDummy[AllFrames[Time_value].killerId].Kills++;
+				$scope.MatchBoardDummy[AllFrames[Time_value].victimId].Deaths++;
+				if (typeof AllFrames[Time_value].assistingParticipantIds != "undefined") {
+					$.each(AllFrames[Time_value].assistingParticipantIds,function( index, value ) {
+						//console.log(Time_value);
+						$scope.MatchBoardDummy[value].Assists++;
+					});
+				}
+			};
+			if(AllFrames[Time_value].eventType=='ITEM_PURCHASED'){
+				var Item_while_Flag=0;
+				var Out_of_while_FLag=0;
+				$scope.DeleteBuiltItems(AllFrames[Time_value].itemId,AllFrames[Time_value].participantId);
+				if($scope.CheckIfTrinket(AllFrames[Time_value].itemId)){
+					$scope.MatchBoardDummy[AllFrames[Time_value].participantId].trinket=AllFrames[Time_value].itemId+".";
+				}else{
+					if($scope.CheckIfValidItem(AllFrames[Time_value].itemId)){
+						while( Item_while_Flag<7 && Out_of_while_FLag==0){
+							if($scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=='.'){
+								$scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=AllFrames[Time_value].itemId+".";
+								Out_of_while_FLag++;
+							};
+							Item_while_Flag++;
+						};
+					};
+				};
+			};
+			if(AllFrames[Time_value].eventType=='ITEM_DESTROYED'){
+				if(AllFrames[Time_value].participantId==7){
+					console.log(AllFrames[Time_value]);
+				};
+				$scope.DestroyItem(AllFrames[Time_value].itemId,AllFrames[Time_value].participantId);
+			};
+			if(AllFrames[Time_value].eventType=='ITEM_SOLD'){
+				$scope.DestroyItem(AllFrames[Time_value].itemId,AllFrames[Time_value].participantId);
+			};
+			if(AllFrames[Time_value].eventType=='ITEM_UNDO'){
+				var Item_while_Flag=0;
+				var Out_of_while_FLag=0;
+				//console.log(AllFrames[Time_value]);
+				
+				if(AllFrames[Time_value].itemBefore!=0){
+					$scope.DestroyItem(AllFrames[Time_value].itemBefore,AllFrames[Time_value].participantId);
+				}
+				if(AllFrames[Time_value].itemAfter!=0){
+					if($scope.CheckIfTrinket(AllFrames[Time_value].itemAfter)){
+						$scope.MatchBoardDummy[AllFrames[Time_value].participantId].trinket=AllFrames[Time_value].itemAfter+".";
+					}else{
+						if($scope.CheckIfValidItem(AllFrames[Time_value].itemAfter)){
+						while( Item_while_Flag<7 && Out_of_while_FLag==0){
+								if($scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=='.'){
+									$scope.MatchBoardDummy[AllFrames[Time_value].participantId].Items[Item_while_Flag]=AllFrames[Time_value].itemAfter+".";
+									Out_of_while_FLag++;
+								};
+								Item_while_Flag++;
+							};
+						};
+					};
+				}
+			};
+				if(AllFrames[Time_value].timestamp>=60000*MinuteCounter){
+					MinuteCounter++;
+					$.each($scope.GameInfoTimeLine.timeline.frames[MinuteCounter].participantFrames ,function( index, value ) {
+						$scope.MatchBoardDummy[value.participantId].Minions=value.minionsKilled+value.jungleMinionsKilled;
+						$scope.MatchBoardDummy[value.participantId].Level=value.level;
+					});
+				};
+			}
+			Time_value++;
+		}
+     $scope.$apply();
+
+
+	 }
     });
     $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
 	};
@@ -790,11 +1098,11 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 		$scope.$apply(function () {
 		//$( "#amount" ).val( $( "#slider" ).slider( "value" ) );
 		//value = $( "#slider" ).slider( "option", "value" );
-		Time_value++;
+		
 		//console.log(Time_value);
 		if(typeof AllFrames[Time_value] != "undefined"){
-		$( "#amount" ).val($scope.milisToMin(AllFrames[Time_value].timestamp));
-		$( "#slider" ).slider( "option", "value",AllFrames[Time_value].timestamp);
+			$( "#amount" ).val($scope.milisToMin(AllFrames[Time_value].timestamp));
+			$( "#slider" ).slider( "option", "value",AllFrames[Time_value].timestamp);
 		console.log();
 		if(AllFrames[Time_value].eventType=='CHAMPION_KILL'){
 			//console.log(AllFrames[Time_value].timestamp);
@@ -866,6 +1174,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 				});
 			};
 		};
+		Time_value++;
 	});
 		
 	};
@@ -880,7 +1189,7 @@ MainController.controller('MatchDetailsCRL', ['$scope', '$routeParams', '$http',
 	*/
 	$( "#play" ).click(function() {
 		if(PlayFlag==0){
-		intervalID = window.setInterval(TimeStampFunction, 10);
+		intervalID = window.setInterval(TimeStampFunction, 60);
 		//intervalID = $interval(TimeStampFunction, 100);
 		PlayFlag=1;
 		}

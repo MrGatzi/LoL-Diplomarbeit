@@ -150,6 +150,7 @@
 	border-style: solid;
     border-width: 5px;
 	margin-bot:5%;
+	border-color:white;
 }
 .Player_MatchBoard_Leftside{
 	margin-top:1%;
@@ -158,6 +159,7 @@
 	width:95%;
 	border-style: solid;
     border-width: 5px;
+	border-color:white;
 }
 .Player_MatchBoard_Rightside{
 	margin-top:1%;
@@ -166,6 +168,7 @@
 	width:95%;
 	border-style: solid;
     border-width: 5px;
+	border-color:white;
 }
 .PlayersLeft_MatchBoard{
 	margin-top:1%;
@@ -175,15 +178,17 @@
 	border-style: solid;
     border-width: 5px;
 	float: left;
+	border-color:white;
 }
 .PlayersRight_MatchBoard{
 	margin-top:1%;
 	margin-left:1%;
     height:95%;
 	width:48.5%;
-border-style: solid;
+	border-style: solid;
     border-width: 5px;
 	float:left;
+	border-color:white;
 }
 .ChampionIcon_48_left{
  width: 92px;
